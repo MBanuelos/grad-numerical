@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Preface - Ready to Start? – Introduction to Python</title>
+<title>3&nbsp; Week 3: Numerical Calculus Intro – Introduction to Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./module_one.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./week4.html" rel="next">
+<link href="./module_two.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preface.html">Preface - Ready to Start?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -115,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link active">
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface - Ready to Start?</span></a>
   </div>
 </li>
@@ -153,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week3.html" class="sidebar-item-text sidebar-link">
+  <a href="./week3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
   </div>
 </li>
@@ -189,19 +253,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#to-the-student" id="toc-to-the-student" class="nav-link active" data-scroll-target="#to-the-student">To The Student</a>
-  <ul class="collapse">
-  <li><a href="#the-inquiry-based-approach" id="toc-the-inquiry-based-approach" class="nav-link" data-scroll-target="#the-inquiry-based-approach">The Inquiry-Based Approach</a></li>
-  </ul></li>
+  <li><a href="#numerical-calculus" id="toc-numerical-calculus" class="nav-link active" data-scroll-target="#numerical-calculus"><span class="header-section-number">3.1</span> Numerical Calculus</a></li>
+  <li><a href="#differentiation" id="toc-differentiation" class="nav-link" data-scroll-target="#differentiation"><span class="header-section-number">3.2</span> Differentiation</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis"><span class="header-section-number">3.3</span> Error Analysis</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Preface - Ready to Start?</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></h1>
 </div>
 
 
@@ -218,65 +281,163 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>In this module, we build some of the common techniques for approximating the two primary computations in calculus: taking derivatives and evaluating definite integrals.</p>
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:4,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046310844,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Song Accompanying This Section: <a href="https://youtu.be/92IKHz5vT6k">Ready to Start - Arcade Fire</a></p>
-</div>
-</div>
-<p>This book is a modified version of Eric Sullivan’s <a href="https://numericalmethodssullivan.github.io/index.html">Numerical Methods</a> and is also an <a href="https://en.wikipedia.org/wiki/Open_educational_resources">Open Education Resource</a> with the same license. Although the source material was not readily available, I will be modifying the original online book for the purposes of this course.</p>
-<p>The prerequisites for this material include a firm understanding of single and multivariable variable calculus, a good understanding of the basics of linear algebra, a good understanding of the basics of differential equations.</p>
-<section id="to-the-student" class="level2">
-<h2 class="anchored" data-anchor-id="to-the-student">To The Student</h2>
-<section id="the-inquiry-based-approach" class="level3">
-<h3 class="anchored" data-anchor-id="the-inquiry-based-approach">The Inquiry-Based Approach</h3>
-<p>The material in this book is meant to make you think, build, construct, fail, struggle, and ultimately succeed in learning numerical methods.</p>
-<p><strong>Setting The Stage</strong></p>
-<p>Let’s start the book off right away with a problem designed for groups, discussion, and critical thinking. This problem is inspired by Dana Ernst’s first day IBL activity titled: <a href="http://danaernst.com/setting-the-stage/">Setting the Stage</a>.</p>
+<section id="numerical-calculus" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="numerical-calculus"><span class="header-section-number">3.1</span> Numerical Calculus</h2>
+<p><strong>Practice</strong></p>
+<p>In statistics, the function known as the normal distribution (the bell curve) is defined as</p>
+<p><span class="math display">\[
+N(x) = \frac{1}{\sqrt{2 \pi}} e^{-x^2/2}.
+\]</span></p>
+<p>One of the primary computations of introductory statistics is to find the area under a portion of this curve since this area gives the probability of some event</p>
+<p><span class="math display">\[
+P(a &lt; x &lt; b) = \int^b_a \frac{1}{\sqrt{2 \pi}} e^{-x^2/2}\;dx.
+\]</span></p>
+<p>The trouble is that there is no known antiderivative of this function.</p>
+<p>Propose a method for approximating this area.</p>
 <ul>
-<li>Get in groups of size 3-4.</li>
-<li>Group members should introduce themselves.</li>
-<li>For each of the questions that follow I will ask you to:
-<ul>
-<li><strong>Think</strong> about a possible answer on your own</li>
-<li><strong>Discuss</strong> your answers with the rest of the group</li>
-<li><strong>Share</strong> a summary of each group’s discussion</li>
-</ul></li>
+<li>Trapezoid approximation for between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></li>
+<li>Use a function that looks similar (e.g.&nbsp;<span class="math inline">\(1/(1+x^2)\)</span>)</li>
+<li>Monte Carlo Integration (throw a whole bunch of point at the map)</li>
+<li>Area under the curve is = 1 (upper bound)</li>
+<li>Use <span class="math inline">\(N(x)\)</span> function evaluations in a ‘clever’ way</li>
 </ul>
-<p><strong>Questions:</strong></p>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:521,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046496350,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="3944d7c4-a239-4ea0-c8d8-ce5e9bfa6499">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotly <span class="im">import</span> graph_objs <span class="im">as</span> go</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting N(x) by first defining xdata</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>xdata <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(np.sqrt(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">*</span> np.exp(<span class="op">-</span>xdata<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>go.Figure()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(x<span class="op">=</span>xdata, y<span class="op">=</span>N))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Practice</strong></p>
+<p>Give a list of five functions for which an exact algebraic derivative is relatively easy but an exact antiderivative is either very hard or maybe impossible. Be prepared to compare with your peers.</p>
+<p>Some functions could be - <span class="math inline">\(\sin(x^2)\)</span> - <span class="math inline">\(e^{x^2}\)</span> - <span class="math inline">\(\log_{10}(x) \ln(x)\)</span> - <span class="math inline">\(\frac{1}{\ln (x)}\)</span></p>
+</section>
+<section id="differentiation" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="differentiation"><span class="header-section-number">3.2</span> Differentiation</h2>
+<p>In this section we’ll build several approximation of first and second derivatives. The idea for each of these approximation is:</p>
 <ul>
-<li>What are the goals of a university education?</li>
-<li>How does a person learn something new?</li>
-<li>What do you reasonably expect to remember from your courses in 20 years?</li>
-<li>What is the value of making mistakes in the learning process?</li>
-<li>How do we create a safe environment where risk taking is encouraged and productive failure is valued?</li>
+<li>Partition the interval <span class="math inline">\([a,b]\)</span> into <span class="math inline">\(N\)</span> points.</li>
+<li>Define the distance between two points in the partition as <span class="math inline">\(h\)</span>.</li>
+<li>Approximate the derivative at the point <span class="math inline">\(x \in [a,b]\)</span> by using linear combinations of <span class="math inline">\(f(x-h)\)</span>, <span class="math inline">\(f(x)\)</span>, <span class="math inline">\(f(x+h)\)</span>, and/or other points in the partition.</li>
 </ul>
-<p>This material is written with an <a href="http://www.inquirybasedlearning.org/about/">Inquiry-Based Learning (IBL)</a> flavor. In that sense, this document could be used as a stand-alone set of materials for the course but these notes are not a <em>traditional textbook</em> containing all of the expected theorems, proofs, code, examples, and exposition. You are encouraged to work through problems and homework, present your findings, and work together when appropriate. You will find that this document contains collections of problems with only minimal interweaving exposition.</p>
-<p>It is expected that you do every one of the participation and homework problems and then only use other more traditional texts (or Google) as a backup when you are completely stuck. This is not the only set of material for the course. Your brain, your peers, and the books linked in the next section are your best resources when you are stuck.</p>
-<p>You have the following jobs as a student in this class:</p>
+<p>This converts a continuous problem to a discrete problem.</p>
+<p><strong>Practice</strong></p>
+<p>Let’s take a close look at partitions before moving on to more details about numerical differentiation.</p>
+<p>If we partition the interval [0,1] into 3 equal sub intervals each with length <span class="math inline">\(h\)</span>, then:</p>
 <ul>
-<li><p><strong>Make Mistakes!</strong> More accurately, don’t be afraid to make mistakes. You should write code, work problems, and prove theorems then be completely unafraid to scrap what you’ve done and redo it from scratch. Learning this material is most definitely a non-linear path.</p></li>
-<li><p><strong>Collaborate!</strong> You should collaborate with your peers, making sure you write your own solutions and noting who you collaborate with. The internet (or ChatGPT) is not a collaborator. Use of the internet to help solve these problems robs you of the most important part of this class; the chance for original thought.</p></li>
-<li><p><strong>Enjoy!</strong> Part of the fun of IBL is that you get to experience what it is like to think like a true mathematician / scientist. It takes hard work but ultimately this should be fun!</p></li>
+<li>$h = $</li>
+<li><span class="math inline">\([0,1] = [0,-] \cup [-,-], \cup [-, 1]\)</span></li>
+<li>There are four total points that define the partition. They are <span class="math inline">\(0, - , - , 1\)</span></li>
 </ul>
-<section id="online-texts-and-other-resources" class="level4">
-<h4 class="anchored" data-anchor-id="online-texts-and-other-resources">Online Texts and Other Resources</h4>
-<p>If you are looking for online textbooks for numerical methods or numerical analysis, I can point you to a few. Some of the following online resources may be a good place to help you when you’re stuck but they will definitely say things a bit differently. Use these resources wisely.</p>
+<p><strong>Note:</strong> In general, for a closed interval <span class="math inline">\([a,b]\)</span>, with <span class="math inline">\(N\)</span> equal sub intervals, we have</p>
+<p><span class="math display">\[
+h = \frac{b - a}{N}
+\]</span></p>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:5,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048113352,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="928a4334-ace9-477d-e3af-1a881175d47f">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using numpy to do this for us</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Q: how would we partition [5,10] into 100 equal sub intervals?</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>np.linspace(start <span class="op">=</span> <span class="dv">5</span>, stop <span class="op">=</span> <span class="dv">10</span>, num<span class="op">=</span><span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:3,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048149508,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="0da07948-d452-45ae-9e97-e6dca78f1b73">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we recall that the definition of the first derivative of a function is</p>
+<p><span class="math display">\[\begin{align}
+    \frac{df}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+\end{align}\]</span></p>
+<p>our first approximation for the first derivative is naturally</p>
+<p><span class="math display">\[\begin{align}
+    \frac{df}{dx} \approx \frac{f(x+h) - f(x)}{h}.
+\end{align}\]</span></p>
+<p>From Taylor’s Theorem we know that for an infinitely differentiable function <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+f(x) &amp;= f(x_0) + \frac{f'(x_0)}{1!} (x-x_0)^1\\ &amp;+ \frac{f''(x_0)}{2!}(x-x_0)^2 + \frac{f^{(3)}(x_0)}{3!}(x-x_0)^3\\
+&amp;+ \frac{f^{(4)}(x_0)}{4!}(x-x_0)^4 + \cdots.
+\end{align*}\]</span></p>
+<p>What do we get if we replace <span class="math inline">\(x\)</span> (in the Taylor Series) with <span class="math inline">\(x+h\)</span> and replace every <span class="math inline">\(x_0\)</span> in the series with <span class="math inline">\(x\)</span>? In other words, what is</p>
+<p><span class="math display">\[
+f(x + h) =
+\]</span></p>
+<p><strong>Practice</strong></p>
+<p>Solve the result from the previous problem for <span class="math inline">\(f'(x)\)</span> to create an approximation for <span class="math inline">\(f'(x)\)</span> using <span class="math inline">\(f(x+h), f(x)\)</span> and higher-order terms (fill in the ?),</p>
+<p><span class="math display">\[
+f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+\]</span></p>
+</section>
+<section id="error-analysis" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">3.3</span> Error Analysis</h2>
+<p><strong>Practice</strong></p>
+<p>Consider the function <span class="math inline">\(f(x) = \sin(x)(1-x)\)</span>. The goal of this problem is to make sense of the discussion of the “order” of the derivative approximation.</p>
 <ul>
-<li><a href="http://lqbrin.github.io/tea-time-numerical">Tea Time Numerical Analysis</a></li>
-<li><a href="http://nm.mathforcollege.com/">Holistic Numerical Methods</a> - The Holistic Numerical Methods book is probably the most complete free reference that I’ve found on the web. This should be your source to look up deeper explanations of problems, algorithms, and code.</li>
+<li>Find f’(x) by hand</li>
+<li>Verify that <span class="math inline">\(f'(1) = -\sin(1) \approx -0.841471\)</span></li>
+<li>To approximate the first derivative at <span class="math inline">\(x=1\)</span> numerically with our first order approximation formula, we calculate</li>
 </ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(h\)</span></th>
+<th>Approx. of <span class="math inline">\(f'(1)\)</span></th>
+<th>Exact Value of <span class="math inline">\(f'(1)\)</span></th>
+<th>Abs. % Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(2^{-1}\)</span></td>
+<td></td>
+<td>-0.841471</td>
+<td>18.54181%</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2^{-2}\)</span></td>
+<td></td>
+<td>-0.841471</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(2^{-3}\)</span></td>
+<td></td>
+<td>-0.841471</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The following code will help automate this process</p>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:266,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1693977552574,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="0d5495c3-f2aa-45c4-9fcf-d68926a2319b">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>exact <span class="op">=</span> <span class="op">-</span>np.sin(<span class="dv">1</span>) <span class="co"># what does this line do?</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> <span class="fl">2.0</span><span class="op">**</span>(<span class="op">-</span>np.arange(<span class="dv">1</span>,<span class="dv">10</span>)) <span class="co"># what does this line do?</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>AbsPctError <span class="op">=</span> [] <span class="co"># start off with a blank list of errors</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h <span class="kw">in</span> H:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  approx <span class="op">=</span> <span class="co"># FINISH THIS LINE OF CODE</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  AbsPctError.append( np.<span class="bu">abs</span>( (approx <span class="op">-</span> exact)<span class="op">/</span>exact ) )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> h<span class="op">==</span>H[<span class="dv">0</span>]:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"h="</span>,h,<span class="st">"</span><span class="ch">\t</span><span class="st"> Absolute Pct Error="</span>, AbsPctError[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    err_reduction_factor <span class="op">=</span> AbsPctError[<span class="op">-</span><span class="dv">2</span>]<span class="op">/</span>AbsPctError[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"h="</span>,h,<span class="st">"</span><span class="ch">\t</span><span class="st"> Absolute Pct Error="</span>, AbsPctError[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">"with error reduction"</span>,err_reduction_factor)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.loglog(H,AbsPctError,<span class="st">'b-*'</span>) <span class="co"># Why are we build a loglog plot?</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -681,13 +842,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction to Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Python</span>
+      <a href="./module_two.html" class="pagination-link" aria-label="Module 2 - Numerical Calculus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Module 2 - Numerical Calculus</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./module_one.html" class="pagination-link" aria-label="Module 1 - What is Numerical Analysis?">
-        <span class="nav-page-text">Module 1 - What is Numerical Analysis?</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./week4.html" class="pagination-link" aria-label="Week 4 - Error Analysis &amp; Integration Intro">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

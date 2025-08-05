@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Preface - Ready to Start? – Introduction to Python</title>
+<title>1&nbsp; Week 1 - Intro to Numerical Analysis – Introduction to Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./module_one.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./week2.html" rel="next">
+<link href="./module_one.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preface.html">Preface - Ready to Start?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_one.html">Module 1 - What is Numerical Analysis?</a></li><li class="breadcrumb-item"><a href="./week1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -115,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link active">
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface - Ready to Start?</span></a>
   </div>
 </li>
@@ -130,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week1.html" class="sidebar-item-text sidebar-link">
+  <a href="./week1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
   </div>
 </li>
@@ -189,19 +253,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#to-the-student" id="toc-to-the-student" class="nav-link active" data-scroll-target="#to-the-student">To The Student</a>
+  <li><a href="#philosophies-for-this-course" id="toc-philosophies-for-this-course" class="nav-link active" data-scroll-target="#philosophies-for-this-course"><span class="header-section-number">1.1</span> Philosophies for this Course</a>
   <ul class="collapse">
-  <li><a href="#the-inquiry-based-approach" id="toc-the-inquiry-based-approach" class="nav-link" data-scroll-target="#the-inquiry-based-approach">The Inquiry-Based Approach</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">1.1.1</span> Best practices</a></li>
   </ul></li>
+  <li><a href="#introduction-to-python-and-colab" id="toc-introduction-to-python-and-colab" class="nav-link" data-scroll-target="#introduction-to-python-and-colab"><span class="header-section-number">1.2</span> Introduction to Python and Colab</a>
+  <ul class="collapse">
+  <li><a href="#executing-cells" id="toc-executing-cells" class="nav-link" data-scroll-target="#executing-cells"><span class="header-section-number">1.2.1</span> Executing cells</a></li>
+  <li><a href="#python-kernel" id="toc-python-kernel" class="nav-link" data-scroll-target="#python-kernel"><span class="header-section-number">1.2.2</span> Python Kernel</a></li>
+  </ul></li>
+  <li><a href="#intro-to-numerical-analysis" id="toc-intro-to-numerical-analysis" class="nav-link" data-scroll-target="#intro-to-numerical-analysis"><span class="header-section-number">1.3</span> Intro to Numerical Analysis</a></li>
+  <li><a href="#arithmetic-in-base-2" id="toc-arithmetic-in-base-2" class="nav-link" data-scroll-target="#arithmetic-in-base-2"><span class="header-section-number">1.4</span> Arithmetic in Base 2</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_one.html">Module 1 - What is Numerical Analysis?</a></li><li class="breadcrumb-item"><a href="./week1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Preface - Ready to Start?</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></h1>
 </div>
 
 
@@ -218,65 +289,157 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Song Accompanying This Section: <a href="https://youtu.be/92IKHz5vT6k">Ready to Start - Arcade Fire</a></p>
-</div>
-</div>
-<p>This book is a modified version of Eric Sullivan’s <a href="https://numericalmethodssullivan.github.io/index.html">Numerical Methods</a> and is also an <a href="https://en.wikipedia.org/wiki/Open_educational_resources">Open Education Resource</a> with the same license. Although the source material was not readily available, I will be modifying the original online book for the purposes of this course.</p>
-<p>The prerequisites for this material include a firm understanding of single and multivariable variable calculus, a good understanding of the basics of linear algebra, a good understanding of the basics of differential equations.</p>
-<section id="to-the-student" class="level2">
-<h2 class="anchored" data-anchor-id="to-the-student">To The Student</h2>
-<section id="the-inquiry-based-approach" class="level3">
-<h3 class="anchored" data-anchor-id="the-inquiry-based-approach">The Inquiry-Based Approach</h3>
-<p>The material in this book is meant to make you think, build, construct, fail, struggle, and ultimately succeed in learning numerical methods.</p>
-<p><strong>Setting The Stage</strong></p>
-<p>Let’s start the book off right away with a problem designed for groups, discussion, and critical thinking. This problem is inspired by Dana Ernst’s first day IBL activity titled: <a href="http://danaernst.com/setting-the-stage/">Setting the Stage</a>.</p>
+<p>For this course, there will be a weekly participation notebooks. During each class session, you will have time to complete portions of these notebooks. The goal is for you to complete at least 90% of the notebook in class and this should very rarely be an additional ‘homework’ assignment. If you miss class, it is your responsibility to complete the notebook, ask questions, and turn it in by Friday.</p>
+<hr>
+<p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking the Google Colab buttom at the top of this notebook. Be sure to check <a href="https://fresnostate.instructure.com">Canvas</a> for due dates and reminders.</p>
+<hr>
+<section id="philosophies-for-this-course" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="philosophies-for-this-course"><span class="header-section-number">1.1</span> Philosophies for this Course</h2>
 <ul>
-<li>Get in groups of size 3-4.</li>
-<li>Group members should introduce themselves.</li>
-<li>For each of the questions that follow I will ask you to:
-<ul>
-<li><strong>Think</strong> about a possible answer on your own</li>
-<li><strong>Discuss</strong> your answers with the rest of the group</li>
-<li><strong>Share</strong> a summary of each group’s discussion</li>
-</ul></li>
+<li>TIMTOWDI (Tim Toady)</li>
+<li>Write Working Code First, Optimize Second</li>
 </ul>
-<p><strong>Questions:</strong></p>
-<ul>
-<li>What are the goals of a university education?</li>
-<li>How does a person learn something new?</li>
-<li>What do you reasonably expect to remember from your courses in 20 years?</li>
-<li>What is the value of making mistakes in the learning process?</li>
-<li>How do we create a safe environment where risk taking is encouraged and productive failure is valued?</li>
-</ul>
-<p>This material is written with an <a href="http://www.inquirybasedlearning.org/about/">Inquiry-Based Learning (IBL)</a> flavor. In that sense, this document could be used as a stand-alone set of materials for the course but these notes are not a <em>traditional textbook</em> containing all of the expected theorems, proofs, code, examples, and exposition. You are encouraged to work through problems and homework, present your findings, and work together when appropriate. You will find that this document contains collections of problems with only minimal interweaving exposition.</p>
-<p>It is expected that you do every one of the participation and homework problems and then only use other more traditional texts (or Google) as a backup when you are completely stuck. This is not the only set of material for the course. Your brain, your peers, and the books linked in the next section are your best resources when you are stuck.</p>
-<p>You have the following jobs as a student in this class:</p>
-<ul>
-<li><p><strong>Make Mistakes!</strong> More accurately, don’t be afraid to make mistakes. You should write code, work problems, and prove theorems then be completely unafraid to scrap what you’ve done and redo it from scratch. Learning this material is most definitely a non-linear path.</p></li>
-<li><p><strong>Collaborate!</strong> You should collaborate with your peers, making sure you write your own solutions and noting who you collaborate with. The internet (or ChatGPT) is not a collaborator. Use of the internet to help solve these problems robs you of the most important part of this class; the chance for original thought.</p></li>
-<li><p><strong>Enjoy!</strong> Part of the fun of IBL is that you get to experience what it is like to think like a true mathematician / scientist. It takes hard work but ultimately this should be fun!</p></li>
-</ul>
-<section id="online-texts-and-other-resources" class="level4">
-<h4 class="anchored" data-anchor-id="online-texts-and-other-resources">Online Texts and Other Resources</h4>
-<p>If you are looking for online textbooks for numerical methods or numerical analysis, I can point you to a few. Some of the following online resources may be a good place to help you when you’re stuck but they will definitely say things a bit differently. Use these resources wisely.</p>
-<ul>
-<li><a href="http://lqbrin.github.io/tea-time-numerical">Tea Time Numerical Analysis</a></li>
-<li><a href="http://nm.mathforcollege.com/">Holistic Numerical Methods</a> - The Holistic Numerical Methods book is probably the most complete free reference that I’ve found on the web. This should be your source to look up deeper explanations of problems, algorithms, and code.</li>
-</ul>
-
-
+<section id="best-practices" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">1.1.1</span> Best practices</h3>
+<ol type="1">
+<li><p>For coding environments, provide detailed comments for interpretability and reproducibility. This will also help the future you when you come back to past assignments/code.</p></li>
+<li><p>Read the error message when your code does not work. They contain important information on how to debug your code.</p></li>
+<li><p>If you do something more than twice, automate that action.</p></li>
+<li><p>Write code that works first, then optimize!</p></li>
+<li><p>Notebooks can be split if they get too long. You want to be able to come back to a notebook without too much trouble and searching.</p></li>
+</ol>
 </section>
 </section>
+<section id="introduction-to-python-and-colab" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="introduction-to-python-and-colab"><span class="header-section-number">1.2</span> Introduction to Python and Colab</h2>
+<div class="alert alert-info">
+<p>This introduction to Jupyter Notebook is based on tutorials developed by <a href="http://www.jesshamrick.com">Jessica Hamrick</a>.</p>
+</div>
+<p>The notebook consists of a series of <em>cells</em>. For example, this text is in what is called a “Markdown cell”.</p>
+<p>These cells support <span class="math inline">\(\LaTeX\)</span> and a variety of other features (see toolbar above).</p>
+<p><strong>Practice:</strong> Add a Markdown cell below and use at least 3 of the options from the toolbar (for example, bold, inserting a link, a picture, LaTeX, etc.)</p>
+<p>The following cell is a “code cell”:</p>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:347,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692666039739,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="8a1c3cb9-8a2f-4c24-ba1d-b707f65c3e72">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a code cell</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a comment - comments are for you or for anyone else reading your work</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># multiply example</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">29</span> <span class="op">*</span> <span class="dv">21</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># division</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">28</span><span class="op">/</span><span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="executing-cells" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="executing-cells"><span class="header-section-number">1.2.1</span> Executing cells</h3>
+<p>Code cells can contain any valid Python code in them. When you run the cell, the code is executed and any output is displayed.</p>
+<div class="alert alert-info">
+<p>You can execute cells with <b><code>Ctrl-Enter</code></b> (which will keep the cell selected), or <b><code>Shift-Enter</code></b> (which will select the next cell).</p>
+</div>
+<p>Try running the following cell and see what it prints out:</p>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:16,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692826857117,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="d261f61c-7aad-4f28-f143-1c97114e3b60">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print() is a function that prints what is in the parentheses (usually in quotes)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Printing the numbers from 1-10:"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a for loop which repeats the command inside of the indented space</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print using f strings</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print another message</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Done printing numbers."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Practice:</strong> Copy and paste the code from above into the code cell below and change the numbers in the parentheses of <code>range</code>. What do you observe?</p>
+</section>
+<section id="python-kernel" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="python-kernel"><span class="header-section-number">1.2.2</span> Python Kernel</h3>
+<p>When you first start a notebook, you are also starting what is called a <em>kernel</em>. This is a special program that runs in the background and executes code (by default, this is Python, but it could be other languages too, like R!). Whenever you run a code cell, you are telling the kernel to execute the code that is in the cell, and to print the output (if any).</p>
+<p>Just like if you were typing code at the Python interpreter, you need to make sure your variables are declared before you can use them. What will happen when you run the following cell? Try it and see:</p>
+<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:366,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1692835336809,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="afadde53-b9da-4362-9acb-8807c09e0652">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What does the error tell you?</p>
+<p>Let’s modify the cell above so that <code>a</code> is declared first.</p>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:346,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835467829,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="75ac7628-78bb-4bef-e6db-54179f50e524">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we define a</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s write a comment on the code cell above.</p>
+<p>Some random/built-in functions are</p>
+<ul>
+<li><code>abs()</code></li>
+<li><code>help()</code></li>
+<li><code>print()</code></li>
+</ul>
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:344,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835489320,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="7e658f37-5b60-492b-9cf7-6f8443bd0d1b">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if I wanted more about abs(), I could use the help() function</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(<span class="bu">abs</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Practice:</strong> What are some other built-in functions in Python (feel free to look them up)? Get <code>help</code> on one of the ones that are not listed above.</p>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:177,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835539820,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="77482a50-dfbe-4466-ebad-0709463c1d68">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(<span class="op">-</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:364,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835825833,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other functions people searched</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ascii, bin, sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="intro-to-numerical-analysis" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="intro-to-numerical-analysis"><span class="header-section-number">1.3</span> Intro to Numerical Analysis</h2>
+<p><strong>Practice</strong></p>
+<p>By hand (no computers!) compute the first 12 terms of this sequence with the initial condition <span class="math inline">\(x_0 = 1/10\)</span>.</p>
+<p><span class="math display">\[
+x_{n+1} = \left\{ \begin{array}{ll} 2x_n, &amp; x_n \in [0,\frac{1}{2}] \\ 2x_n - 1, &amp; x_n \in (\frac{1}{2},1] \end{array} \right.
+\]</span></p>
+<p><span class="math display">\[
+1/10, 2/10, 4/10, 8/10, 6/10, 2/10, 4/10, 8/10, 6/10, 2/10,
+\]</span></p>
+<p><strong>Practice</strong></p>
+<p>Now use a spreadsheet and to do the computations. Do you get the same answers?</p>
+<p>[ Put your response here + a link to your Google Sheet ]</p>
+<p><strong>Practice</strong> Finally, solve this problem with Python. Some starter code is given to you below.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define x</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.0</span><span class="op">/</span><span class="dv">10</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the first 50 terms using this rule</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># check if the first condition is met</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> :</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># put the correct assignment here</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if the first condition is not met, do this</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># put the correct assigment here</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Practice</strong></p>
+<p>What do you notice? What do you think happened on the computer and why did it give you a different answer? What, do you suppose, is the cautionary tale hiding behind the scenes with this problem?</p>
+<p>What I noticed is. …</p>
+<p><strong>Practice</strong></p>
+<p>Now what happens with this problem when you start with <span class="math inline">\(x_0 = 1/8\)</span>?</p>
+</section>
+<section id="arithmetic-in-base-2" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="arithmetic-in-base-2"><span class="header-section-number">1.4</span> Arithmetic in Base 2</h2>
+<p><strong>Practice</strong></p>
+<p>Express the following binary numbers in base-10.</p>
+<ul>
+<li><ol type="a">
+<li><span class="math inline">\(111_2\)</span></li>
+</ol></li>
+<li><ol start="2" type="a">
+<li><span class="math inline">\(10,101_2\)</span></li>
+</ol></li>
+</ul>
+<p><strong>Practice</strong></p>
+<p>Discussion: With your group discuss how you would convert a base-10 number into its binary representation. Once you have a proposed method, apply it to the number <span class="math inline">\(237_{10}\)</span> who’s base-2 expression is <span class="math inline">\(11,101,101_2\)</span>?</p>
+<p><strong>Practice</strong></p>
+<p>Convert the base 10 fraction <span class="math inline">\(1/10\)</span> into binary. Use your solution to fully describe what went wrong in problems</p>
+<div id="cell-45" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating binary of a number + bit size of a variable</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>(a)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>a.bit_length()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -681,13 +844,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Introduction to Python">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction to Python</span>
+      <a href="./module_one.html" class="pagination-link" aria-label="Module 1 - What is Numerical Analysis?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Module 1 - What is Numerical Analysis?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./module_one.html" class="pagination-link" aria-label="Module 1 - What is Numerical Analysis?">
-        <span class="nav-page-text">Module 1 - What is Numerical Analysis?</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./week2.html" class="pagination-link" aria-label="Week 2: Approximating Functions">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
