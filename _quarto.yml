@@ -1,0 +1,30 @@
+format:
+  html: 
+    theme: zephyr
+
+project:
+  type: book
+
+book:
+  title: "Introduction to Python"
+  author: "Your Name"
+  chapters:
+    - index.qmd
+    - preface.qmd
+    - part: module_one.ipynb
+      chapters:
+        - week1.ipynb
+        - week2.ipynb
+    - part: module_two.ipynb
+      chapters:
+        - week3.ipynb
+        - week4.ipynb
+        - week5.ipynb
+    - part: module_three.ipynb
+    - part: module_four.ipynb
+
+execute:
+  echo: true
+
+launch:
+  colab: true

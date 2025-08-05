@@ -1,0 +1,18 @@
+# Introduction to Python {.unnumbered}
+
+Welcome to *Introduction to Python*!
+
+In this course, you'll explore Python programming through interactive lessons. 
+Each week includes examples and a link to open the lesson directly in Google Colab.
+
+## Table of Contents
+- [Preface](preface.qmd)
+- [Module 1](module_one.ipynb)
+  - [Week 1](week1.ipynb)
+  - [Week 2](week2.ipynb)
+- [Module 2](module_two.ipynb)
+  - [Week 3](week3.ipynb)
+  - [Week 4](week4.ipynb)
+  - [Week 5](week5.ipynb)
+- [Module 3](module_three.ipynb)
+- [Module 4](module_four.ipynb)
