@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Week 5 - Integration – Numerical Methods in Applied Mathematics, with Python</title>
+<title>5&nbsp; Week 5 - Integration – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -174,7 +174,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Table of Contents</span></span></a>
+ <span class="menu-text">Table of Contents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -195,13 +195,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
   </div>
 </li>
       </ul>
@@ -218,19 +218,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,26 +253,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#integration" id="toc-integration" class="nav-link active" data-scroll-target="#integration"><span class="header-section-number">6.1</span> Integration</a>
+  <li><a href="#integration" id="toc-integration" class="nav-link active" data-scroll-target="#integration"><span class="header-section-number">5.1</span> Integration</a>
   <ul class="collapse">
-  <li><a href="#trapezoidal-rule" id="toc-trapezoidal-rule" class="nav-link" data-scroll-target="#trapezoidal-rule"><span class="header-section-number">6.1.1</span> Trapezoidal Rule</a></li>
+  <li><a href="#trapezoidal-rule" id="toc-trapezoidal-rule" class="nav-link" data-scroll-target="#trapezoidal-rule"><span class="header-section-number">5.1.1</span> Trapezoidal Rule</a></li>
   </ul></li>
-  <li><a href="#monte-carlo-integration-intro" id="toc-monte-carlo-integration-intro" class="nav-link" data-scroll-target="#monte-carlo-integration-intro"><span class="header-section-number">6.2</span> Monte Carlo Integration Intro</a></li>
-  <li><a href="#using-numpy-and-scipy" id="toc-using-numpy-and-scipy" class="nav-link" data-scroll-target="#using-numpy-and-scipy"><span class="header-section-number">6.3</span> Using <code>Numpy</code> and <code>Scipy</code></a>
+  <li><a href="#monte-carlo-integration-intro" id="toc-monte-carlo-integration-intro" class="nav-link" data-scroll-target="#monte-carlo-integration-intro"><span class="header-section-number">5.2</span> Monte Carlo Integration Intro</a></li>
+  <li><a href="#using-numpy-and-scipy" id="toc-using-numpy-and-scipy" class="nav-link" data-scroll-target="#using-numpy-and-scipy"><span class="header-section-number">5.3</span> Using <code>Numpy</code> and <code>Scipy</code></a>
   <ul class="collapse">
-  <li><a href="#differentiation" id="toc-differentiation" class="nav-link" data-scroll-target="#differentiation"><span class="header-section-number">6.3.1</span> Differentiation</a></li>
-  <li><a href="#integration-1" id="toc-integration-1" class="nav-link" data-scroll-target="#integration-1"><span class="header-section-number">6.3.2</span> Integration</a></li>
+  <li><a href="#differentiation" id="toc-differentiation" class="nav-link" data-scroll-target="#differentiation"><span class="header-section-number">5.3.1</span> Differentiation</a></li>
+  <li><a href="#integration-1" id="toc-integration-1" class="nav-link" data-scroll-target="#integration-1"><span class="header-section-number">5.3.2</span> Integration</a></li>
   </ul></li>
-  <li><a href="#d-optimization" id="toc-d-optimization" class="nav-link" data-scroll-target="#d-optimization"><span class="header-section-number">6.4</span> 1-D Optimization</a></li>
+  <li><a href="#d-optimization" id="toc-d-optimization" class="nav-link" data-scroll-target="#d-optimization"><span class="header-section-number">5.4</span> 1-D Optimization</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week5.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></h1>
 </div>
 
 
@@ -301,8 +301,8 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.misc</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.integrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="integration" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="integration"><span class="header-section-number">6.1</span> Integration</h2>
+<section id="integration" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="integration"><span class="header-section-number">5.1</span> Integration</h2>
 <p><strong>Practice</strong></p>
 <p>Write code to approximate an integral with Riemann sums. You should ALWAYS start by writing pseudo-code as comments in your function. Your Python function should accept a Python Function, a lower bound, an upper bound, the number of subintervals. Test your code on several functions for which you know the integral. You should write your code without any loops.</p>
 <p>We need: * step size - <span class="math inline">\(\Delta x = h\)</span> * <span class="math inline">\(f(x)\)</span> * we need the bounds <span class="math inline">\(a,b\)</span> * for Left-aligned R.S., we need the function values at the ‘left’ points in the interval <span class="math inline">\([a,b]\)</span></p>
@@ -340,8 +340,8 @@ window.Quarto = {
 <li><p>If we use right rectangles and <span class="math inline">\(M\)</span> times as many subintervals then the absolute percent error will be approximately <span class="math inline">\(\underline{\hspace{1in}}\)</span>.</p></li>
 </ul>
 <p>The order of these methods (left and right Riemann rectangles) is <span class="math inline">\(\mathcal{O}(\Delta x)\)</span>.</p>
-<section id="trapezoidal-rule" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="trapezoidal-rule"><span class="header-section-number">6.1.1</span> Trapezoidal Rule</h3>
+<section id="trapezoidal-rule" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="trapezoidal-rule"><span class="header-section-number">5.1.1</span> Trapezoidal Rule</h3>
 <p><img src="https://numericalmethodssullivan.github.io/images/Ch03_Trapezoidal1.png"></p>
 <p>The function shown in the picture is <span class="math inline">\(f(x) = \frac{1}{5} x^2 (5-x)\)</span>.</p>
 <p><strong>Practice</strong></p>
@@ -376,8 +376,8 @@ A &amp;= A_1 + A_2 + A_3\\
 <p><em>If we calculate the definite integral with a fixed <span class="math inline">\(\Delta x\)</span> and get an absolute percent error, <span class="math inline">\(P\)</span>, then what absolute percent error will we get if we use a width of <span class="math inline">\(\Delta x/M\)</span> for some positive number <span class="math inline">\(M\)</span>?</em></p>
 </section>
 </section>
-<section id="monte-carlo-integration-intro" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="monte-carlo-integration-intro"><span class="header-section-number">6.2</span> Monte Carlo Integration Intro</h2>
+<section id="monte-carlo-integration-intro" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="monte-carlo-integration-intro"><span class="header-section-number">5.2</span> Monte Carlo Integration Intro</h2>
 <div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1397,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1695256384708,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="9fb0e0a6-855c-46d7-b01d-8c54840ea524" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x, y: np.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>)</span>
@@ -457,10 +457,10 @@ Cell <span class="ansi-green-fg">In[9], line 19</span>
 </div>
 </div>
 </section>
-<section id="using-numpy-and-scipy" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="using-numpy-and-scipy"><span class="header-section-number">6.3</span> Using <code>Numpy</code> and <code>Scipy</code></h2>
-<section id="differentiation" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="differentiation"><span class="header-section-number">6.3.1</span> Differentiation</h3>
+<section id="using-numpy-and-scipy" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="using-numpy-and-scipy"><span class="header-section-number">5.3</span> Using <code>Numpy</code> and <code>Scipy</code></h2>
+<section id="differentiation" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="differentiation"><span class="header-section-number">5.3.1</span> Differentiation</h3>
 <p>There are two main tools built into the <code>numpy</code> and <code>scipy</code> libraries that do numerical differentiation. In <code>numpy</code> there is the <code>np.diff()</code> command. In <code>scipy</code> there is the <code>scipy.misc.derivative()</code> command.</p>
 <div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:12,&quot;status&quot;:&quot;aborted&quot;,&quot;timestamp&quot;:1695256385770,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ex 1</span></span>
@@ -506,8 +506,8 @@ Cell <span class="ansi-green-fg">In[9], line 19</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="integration-1" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="integration-1"><span class="header-section-number">6.3.2</span> Integration</h3>
+<section id="integration-1" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="integration-1"><span class="header-section-number">5.3.2</span> Integration</h3>
 <p>In <code>numpy</code> there is a nice tool called <code>np.trapz()</code> that implements the trapezoidal rule. In the following problem you will find several examples of the <code>np.trapz()</code> command. Use these examples to determine how the command works to integrate functions.</p>
 <p>Let’s approximate</p>
 <p><span class="math display">\[
@@ -530,8 +530,8 @@ Cell <span class="ansi-green-fg">In[9], line 19</span>
 </div>
 </section>
 </section>
-<section id="d-optimization" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="d-optimization"><span class="header-section-number">6.4</span> 1-D Optimization</h2>
+<section id="d-optimization" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="d-optimization"><span class="header-section-number">5.4</span> 1-D Optimization</h2>
 <p><strong>Practice</strong></p>
 <p>Given this box, we want to determine the value of <span class="math inline">\(x\)</span> such that the volume of this box is maximized. How do we proceed?</p>
 <p><img src="https://numericalmethodssullivan.github.io/images/Ch03_CardboardBox.png"></p>
@@ -944,7 +944,7 @@ Cell <span class="ansi-green-fg">In[9], line 19</span>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./week4.html" class="pagination-link" aria-label="Week 4 - Error Analysis &amp; Integration Intro">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
