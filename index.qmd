@@ -3,7 +3,7 @@ Welcome to *Numerical Methods in Applied Mathematics, with Python*!
 In this course, you'll explore Python programming through interactive lessons. 
 Each week includes examples and a link to open the lesson directly in Google Colab. If you choose, you can also download the `.ipynb` files and work on them locally.
 
-## Table of Contents
+## Table of Contents {.unnumbered}
 - [Preface](preface.qmd)
 - [Module 1](module_one.ipynb)
   - [Week 1](week1.ipynb)
