@@ -6,8 +6,8 @@ project:
   type: book
 
 book:
-  title: "Introduction to Python"
-  author: "Your Name"
+  title: "Numerical Methods in Applied Mathematics, with Python"
+  author: "Mario Bañuelos, Ph.D."
   chapters:
     - index.qmd
     - preface.qmd

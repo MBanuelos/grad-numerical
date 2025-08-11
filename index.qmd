@@ -1,6 +1,4 @@
-# Introduction to Python {.unnumbered}
-
-Welcome to *Introduction to Python*!
+Welcome to *Numerical Methods in Applied Mathematics, with Python*!
 
 In this course, you'll explore Python programming through interactive lessons. 
 Each week includes examples and a link to open the lesson directly in Google Colab. If you choose, you can also download the `.ipynb` files and work on them locally.
