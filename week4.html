@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Week 4 - Error Analysis &amp; Integration Intro – Introduction to Python</title>
+<title>5&nbsp; Week 4 - Error Analysis &amp; Integration Intro – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,10 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bfa9996b617bedcb584c872bcaf6c386.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-91512f110606eb4b8bbe71a815d4d51c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week4.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -161,7 +161,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Python</a> 
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -174,7 +174,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Python</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Table of Contents</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -195,13 +195,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
   </div>
 </li>
       </ul>
@@ -218,19 +218,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,18 +253,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link active" data-scroll-target="#error-analysis"><span class="header-section-number">4.1</span> Error Analysis</a></li>
-  <li><a href="#efficient-coding" id="toc-efficient-coding" class="nav-link" data-scroll-target="#efficient-coding"><span class="header-section-number">4.2</span> Efficient Coding</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">4.3</span> Integration</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link active" data-scroll-target="#error-analysis"><span class="header-section-number">5.1</span> Error Analysis</a></li>
+  <li><a href="#efficient-coding" id="toc-efficient-coding" class="nav-link" data-scroll-target="#efficient-coding"><span class="header-section-number">5.2</span> Efficient Coding</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">5.3</span> Integration</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li><li class="breadcrumb-item"><a href="./week4.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></h1>
 </div>
 
 
@@ -291,8 +291,8 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="error-analysis" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">4.1</span> Error Analysis</h2>
+<section id="error-analysis" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">5.1</span> Error Analysis</h2>
 <p><strong>Practice</strong></p>
 <p>Consider the function <span class="math inline">\(f(x) = \sin(x)(1-x)\)</span>. The goal of this problem is to make sense of the discussion of the “order” of the derivative approximation.</p>
 <ul>
@@ -408,8 +408,8 @@ h= 0.001953125   Absolute Pct Error= 0.0012521789951432975 with error reduction 
 </div>
 </div>
 </section>
-<section id="efficient-coding" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="efficient-coding"><span class="header-section-number">4.2</span> Efficient Coding</h2>
+<section id="efficient-coding" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="efficient-coding"><span class="header-section-number">5.2</span> Efficient Coding</h2>
 <p>Now, let’s build a Python function that accepts * a mathematical funciton * the bounds of an interval, * and the number of subintervals.</p>
 <p>Some notes: * We can build Python functions in two ways: - First, we can use the following format <code>python   def funname(input):     #some operation     return output</code> - Next, we can use <strong>lambda</strong> functions (in one line) <code>python   funname = lambda x: #some operation with x</code></p>
 <ul>
@@ -471,8 +471,8 @@ h= 0.001953125   Absolute Pct Error= 0.0012521789951432975 with error reduction 
 </div>
 <p>Change <span class="math inline">\(a, b,\)</span> or <span class="math inline">\(N\)</span> and write one or two observations you see.</p>
 </section>
-<section id="integration" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="integration"><span class="header-section-number">4.3</span> Integration</h2>
+<section id="integration" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="integration"><span class="header-section-number">5.3</span> Integration</h2>
 <p><strong>Practice</strong></p>
 <p>Consider the shaded area of the region under the function between <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=2\)</span>.</p>
 <p><img src="https://numericalmethodssullivan.github.io/images/Ch03_InitialIntegral.png" width="400"></p>
@@ -939,12 +939,12 @@ h= 0.001953125   Absolute Pct Error= 0.0012521789951432975 with error reduction 
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./week3.html" class="pagination-link" aria-label="Week 3: Numerical Calculus Intro">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./week5.html" class="pagination-link" aria-label="Week 5 - Integration">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
