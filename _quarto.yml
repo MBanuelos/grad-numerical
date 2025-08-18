@@ -8,6 +8,9 @@ project:
 book:
   title: "Numerical Methods in Applied Mathematics, with Python"
   author: "Mario Bañuelos, Ph.D."
+  sidebar:
+    logo: "nmam.png"
+  favicon: "nmam.png"
   chapters:
     - index.qmd
     - preface.qmd
