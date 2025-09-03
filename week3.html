@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-91512f110606eb4b8bbe71a815d4d51c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-89202b8ad6fc87994d98faa69b25e70d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -304,11 +304,7 @@ P(a &lt; x &lt; b) = \int^b_a \frac{1}{\sqrt{2 \pi}} e^{-x^2/2}\;dx.
 <p>The trouble is that there is no known antiderivative of this function.</p>
 <p>Propose a method for approximating this area.</p>
 <ul>
-<li>Trapezoid approximation for between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></li>
-<li>Use a function that looks similar (e.g.&nbsp;<span class="math inline">\(1/(1+x^2)\)</span>)</li>
-<li>Monte Carlo Integration (throw a whole bunch of point at the map)</li>
-<li>Area under the curve is = 1 (upper bound)</li>
-<li>Use <span class="math inline">\(N(x)\)</span> function evaluations in a ‘clever’ way</li>
+<li>…</li>
 </ul>
 <div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:521,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046496350,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}}" data-outputid="3944d7c4-a239-4ea0-c8d8-ce5e9bfa6499">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotly <span class="im">import</span> graph_objs <span class="im">as</span> go</span>
@@ -376,7 +372,7 @@ f(x + h) =
 <p><strong>Practice</strong></p>
 <p>Solve the result from the previous problem for <span class="math inline">\(f'(x)\)</span> to create an approximation for <span class="math inline">\(f'(x)\)</span> using <span class="math inline">\(f(x+h), f(x)\)</span> and higher-order terms (fill in the ?),</p>
 <p><span class="math display">\[
-f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+f'(x) = \frac{??? - ???}{?} +  ???
 \]</span></p>
 </section>
 <section id="error-analysis" class="level2" data-number="3.3">
