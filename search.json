@@ -14,7 +14,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\nModule 4",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\n\nModule 4",
     "crumbs": [
       "Table of Contents"
     ]
@@ -94,7 +94,7 @@
     "href": "module_one.html#approximation-error-con-taylor-series",
     "title": "Module 1 - What is Numerical Analysis?",
     "section": "Approximation Error (con Taylor Series)",
-    "text": "Approximation Error (con Taylor Series)\nThe great thing about Taylor Series is that they allow for the representation of potentially very complicated functions as polynomials – and polynomials are easily dealt with on a computer since they involve only addition, subtraction, multiplication, division, and integer powers. The down side is that the order of the polynomial is infinite. Hence, every time we use a Taylor series on a computer we are actually going to be using a Truncated Taylor Series where we only take a finite number of terms. The idea here is simple in principle\n\nIf a function \\(f(x)\\) has a Taylor Series representation it can be written as an infinite sum.\nComputers can’t do infinite sums.\nSo stop the sum at some point \\(n\\) and throw away the rest of the infinite sum.\nNow \\(f(x)\\) is approximated by some finite sum so long as you stay pretty close to \\(x=x_0\\)\nand everything that we just removed of the end is called the remainder for the finite sum.\n\n\n\n\n\n\n\nTheorem 1.1\n\n\n\nThe approximation error when using a truncated Taylor Series is roughly proportional to the size of the next term in the Taylor Series.",
+    "text": "Approximation Error (con Taylor Series)\nThe great thing about Taylor Series is that they allow for the representation of potentially very complicated functions as polynomials – and polynomials are easily dealt with on a computer since they involve only addition, subtraction, multiplication, division, and integer powers. The down side is that the order of the polynomial is infinite. Hence, every time we use a Taylor series on a computer we are actually going to be using a Truncated Taylor Series where we only take a finite number of terms. The idea here is simple in principle\n\nIf a function \\(f(x)\\) has a Taylor Series representation it can be written as an infinite sum.\nComputers can’t do infinite sums.\nSo stop the sum at some point \\(n\\) and throw away the rest of the infinite sum.\nNow \\(f(x)\\) is approximated by some finite sum so long as you stay pretty close to \\(x=x_0\\)\nand everything that we just removed of the end is called the remainder for the finite sum.\n\n\n\n\n\n\n\nTipTheorem 1.1\n\n\n\nThe approximation error when using a truncated Taylor Series is roughly proportional to the size of the next term in the Taylor Series.",
     "crumbs": [
       "Module 1 - What is Numerical Analysis?"
     ]
@@ -349,16 +349,6 @@
     "crumbs": [
       "Module 2 - Numerical Calculus",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Week 5 - Integration</span>"
-    ]
-  },
-  {
-    "objectID": "module_three.html",
-    "href": "module_three.html",
-    "title": "Module 3 - Ordinary Differential Equations",
-    "section": "",
-    "text": "… to be added :]",
-    "crumbs": [
-      "Module 3 - Ordinary Differential Equations"
     ]
   },
   {
