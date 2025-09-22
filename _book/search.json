@@ -312,6 +312,60 @@
     ]
   },
   {
+    "objectID": "module_three.html",
+    "href": "module_three.html",
+    "title": "Module 3 - Ordinary Differential Equations",
+    "section": "",
+    "text": "… to be added :]",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations"
+    ]
+  },
+  {
+    "objectID": "week6.html",
+    "href": "week6.html",
+    "title": "6  MATH 291T - Week 6 Participation",
+    "section": "",
+    "text": "6.1 Intro to ODEs\nPractice\nDescribe the plot of the function that would model the following scenario,\nA drug is eliminated from the body via natural metabolism. Assume that there is some initial amount of drug in the body. What does the function modeling the amount of drug in the system look like over time?\nPractice\nConsider the differential equation \\(x' = 3x\\) with an initial condition \\(x(0)=4.\\) Which of the following functions is a solution to this differential equation, and what is the value of the constant in the function?\nFor the one that is the solution, please type your solution below.",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week6.html#intro-to-odes",
+    "href": "week6.html#intro-to-odes",
+    "title": "6  MATH 291T - Week 6 Participation",
+    "section": "",
+    "text": "\\(x(t) = C \\sin(3t)\\)\n\\(x(t) = C e^{3t}\\)\n$x(t) = C t^3 $\n\\(x(t) = \\sin(3t) + C\\)\n\\(x(t) = e^{3t} + C\\)",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week6.html#separation-of-variables",
+    "href": "week6.html#separation-of-variables",
+    "title": "6  MATH 291T - Week 6 Participation",
+    "section": "6.2 Separation of Variables",
+    "text": "6.2 Separation of Variables\nPractice\nSolve the differential equation \\(x' = 2x + 12\\) with \\(x(0)=2\\) using separation of variables.\nPlease type your answer below.\nSubstitute your solution into the differential equation and verify that it solves it.\nANS:\nPractice\nSolve the differential equation \\[\n\\frac{dx}{dt} = x \\sin(t)\n\\]\nwith \\(x(0) = 1\\) using separation of variables.\nPlease type your answer below. Substitute your solution into the differential equation and verify that it solves it.\nANS:",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week6.html#eulers-method",
+    "href": "week6.html#eulers-method",
+    "title": "6  MATH 291T - Week 6 Participation",
+    "section": "6.3 Euler’s Method",
+    "text": "6.3 Euler’s Method\nWe want to approximate a solution to \\(x'(t) = f(t,x(t))\\).\nRecall that \\[\nx'(t) = \\frac{x(t+h) - x(t)}{h} + \\mathcal{O}(h)\n\\]\nso the differential equation \\(x'(t) = f(x(t),t)\\) becomes\n\\[\n\\frac{x(t+h) - x(t)}{h} \\approx f(x(t),t).\n\\]\nRewriting as a difference equation, letting \\(x_{n+1} = x(t_n+h)\\) and \\(x_n = x(t_n)\\), we get\n\\[\nx_{n+1} = x_n + h f(x_n, t_n)\n\\]\nPractice\nConsider the differential equation \\(x' = 0.5x\\) with \\(x(0)=6\\).\nComplete the following table using Euler’s method, with \\(h=1\\).\nYou can either write code to do this or do it by hand.\n\n\n\nt\n0\n1\n2\n3\n4\n5\n6\n\n\n\n\nApproximation of x(t)\n6\n-\n-\n-\n-\n-\n-\n\n\n\n\n# if time permits, create a plot with your analytical\n# solution and the approximate solution\nimport numpy as np\nt = np.array([0,1,2,3,4,5,6])\napprox = [6, 9, 13.5, 20.25, 30.375, 45.5625, 68.34375]\n\nf = lambda x: 6 * np.exp(0.5*x)\nactual = f(t)\n\n\nimport matplotlib.pyplot as plt\nplt.plot(t,actual)\nplt.plot(t, approx, 'o')",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+    ]
+  },
+  {
     "objectID": "module_four.html",
     "href": "module_four.html",
     "title": "Module 4 - Partial Differential Equations",

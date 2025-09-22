@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 2 - Numerical Calculus – Numerical Methods in Applied Mathematics, with Python</title>
+<title>6&nbsp; MATH 291T - Week 6 Participation – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./week3.html" rel="next">
-<link href="./week2.html" rel="prev">
+<link href="./module_four.html" rel="next">
+<link href="./module_three.html" rel="prev">
 <link href="./nmam.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_two.html">Module 2 - Numerical Calculus</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -147,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./module_two.html" class="sidebar-item-text sidebar-link active">
+            <a href="./module_two.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Module 2 - Numerical Calculus</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -185,7 +248,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./week6.html" class="sidebar-item-text sidebar-link">
+  <a href="./week6.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></span></a>
   </div>
 </li>
@@ -200,15 +263,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#intro-to-odes" id="toc-intro-to-odes" class="nav-link active" data-scroll-target="#intro-to-odes"><span class="header-section-number">6.1</span> Intro to ODEs</a></li>
+  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link" data-scroll-target="#separation-of-variables"><span class="header-section-number">6.2</span> Separation of Variables</a></li>
+  <li><a href="#eulers-method" id="toc-eulers-method" class="nav-link" data-scroll-target="#eulers-method"><span class="header-section-number">6.3</span> Euler’s Method</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 2 - Numerical Calculus</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></h1>
 </div>
 
 
@@ -225,9 +296,117 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>.. to be added :]</p>
+<p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week6.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<p><strong>Name:</strong> [Type Your Name Here]</p>
+<hr>
+<p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking <strong>File -&gt; Save a copy in Drive</strong></p>
+<hr>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.misc</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.integrate </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="intro-to-odes" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="intro-to-odes"><span class="header-section-number">6.1</span> Intro to ODEs</h2>
+<p><strong>Practice</strong></p>
+<p>Describe the plot of the function that would model the following scenario,</p>
+<p>A drug is eliminated from the body via natural metabolism. Assume that there is some initial amount of drug in the body. What does the function modeling the amount of drug in the system look like over time?</p>
+<p><strong>Practice</strong></p>
+<p>Consider the differential equation <span class="math inline">\(x' = 3x\)</span> with an initial condition <span class="math inline">\(x(0)=4.\)</span> Which of the following functions is a solution to this differential equation, and what is the value of the constant in the function?</p>
+<ol type="1">
+<li><span class="math inline">\(x(t) = C \sin(3t)\)</span></li>
+<li><span class="math inline">\(x(t) = C e^{3t}\)</span></li>
+<li>$x(t) = C t^3 $</li>
+<li><span class="math inline">\(x(t) = \sin(3t) + C\)</span></li>
+<li><span class="math inline">\(x(t) = e^{3t} + C\)</span></li>
+</ol>
+<p>For the one that is the solution, please type your solution below.</p>
+</section>
+<section id="separation-of-variables" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">6.2</span> Separation of Variables</h2>
+<p><strong>Practice</strong></p>
+<p>Solve the differential equation <span class="math inline">\(x' = 2x + 12\)</span> with <span class="math inline">\(x(0)=2\)</span> using separation of variables.</p>
+<p>Please type your answer below.</p>
+<p>Substitute your solution into the differential equation and verify that it solves it.</p>
+<p>ANS:</p>
+<p><strong>Practice</strong></p>
+<p>Solve the differential equation <span class="math display">\[
+\frac{dx}{dt} = x \sin(t)
+\]</span></p>
+<p>with <span class="math inline">\(x(0) = 1\)</span> using separation of variables.</p>
+<p>Please type your answer below. Substitute your solution into the differential equation and verify that it solves it.</p>
+<p>ANS:</p>
+</section>
+<section id="eulers-method" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="eulers-method"><span class="header-section-number">6.3</span> Euler’s Method</h2>
+<p>We want to approximate a solution to <span class="math inline">\(x'(t) = f(t,x(t))\)</span>.</p>
+<p>Recall that <span class="math display">\[
+x'(t) = \frac{x(t+h) - x(t)}{h} + \mathcal{O}(h)
+\]</span></p>
+<p>so the differential equation <span class="math inline">\(x'(t) = f(x(t),t)\)</span> becomes</p>
+<p><span class="math display">\[
+\frac{x(t+h) - x(t)}{h} \approx f(x(t),t).
+\]</span></p>
+<p>Rewriting as a difference equation, letting <span class="math inline">\(x_{n+1} = x(t_n+h)\)</span> and <span class="math inline">\(x_n = x(t_n)\)</span>, we get</p>
+<p><span class="math display">\[
+x_{n+1} = x_n + h f(x_n, t_n)
+\]</span></p>
+<p><strong>Practice</strong></p>
+<p>Consider the differential equation <span class="math inline">\(x' = 0.5x\)</span> with <span class="math inline">\(x(0)=6\)</span>.</p>
+<p>Complete the following table using Euler’s method, with <span class="math inline">\(h=1\)</span>.</p>
+<p>You can either write code to do this or do it by hand.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>t</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Approximation of x(t)</td>
+<td>6</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-17" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if time permits, create a plot with your analytical</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># solution and the approximate solution</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>])</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>approx <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">9</span>, <span class="fl">13.5</span>, <span class="fl">20.25</span>, <span class="fl">30.375</span>, <span class="fl">45.5625</span>, <span class="fl">68.34375</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="kw">lambda</span> x: <span class="dv">6</span> <span class="op">*</span> np.exp(<span class="fl">0.5</span><span class="op">*</span>x)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>actual <span class="op">=</span> f(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-18" class="cell" data-executioninfo="{&quot;elapsed&quot;:324,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1695863723101,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="388a8ddf-89b7-498b-e593-68a78a97f88a" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot(t,actual)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(t, approx, <span class="st">'o'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week6_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -652,13 +831,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./week2.html" class="pagination-link" aria-label="Week 2: Approximating Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span>
+      <a href="./module_three.html" class="pagination-link" aria-label="Module 3 - Ordinary Differential Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Module 3 - Ordinary Differential Equations</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./week3.html" class="pagination-link" aria-label="Week 3: Numerical Calculus Intro">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./module_four.html" class="pagination-link" aria-label="Module 4 - Partial Differential Equations">
+        <span class="nav-page-text">Module 4 - Partial Differential Equations</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

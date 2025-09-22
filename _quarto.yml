@@ -24,6 +24,7 @@ book:
         - week4.ipynb
         - week5.ipynb
     - part: module_three.ipynb
+      chapters:
         - week6.ipynb
     - part: module_four.ipynb
 
