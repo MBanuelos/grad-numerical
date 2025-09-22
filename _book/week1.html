@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Week 1 - Intro to Numerical Analysis – Introduction to Python</title>
+<title>1&nbsp; Week 1 - Intro to Numerical Analysis – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./week2.html" rel="next">
 <link href="./module_one.html" rel="prev">
+<link href="./nmam.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -157,9 +158,12 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./nmam.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Python</a> 
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -172,7 +176,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Python</span></a>
+ <span class="menu-text">Table of Contents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,7 +239,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Module 3 - Ordinary Differential Equations</span></span>
+ <span class="menu-text">module_three.ipynb - week6.ipynb</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -287,6 +291,7 @@ window.Quarto = {
 </header>
 
 
+<p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week1.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <p>For this course, there will be a weekly participation notebooks. During each class session, you will have time to complete portions of these notebooks. The goal is for you to complete at least 90% of the notebook in class and this should very rarely be an additional ‘homework’ assignment. If you miss class, it is your responsibility to complete the notebook, ask questions, and turn it in by Friday.</p>
 <hr>
 <p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking the Google Colab buttom at the top of this notebook. Be sure to check <a href="https://fresnostate.instructure.com">Canvas</a> for due dates and reminders.</p>
@@ -317,7 +322,7 @@ window.Quarto = {
 <p>These cells support <span class="math inline">\(\LaTeX\)</span> and a variety of other features (see toolbar above).</p>
 <p><strong>Practice:</strong> Add a Markdown cell below and use at least 3 of the options from the toolbar (for example, bold, inserting a link, a picture, LaTeX, etc.)</p>
 <p>The following cell is a “code cell”:</p>
-<div id="cell-9" class="cell" data-executioninfo="{&quot;elapsed&quot;:347,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692666039739,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="8a1c3cb9-8a2f-4c24-ba1d-b707f65c3e72">
+<div id="cell-10" class="cell" data-executioninfo="{&quot;elapsed&quot;:347,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692666039739,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="8a1c3cb9-8a2f-4c24-ba1d-b707f65c3e72">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a code cell</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a comment - comments are for you or for anyone else reading your work</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -334,7 +339,7 @@ window.Quarto = {
 <p>You can execute cells with <b><code>Ctrl-Enter</code></b> (which will keep the cell selected), or <b><code>Shift-Enter</code></b> (which will select the next cell).</p>
 </div>
 <p>Try running the following cell and see what it prints out:</p>
-<div id="cell-14" class="cell" data-executioninfo="{&quot;elapsed&quot;:16,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692826857117,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="d261f61c-7aad-4f28-f143-1c97114e3b60">
+<div id="cell-15" class="cell" data-executioninfo="{&quot;elapsed&quot;:16,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692826857117,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="d261f61c-7aad-4f28-f143-1c97114e3b60">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print() is a function that prints what is in the parentheses (usually in quotes)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Printing the numbers from 1-10:"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -351,12 +356,12 @@ window.Quarto = {
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="python-kernel"><span class="header-section-number">1.2.2</span> Python Kernel</h3>
 <p>When you first start a notebook, you are also starting what is called a <em>kernel</em>. This is a special program that runs in the background and executes code (by default, this is Python, but it could be other languages too, like R!). Whenever you run a code cell, you are telling the kernel to execute the code that is in the cell, and to print the output (if any).</p>
 <p>Just like if you were typing code at the Python interpreter, you need to make sure your variables are declared before you can use them. What will happen when you run the following cell? Try it and see:</p>
-<div id="cell-19" class="cell" data-executioninfo="{&quot;elapsed&quot;:366,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1692835336809,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="afadde53-b9da-4362-9acb-8807c09e0652">
+<div id="cell-20" class="cell" data-executioninfo="{&quot;elapsed&quot;:366,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1692835336809,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="afadde53-b9da-4362-9acb-8807c09e0652">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What does the error tell you?</p>
 <p>Let’s modify the cell above so that <code>a</code> is declared first.</p>
-<div id="cell-22" class="cell" data-executioninfo="{&quot;elapsed&quot;:346,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835467829,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="75ac7628-78bb-4bef-e6db-54179f50e524">
+<div id="cell-23" class="cell" data-executioninfo="{&quot;elapsed&quot;:346,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835467829,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="75ac7628-78bb-4bef-e6db-54179f50e524">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here, we define a</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -368,15 +373,15 @@ window.Quarto = {
 <li><code>help()</code></li>
 <li><code>print()</code></li>
 </ul>
-<div id="cell-25" class="cell" data-executioninfo="{&quot;elapsed&quot;:344,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835489320,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="7e658f37-5b60-492b-9cf7-6f8443bd0d1b">
+<div id="cell-26" class="cell" data-executioninfo="{&quot;elapsed&quot;:344,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835489320,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="7e658f37-5b60-492b-9cf7-6f8443bd0d1b">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if I wanted more about abs(), I could use the help() function</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(<span class="bu">abs</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Practice:</strong> What are some other built-in functions in Python (feel free to look them up)? Get <code>help</code> on one of the ones that are not listed above.</p>
-<div id="cell-27" class="cell" data-executioninfo="{&quot;elapsed&quot;:177,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835539820,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="77482a50-dfbe-4466-ebad-0709463c1d68">
+<div id="cell-28" class="cell" data-executioninfo="{&quot;elapsed&quot;:177,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835539820,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="77482a50-dfbe-4466-ebad-0709463c1d68">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(<span class="op">-</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-28" class="cell" data-executioninfo="{&quot;elapsed&quot;:364,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835825833,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}">
+<div id="cell-29" class="cell" data-executioninfo="{&quot;elapsed&quot;:364,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1692835825833,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># other functions people searched</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ascii, bin, sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -430,7 +435,7 @@ x_{n+1} = \left\{ \begin{array}{ll} 2x_n, &amp; x_n \in [0,\frac{1}{2}] \\ 2x_n 
 <p>Discussion: With your group discuss how you would convert a base-10 number into its binary representation. Once you have a proposed method, apply it to the number <span class="math inline">\(237_{10}\)</span> who’s base-2 expression is <span class="math inline">\(11,101,101_2\)</span>?</p>
 <p><strong>Practice</strong></p>
 <p>Convert the base 10 fraction <span class="math inline">\(1/10\)</span> into binary. Use your solution to fully describe what went wrong in problems</p>
-<div id="cell-45" class="cell">
+<div id="cell-46" class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating binary of a number + bit size of a variable</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">bin</span>(a)</span>

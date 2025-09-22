@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Week 3: Numerical Calculus Intro – Introduction to Python</title>
+<title>3&nbsp; Week 3: Numerical Calculus Intro – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./week4.html" rel="next">
 <link href="./module_two.html" rel="prev">
+<link href="./nmam.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -157,9 +158,12 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./nmam.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Python</a> 
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -172,7 +176,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Python</span></a>
+ <span class="menu-text">Table of Contents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,7 +239,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Module 3 - Ordinary Differential Equations</span></span>
+ <span class="menu-text">module_three.ipynb - week6.ipynb</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -279,8 +283,9 @@ window.Quarto = {
 </header>
 
 
+<p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week3.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <p>In this module, we build some of the common techniques for approximating the two primary computations in calculus: taking derivatives and evaluating definite integrals.</p>
-<div id="cell-2" class="cell" data-executioninfo="{&quot;elapsed&quot;:4,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046310844,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}">
+<div id="cell-3" class="cell" data-executioninfo="{&quot;elapsed&quot;:4,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046310844,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="numerical-calculus" class="level2" data-number="3.1">
@@ -297,13 +302,9 @@ P(a &lt; x &lt; b) = \int^b_a \frac{1}{\sqrt{2 \pi}} e^{-x^2/2}\;dx.
 <p>The trouble is that there is no known antiderivative of this function.</p>
 <p>Propose a method for approximating this area.</p>
 <ul>
-<li>Trapezoid approximation for between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></li>
-<li>Use a function that looks similar (e.g.&nbsp;<span class="math inline">\(1/(1+x^2)\)</span>)</li>
-<li>Monte Carlo Integration (throw a whole bunch of point at the map)</li>
-<li>Area under the curve is = 1 (upper bound)</li>
-<li>Use <span class="math inline">\(N(x)\)</span> function evaluations in a ‘clever’ way</li>
+<li>…</li>
 </ul>
-<div id="cell-6" class="cell" data-executioninfo="{&quot;elapsed&quot;:521,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046496350,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="3944d7c4-a239-4ea0-c8d8-ce5e9bfa6499">
+<div id="cell-7" class="cell" data-executioninfo="{&quot;elapsed&quot;:521,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694046496350,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="3944d7c4-a239-4ea0-c8d8-ce5e9bfa6499">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotly <span class="im">import</span> graph_objs <span class="im">as</span> go</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting N(x) by first defining xdata</span></span>
@@ -338,7 +339,7 @@ P(a &lt; x &lt; b) = \int^b_a \frac{1}{\sqrt{2 \pi}} e^{-x^2/2}\;dx.
 <p><span class="math display">\[
 h = \frac{b - a}{N}
 \]</span></p>
-<div id="cell-13" class="cell" data-executioninfo="{&quot;elapsed&quot;:5,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048113352,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="928a4334-ace9-477d-e3af-1a881175d47f">
+<div id="cell-14" class="cell" data-executioninfo="{&quot;elapsed&quot;:5,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048113352,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="928a4334-ace9-477d-e3af-1a881175d47f">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using numpy to do this for us</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">5</span>)</span>
@@ -346,7 +347,7 @@ h = \frac{b - a}{N}
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Q: how would we partition [5,10] into 100 equal sub intervals?</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>np.linspace(start <span class="op">=</span> <span class="dv">5</span>, stop <span class="op">=</span> <span class="dv">10</span>, num<span class="op">=</span><span class="dv">101</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-14" class="cell" data-executioninfo="{&quot;elapsed&quot;:3,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048149508,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="0da07948-d452-45ae-9e97-e6dca78f1b73">
+<div id="cell-15" class="cell" data-executioninfo="{&quot;elapsed&quot;:3,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1694048149508,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="0da07948-d452-45ae-9e97-e6dca78f1b73">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we recall that the definition of the first derivative of a function is</p>
@@ -369,7 +370,7 @@ f(x + h) =
 <p><strong>Practice</strong></p>
 <p>Solve the result from the previous problem for <span class="math inline">\(f'(x)\)</span> to create an approximation for <span class="math inline">\(f'(x)\)</span> using <span class="math inline">\(f(x+h), f(x)\)</span> and higher-order terms (fill in the ?),</p>
 <p><span class="math display">\[
-f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
+f'(x) = \frac{??? - ???}{?} +  ???
 \]</span></p>
 </section>
 <section id="error-analysis" class="level2" data-number="3.3">
@@ -412,7 +413,7 @@ f'(x) = \frac{f(x+h) - f(x)}{h} + \mathcal{O}(h)
 </tbody>
 </table>
 <p>The following code will help automate this process</p>
-<div id="cell-22" class="cell" data-executioninfo="{&quot;elapsed&quot;:266,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1693977552574,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="0d5495c3-f2aa-45c4-9fcf-d68926a2319b">
+<div id="cell-23" class="cell" data-executioninfo="{&quot;elapsed&quot;:266,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1693977552574,&quot;user&quot;:{&quot;displayName&quot;:&quot;Mario Banuelos&quot;,&quot;userId&quot;:&quot;01257122883850017165&quot;},&quot;user_tz&quot;:420}" data-outputid="0d5495c3-f2aa-45c4-9fcf-d68926a2319b">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

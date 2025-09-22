@@ -13,4 +13,5 @@ Each week includes examples and a link to open the lesson directly in Google Col
   - [Week 4](week4.ipynb)
   - [Week 5](week5.ipynb)
 - [Module 3](module_three.ipynb)
+  - [Week 6](week6.ipynb)
 - [Module 4](module_four.ipynb)

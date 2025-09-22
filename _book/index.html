@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
+<meta name="author" content="Mario Bañuelos, Ph.D.">
 
-<title>Introduction to Python</title>
+<title>Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,6 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./preface.html" rel="next">
+<link href="./nmam.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -81,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction to Python</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Table of Contents</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -94,9 +95,12 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./nmam.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Introduction to Python</a> 
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -109,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Introduction to Python</span></a>
+ <span class="menu-text">Table of Contents</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -172,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Module 3 - Ordinary Differential Equations</span></span>
+ <span class="menu-text">module_three.ipynb - week6.ipynb</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">
@@ -188,10 +192,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-to-python" id="toc-introduction-to-python" class="nav-link active" data-scroll-target="#introduction-to-python">Introduction to Python</a>
-  <ul class="collapse">
-  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link" data-scroll-target="#table-of-contents">Table of Contents</a></li>
-  </ul></li>
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of Contents</a></li>
   </ul>
 </nav>
     </div>
@@ -200,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Python</h1>
+<h1 class="title">Numerical Methods in Applied Mathematics, with Python</h1>
 </div>
 
 
@@ -210,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>Mario Bañuelos, Ph.D. </p>
           </div>
   </div>
     
@@ -223,12 +224,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction-to-python" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction to Python</h1>
-<p>Welcome to <em>Introduction to Python</em>!</p>
-<p>In this course, you’ll explore Python programming through interactive lessons. Each week includes examples and a link to open the lesson directly in Google Colab.</p>
-<section id="table-of-contents" class="level2">
-<h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
+<p>Welcome to <em>Numerical Methods in Applied Mathematics, with Python</em>!</p>
+<p>In this course, you’ll explore Python programming through interactive lessons. Each week includes examples and a link to open the lesson directly in Google Colab. If you choose, you can also download the <code>.ipynb</code> files and work on them locally.</p>
+<section id="table-of-contents" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="./preface.html">Preface</a></li>
 <li><a href="./module_one.html">Module 1</a>
@@ -242,12 +241,14 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="./week4.html">Week 4</a></li>
 <li><a href="./week5.html">Week 5</a></li>
 </ul></li>
-<li><a href="./module_three.html">Module 3</a></li>
+<li><a href="module_three.ipynb">Module 3</a>
+<ul>
+<li><a href="week6.ipynb">Week 6</a></li>
+</ul></li>
 <li><a href="./module_four.html">Module 4</a></li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
