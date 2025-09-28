@@ -410,6 +410,39 @@
     ]
   },
   {
+    "objectID": "week8.html",
+    "href": "week8.html",
+    "title": "8  Week 8 Participation",
+    "section": "",
+    "text": "8.1 Beyond Euler’s and Midpoint Method\nAs a recap, we have attempted to solve ODEs using the following approach: * make a discrete approximation to the derivative and * step forward through time as a difference equation.\nOther higher-order methods include Runge-Kutta 4 methods. Even though we will not cover this in the course, these methods could be considered for the next midterm.",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Week 8 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week8.html#backward-eulers-method",
+    "href": "week8.html#backward-eulers-method",
+    "title": "8  Week 8 Participation",
+    "section": "8.2 Backward Euler’s Method",
+    "text": "8.2 Backward Euler’s Method\nReturning to\n\\[\nx' = - \\frac{1}{2} x^2, \\; x(0) = 6\n\\]\nCalculate the \\(x(1)\\) and \\(x(2)\\) using Backward Euler’s Method when \\(h=1\\).\n\\(x(1) = ???, x(2) = ???\\)\n\n8.2.1 Side-Bar - scipy.optimize.fsolve()\nThe scipy.optimize.fsolve() function finds the roots of a function, and returns the roots of the (non-linear) equations defined by func(x) = 0 given a starting estimate.\nExample\n\\[\ny^2 + y  = 4\n\\]\nWe can plot this and see where the zeros are: https://www.desmos.com/calculator\nNow, let’s use optimize.fsolve\n\nf1 = lambda y: y**2+y-4\nz = optimize.fsolve(f1,1)\nprint(z)\n# start at a different starting point\nz = optimize.fsolve(f1,-2)\nprint(z)\n\n[1.56155281]\n[-2.56155281]\n\n\nUse this approach to solve the following problems:\n\n\\(x^3 + 5x - 3 = \\sin(x)\\)\n\\(\\sin^2 (x) - \\cos(x)  = -e^x\\)\n\\(\\frac{1}{2}\\left(\\left|x\\right|+x\\right)\\) = 0\n\nNow, we will use this tool to help with our backwardEuler1d() function.\nPractice\nBased on our discussion, complete the code below:\n\ndef backwardEuler1d(f, x0, t0, tmax, dt):\n  t = np.arange(t0, tmax+dt, dt)\n  x = np.zeros(len(t))\n  x[0] = x0\n  for n in range(len(t)-1):\n    G = lambda X: X - x[n] - dt*f(t[n+1], X) # define this function\n    # give the correct starting point for the solver below\n    x[n+1] = optimize.fsolve(G, x[n])[0]\n\n  return t,x\n\nPractice\nTest your code on the \\(x' = -1/2 x^2\\) problem to verify your work.\n\nfp = lambda t, x: -0.5 * x**2",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Week 8 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week8.html#fitting-ode-models-to-data",
+    "href": "week8.html#fitting-ode-models-to-data",
+    "title": "8  Week 8 Participation",
+    "section": "8.3 Fitting ODE Models to Data",
+    "text": "8.3 Fitting ODE Models to Data\nNewton’s Law of Cooling states that\n\\[\n\\frac{dT}{dt} = -k(T - T_{ambient}),\n\\]\nwhere \\(T\\) is the temperature of some object (like a cup of coffee), \\(T_{ambient}\\) is the temperature of the ambient environment, and \\(k\\) is the proportionality constant that governs the rate of cooling. This is a classic differential equation with a well known solution. In the present situation we don’t want the analytic solution, but instead we will work with a numerical solution since we are thinking ahead to where the differential equation may be very hard to solve in future problems.\nWe also don’t want to just look at the data and guess an algebraic form for the function that best fits the data. That would be a trap! (why?)\nThe following data table gives the temperature (degrees F) at several times while a cup of tea cools on a table. The ambient temperature of the room is 65F.\n\nimport pandas as pd\n\nURL1 = 'https://raw.githubusercontent.com/NumericalMethodsSullivan'\nURL2 = '/NumericalMethodsSullivan.github.io/master/data/'\nURL = URL1+URL2\ndata = pd.read_csv(URL+'Exercise5_newtoncooling.csv')\n# Exercise5_newtoncooling.csv\n#\ndata\ndata_np = np.array(data)\n# or you can load the data directly with\n# data = np.array([[0,160],[60,155],[180,145],[210,142],[600,120]])\nfig = go.Figure()\nfig.add_trace(go.Scatter(x=data['Time (sec)'], y=data['Temperature'], mode='markers'))\n\nfig.update_layout(title=\"Tea Cooling\", xaxis_title=\"Time (sec)\", yaxis_title=\"Temperature\")\n\n\n\n\n                                \n                                            \n\n\n\n\n\nTambient = 65 # temp of room\n\n# next we define our specific differential equation\nf = lambda t, x, k: -k*(x - Tambient)\nx0 = 160 # initial condition pulled from the data\n\n\ndef numericalSolution(k, dt):\n    t0 = 0 # time where the data starts\n    tmax = 660 # just beyond where the data ends\n    t = np.arange(t0,tmax+dt,dt) # set up the times\n    x = np.zeros(len(t))\n    x[0] = x0\n    for n in range(len(t)-1):\n        # put the code necessary to build a good\n        # numerical solver here be sure to account\n        # for the parameter k in each of your function calls.\n        # i.e., euler/midpoint\n        x[n+1] = x[n] + dt*f(t[n], x[n], k)\n    return t, x\n\n\ndata\n\n\n  \n    \n\n\n\n\n\n\nTime (sec)\nTemperature\n\n\n\n\n0\n0\n160\n\n\n1\n60\n155\n\n\n2\n180\n145\n\n\n3\n210\n142\n\n\n4\n600\n120\n\n\n\n\n\n    \n\n  \n    \n\n  \n    \n  \n    \n\n  \n\n    \n  \n\n\n\n  \n\n\n    \n        \n    \n\n  \n\n\n\n  \n\n    \n  \n\n\n\nt = np.arange(0, 660 + 1, 1)\n\n# this code block determines where the indices for the data match\nindices = []\nfor j in range(len(t)):\n    for k in range(len(data_np)):\n        if t[j] == data_np[k,0]:\n            indices.append(j)\n\n\nindices\n\n[0, 6, 18, 21, 60]\n\n\n\nt[21]\n\n210\n\n\n\ndef dataMatcher(k):\n    # Next choose an appropriate value of dt.\n    # Choosing dt so that values of time in the data fall within\n    # the times for the numerical solution is typically a good\n    # practice (but is not always possible).\n    dt = ...\n    # approximate solution\n    t, x = numericalSolution(k, dt)\n    # keep track of error at the data supplied times\n    err = []\n    counter = 0\n    for n in indices:\n       # calculate the error and save it\n        err.append( (data_np[counter,1] - x[int(n)])**2 )\n        counter += 1\n    #print(\"For k=\",k[0],\",  SSRes=\",np.sum(err)) # optional\n    return np.sum(err)\n\n\nimport scipy.optimize as sp\n# Choose an initial value of k and put it into the following code\n# in place of the \"???\".  Note that we are sending a few parameters\n# to the optimization tool.  Be sure to understand these options\n# and take care that these options problem dependent and you will\n# need to choose these again for the next new problem.\nk_initial = ???\nK = sp.minimize(dataMatcher, k_initial, options = {'maxiter': 5}, tol=1e-2)\nprint(K)\ndt = 10\nt1, x = numericalSolution(K.x[0], dt)\n# plots\nfig = go.Figure()\nfig.add_trace(go.Scatter(x=data['Time (sec)'], y=data['Temperature'], name='Data', mode='markers'))\nfig.add_trace(go.Scatter(x=t1, y=x, name='approximate solution'))\nfig.update_layout(title=\"Tea Cooling\", xaxis_title=\"Time (sec)\", yaxis_title=\"Temperature\")\n\n  message: Maximum number of iterations has been exceeded.\n  success: False\n   status: 1\n      fun: 1.8524481602331837\n        x: [ 9.313e-04]\n      nit: 5\n      jac: [ 1.988e+02]\n hess_inv: [[ 3.191e-10]]\n     nfev: 30\n     njev: 10\n\n\nRuntimeWarning:\n\noverflow encountered in double_scalars\n\n/usr/local/lib/python3.10/dist-packages/scipy/optimize/_numdiff.py:576: RuntimeWarning:\n\ninvalid value encountered in subtract\n\n&lt;ipython-input-28-6a25d2d05ddf&gt;:14: RuntimeWarning:\n\noverflow encountered in double_scalars",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Week 8 Participation</span>"
+    ]
+  },
+  {
     "objectID": "module_four.html",
     "href": "module_four.html",
     "title": "Module 4 - Partial Differential Equations",
@@ -417,6 +450,28 @@
     "text": "… to be added :]",
     "crumbs": [
       "Module 4 - Partial Differential Equations"
+    ]
+  },
+  {
+    "objectID": "week9.html",
+    "href": "week9.html",
+    "title": "9  Week 9 Participation",
+    "section": "",
+    "text": "9.1 Visualizing Solutions to PDEs\nNow that we have some intuition on how to verify solutions for PDEs, let’s visualize them.\nnp.linspace(0,1,10)\n\narray([0.        , 0.11111111, 0.22222222, 0.33333333, 0.44444444,\n       0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ])\nimport numpy as np\nimport matplotlib.pyplot as plt\nu = lambda t, x: np.exp(-0.2*t) * np.sin(np.pi*x)\nx = np.linspace(0,1,100) # code that gives 100 equally spaced points from 0 to 1\nt = np.linspace(0,10,16) # code that gives 16 equally spaced points from 0 to 10\n#fig, ax = plt.subplots(nrows=4,ncols=4)\n#counter = 0 # this counter will count through the times\nplt.plot(x, u(t[1],x))\nimport numpy as np\nimport matplotlib.pyplot as plt\nu = lambda t, x: np.exp(-0.2*t) * np.sin(np.pi*x)\nx = np.linspace(0,1,101)# code that gives 100 equally spaced points from 0 to 1\nt = np.linspace(0,10,17)# code that gives 16 equally spaced points from 0 to 10\nfig, ax = plt.subplots(nrows=4,ncols=4)\ncounter = 0 # this counter will count through the times\nfor n in range(4):\n    for m in range(4):\n        ax[n,m].plot(x , u(t[counter],x), 'b') # plot x vs u(t[counter],x)\n        ax[n,m].grid()\n        ax[n,m].set_ylim(0,1) # same axis for every plot\n        ax[n,m].set_xlabel('x')\n        ax[n,m].set_ylabel('u')\n        ax[n,m].set_title(\"time=\"+np.str(t[counter]))\n        counter += 1 # increment the counter\nfig.tight_layout()\nplt.show()\n\nDeprecationWarning: `np.str` is a deprecated alias for the builtin `str`. To silence this warning, use `str` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.str_` here.\nDeprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations\n  ax[n,m].set_title(\"time=\"+np.str(t[counter]))\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom ipywidgets import interactive\n\nu = lambda t, x: np.exp(-0.2*t) * (1*np.sin(1*np.pi*x))\nx = np.linspace(0,1,100)\n\ndef plotter(T):\n  plt.plot(x , u(T,x), 'b')\n  plt.grid()\n  plt.ylim(0,1)\n  plt.show()\n\ninteractive_plot = interactive(plotter, T=(0,20,0.1))\ninteractive_plot\n# 3d version of solution\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom mpl_toolkits.mplot3d import Axes3D\nfig = plt.figure(figsize=(10,8))\nax = fig.add_subplot(projection='3d') # gca stands for \"Get Current Axis\"\nu = lambda t, x: np.exp(-0.2*t)*np.sin(np.pi*x)\nx = np.linspace(0,1,25)\nt = np.linspace(0,10,25)\nT, X = np.meshgrid(t,x)\nax.plot_wireframe(T,X,u(T,X))\nax.set_xlabel('time')\nax.set_ylabel('x')\nax.set_zlabel('u(t,x)')\nplt.show()",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Week 9 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week9.html#boundary-conditions",
+    "href": "week9.html#boundary-conditions",
+    "title": "9  Week 9 Participation",
+    "section": "9.2 Boundary Conditions",
+    "text": "9.2 Boundary Conditions\nPractice Consider solving the heat equation \\(u_t = D u_{xx}\\) in 1 spatial dimension.\nIf a long thin metal rod is initially heated in the middle and the temperature at the ends of the rod is held fixed at 0 then the heat diffusion is described by the heat equation. What type of boundary conditions do we have in this setup? How can you tell? Draw a picture showing the expected evolution of the heat equation with these boundary conditions\nANS:\nPractice\nConsider solving the wave equation \\(u_{tt} = c u_{xx}\\) in 1 spatial dimension.\nIf a guitar string is pulled up in the center and held fixed at the frets then the resulting vibrations of the string are described by the wave equation. What type of boundary conditions do we have in this setup? How can you tell? Draw a picture showing the expected evolution of the heat equation with these boundary conditions.\nANS:",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Week 9 Participation</span>"
     ]
   },
   {
@@ -434,7 +489,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\n\nModule 4",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9",
     "crumbs": [
       "Table of Contents"
     ]

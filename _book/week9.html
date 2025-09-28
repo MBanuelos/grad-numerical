@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Week 9 Participation – Numerical Methods in Applied Mathematics, with Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./module_four.html" rel="prev">
+<link href="./nmam.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_four.html">Module 4 - Partial Differential Equations</a></li><li class="breadcrumb-item"><a href="./week9.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 9 Participation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./nmam.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of Contents</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface - Ready to Start?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_one.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1 - What is Numerical Analysis?</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 - Numerical Calculus</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_three.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 - Ordinary Differential Equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MATH 291T - Week 7 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Week 8 Participation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_four.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4 - Partial Differential Equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week9.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 9 Participation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#visualizing-solutions-to-pdes" id="toc-visualizing-solutions-to-pdes" class="nav-link active" data-scroll-target="#visualizing-solutions-to-pdes"><span class="header-section-number">9.1</span> Visualizing Solutions to PDEs</a></li>
+  <li><a href="#boundary-conditions" id="toc-boundary-conditions" class="nav-link" data-scroll-target="#boundary-conditions"><span class="header-section-number">9.2</span> Boundary Conditions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_four.html">Module 4 - Partial Differential Equations</a></li><li class="breadcrumb-item"><a href="./week9.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 9 Participation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 9 Participation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week9.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<p><strong>Name:</strong> [Type Your Name Here]</p>
+<hr>
+<p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking <strong>File -&gt; Save a copy in Drive</strong></p>
+<hr>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interactive</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Practice</strong></p>
+<p>With a partner, answer each of the following questions. The main ideas in this problem should be review from multivariable calculus. If you and your partner are stuck then ask another group.</p>
+<ul>
+<li>What is a partial derivative (explain geometrically)?</li>
+</ul>
+<p>ANS: If we look at a 3d surface, then we can look at the change of one variable at a time while holding others constant.</p>
+<ul>
+<li>What is the gradient of a function? What does it tell us physically or geometrically? If <span class="math inline">\(u(x,y)=x^2+\sin(xy)\)</span>, then what is <span class="math inline">\(\nabla u\)</span>?</li>
+</ul>
+<p>ANS: The gradient of a function is a vector representation of the partial derivatives. It can tells us the location of greatest change. The gradient of <span class="math inline">\(u\)</span> was <span class="math inline">\(\langle 2x + y\cos(xy), x \cos(xy) \rangle\)</span></p>
+<ul>
+<li>What is the divergence of a vector-valued function? What does it tell us physically or geometrically? If <span class="math inline">\(F(x,y)=\langle \sin(xy),x^2 + y^2 \rangle\)</span>, then what is <span class="math inline">\(\nabla \cdot F\)</span>?</li>
+</ul>
+<p>ANS: The divergence is a scalar valued function and it could tell us whether a point is a source or a sink. The divergence of <span class="math inline">\(F\)</span> is <span class="math inline">\(y (2 + \cos(xy))\)</span>.</p>
+<section id="visualizing-solutions-to-pdes" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="visualizing-solutions-to-pdes"><span class="header-section-number">9.1</span> Visualizing Solutions to PDEs</h2>
+<p>Now that we have some intuition on how to verify solutions for PDEs, let’s visualize them.</p>
+<div id="cell-7" class="cell" data-outputid="be4df7c2-f370-4285-e390-16f15206d4ab">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>array([0.        , 0.11111111, 0.22222222, 0.33333333, 0.44444444,
+       0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ])</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-outputid="84b82687-cda2-48f8-bdbc-7c75aa3ba713">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="kw">lambda</span> t, x: np.exp(<span class="op">-</span><span class="fl">0.2</span><span class="op">*</span>t) <span class="op">*</span> np.sin(np.pi<span class="op">*</span>x)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>) <span class="co"># code that gives 100 equally spaced points from 0 to 1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">16</span>) <span class="co"># code that gives 16 equally spaced points from 0 to 10</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#fig, ax = plt.subplots(nrows=4,ncols=4)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#counter = 0 # this counter will count through the times</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x, u(t[<span class="dv">1</span>],x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week9_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-outputid="be4d187b-ebb2-4863-d2e7-97a25920ad68">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="kw">lambda</span> t, x: np.exp(<span class="op">-</span><span class="fl">0.2</span><span class="op">*</span>t) <span class="op">*</span> np.sin(np.pi<span class="op">*</span>x)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">101</span>)<span class="co"># code that gives 100 equally spaced points from 0 to 1</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">17</span>)<span class="co"># code that gives 16 equally spaced points from 0 to 10</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">4</span>,ncols<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>counter <span class="op">=</span> <span class="dv">0</span> <span class="co"># this counter will count through the times</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        ax[n,m].plot(x , u(t[counter],x), <span class="st">'b'</span>) <span class="co"># plot x vs u(t[counter],x)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        ax[n,m].grid()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        ax[n,m].set_ylim(<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># same axis for every plot</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        ax[n,m].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        ax[n,m].set_ylabel(<span class="st">'u'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        ax[n,m].set_title(<span class="st">"time="</span><span class="op">+</span>np.<span class="bu">str</span>(t[counter]))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        counter <span class="op">+=</span> <span class="dv">1</span> <span class="co"># increment the counter</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>DeprecationWarning: `np.str` is a deprecated alias for the builtin `str`. To silence this warning, use `str` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.str_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  ax[n,m].set_title("time="+np.str(t[counter]))</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week9_files/figure-html/cell-5-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-10" class="cell" data-outputid="317359b0-8992-4358-e4e7-b57d477779c1">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interactive</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="kw">lambda</span> t, x: np.exp(<span class="op">-</span><span class="fl">0.2</span><span class="op">*</span>t) <span class="op">*</span> (<span class="dv">1</span><span class="op">*</span>np.sin(<span class="dv">1</span><span class="op">*</span>np.pi<span class="op">*</span>x))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotter(T):</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  plt.plot(x , u(T,x), <span class="st">'b'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  plt.grid()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  plt.ylim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  plt.show()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="op">=</span> interactive(plotter, T<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">20</span>,<span class="fl">0.1</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major":2,"version_minor":0,"model_id":"e108ee4e11b44feab1b3bb8b550eba55","quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div id="cell-11" class="cell" data-outputid="d0096aed-2921-4791-b635-d75bad724af3">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3d version of solution</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">8</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(projection<span class="op">=</span><span class="st">'3d'</span>) <span class="co"># gca stands for "Get Current Axis"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="kw">lambda</span> t, x: np.exp(<span class="op">-</span><span class="fl">0.2</span><span class="op">*</span>t)<span class="op">*</span>np.sin(np.pi<span class="op">*</span>x)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">25</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">25</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>T, X <span class="op">=</span> np.meshgrid(t,x)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax.plot_wireframe(T,X,u(T,X))</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'time'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'x'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="st">'u(t,x)'</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week9_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="boundary-conditions" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="boundary-conditions"><span class="header-section-number">9.2</span> Boundary Conditions</h2>
+<p><strong>Practice</strong> Consider solving the heat equation <span class="math inline">\(u_t = D u_{xx}\)</span> in 1 spatial dimension.</p>
+<p>If a long thin metal rod is initially heated in the middle and the temperature at the ends of the rod is held fixed at 0 then the heat diffusion is described by the heat equation. What type of boundary conditions do we have in this setup? How can you tell? Draw a picture showing the expected evolution of the heat equation with these boundary conditions</p>
+<p>ANS:</p>
+<p><strong>Practice</strong></p>
+<p>Consider solving the wave equation <span class="math inline">\(u_{tt} = c u_{xx}\)</span> in 1 spatial dimension.</p>
+<p>If a guitar string is pulled up in the center and held fixed at the frets then the resulting vibrations of the string are described by the wave equation. What type of boundary conditions do we have in this setup? How can you tell? Draw a picture showing the expected evolution of the heat equation with these boundary conditions.</p>
+<p>ANS:</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"e108ee4e11b44feab1b3bb8b550eba55":{"model_module":"@jupyter-widgets/controls","model_name":"VBoxModel","model_module_version":"1.5.0","state":{"_dom_classes":["widget-interact"],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"VBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"VBoxView","box_style":"","children":["IPY_MODEL_cfd4e334a26e45bb84653868144e2c45","IPY_MODEL_119c54339aef4728be216f6ce13f901f"],"layout":"IPY_MODEL_07f38b200eb744998dc29e49ff836b57"}},"cfd4e334a26e45bb84653868144e2c45":{"model_module":"@jupyter-widgets/controls","model_name":"FloatSliderModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatSliderModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"FloatSliderView","continuous_update":true,"description":"T","description_tooltip":null,"disabled":false,"layout":"IPY_MODEL_94fecf0825544b4d94e27f33733c9050","max":20,"min":0,"orientation":"horizontal","readout":true,"readout_format":".2f","step":0.1,"style":"IPY_MODEL_168dc072c59d41b5b0fd2531e877f6e7","value":20}},"119c54339aef4728be216f6ce13f901f":{"model_module":"@jupyter-widgets/output","model_name":"OutputModel","model_module_version":"1.0.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/output","_model_module_version":"1.0.0","_model_name":"OutputModel","_view_count":null,"_view_module":"@jupyter-widgets/output","_view_module_version":"1.0.0","_view_name":"OutputView","layout":"IPY_MODEL_08841daeda554694b84c2b711e237cc2","msg_id":"","outputs":[{"output_type":"display_data","data":{"text/plain":"<Figure size 640x480 with 1 Axes>","image/png":"iVBORw0KGgoAAAANSUhEUgAAAiMAAAGiCAYAAAA1LsZRAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjcuMSwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/bCgiHAAAACXBIWXMAAA9hAAAPYQGoP6dpAAAjtUlEQVR4nO3df1BVdR7/8dflcrnIKmkZoC4tZduPrRTDlUXzW+6ozFi2/rGTm42Qs9lWsmPe2U3JH+i6iVm5zBbFZLk2s7mablYTDEUk05Y2Tiq77aY2pmb1DZIxBEEvF+75/uH3XrlwQS5yzyfw+Zj5zD3nw+ec+7lvr/C6n3MvOCzLsgQAAGBIjOkJAACASxthBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABgVcRj54IMPNHPmTI0cOVIOh0NvvPHGBY+pqqrSrbfeKrfbrWuvvVabNm3qxVQBAMBAFHEYaWpq0tixY1VcXNyj8UePHtWdd96pKVOmqLq6Wo8++qgeeOABvfPOOxFPFgAADDyOi/lDeQ6HQzt27NCsWbO6HLN48WKVlpbqv//9b7DvN7/5jerr61VeXt7buwYAAANEbLTvYPfu3Zo6dWpIX3Z2th599NEuj/F6vfJ6vcF9v9+vkydP6oorrpDD4YjWVAEAQB+yLEuNjY0aOXKkYmK6vhgT9TBSU1Oj5OTkkL7k5GQ1NDTozJkzGjRoUKdjCgsLtWrVqmhPDQAA2OCrr77Sj3/84y6/HvUw0hv5+fnyeDzB/VOnTumqq67S0aNHNWTIkD67H5/Pp507d2rKlClyuVx9dl6Eos72odb2oM72oM72iGadGxsbdfXVV1/wZ3fUw0hKSopqa2tD+mpra5WYmBh2VUSS3G633G53p/7LL79ciYmJfTY3n8+nhIQEXXHFFTzRo4g624da24M624M62yOadQ6c70JvsYj67xnJyspSZWVlSF9FRYWysrKifdcAAKAfiDiMnD59WtXV1aqurpZ07qO71dXVOn78uKRzl1hycnKC4x966CEdOXJEjz32mA4ePKjnn39er732mhYtWtQ3jwAAAPRrEYeRTz75ROPGjdO4ceMkSR6PR+PGjdOKFSskSd9++20wmEjS1VdfrdLSUlVUVGjs2LF65pln9NJLLyk7O7uPHgIAAOjPIn7PyB133KHufjVJuN+uescdd2j//v2R3hUAALgE8LdpAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAY1aswUlxcrLS0NMXHxyszM1N79uzpdnxRUZGuv/56DRo0SKmpqVq0aJHOnj3bqwkDAICBJeIwsnXrVnk8HhUUFGjfvn0aO3assrOz9d1334Udv3nzZi1ZskQFBQU6cOCAXn75ZW3dulWPP/74RU8eAAD0fxGHkfXr12v+/PmaN2+efvazn6mkpEQJCQnauHFj2PG7du3SpEmTNGfOHKWlpWn69Om69957L7iaAgAALg2xkQxuaWnR3r17lZ+fH+yLiYnR1KlTtXv37rDHTJw4UX//+9+1Z88eTZgwQUeOHFFZWZnmzp3b5f14vV55vd7gfkNDgyTJ5/PJ5/NFMuVuBc7Vl+dEZ9TZPtTaHtTZHtTZHtGsc0/PGVEYqaurU1tbm5KTk0P6k5OTdfDgwbDHzJkzR3V1dbrttttkWZZaW1v10EMPdXuZprCwUKtWrerU/+677yohISGSKfdIRUVFn58TnVFn+1Bre1Bne1Bne0Sjzs3NzT0aF1EY6Y2qqiqtWbNGzz//vDIzM3X48GEtXLhQq1ev1vLly8Mek5+fL4/HE9xvaGhQamqqpk+frsTExD6bm8/nU0VFhaZNmyaXy9Vn50Uo6mwfam0P6mwP6myPaNY5cGXjQiIKI8OHD5fT6VRtbW1If21trVJSUsIes3z5cs2dO1cPPPCAJOmWW25RU1OTHnzwQS1dulQxMZ3ftuJ2u+V2uzv1u1yuqDwho3VehKLO9qHW9qDO9qDO9ohGnXt6vojewBoXF6eMjAxVVlYG+/x+vyorK5WVlRX2mObm5k6Bw+l0SpIsy4rk7gEAwAAU8WUaj8ej3NxcjR8/XhMmTFBRUZGampo0b948SVJOTo5GjRqlwsJCSdLMmTO1fv16jRs3LniZZvny5Zo5c2YwlAAAgEtXxGFk9uzZOnHihFasWKGamhqlp6ervLw8+KbW48ePh6yELFu2TA6HQ8uWLdM333yjK6+8UjNnztQTTzzRd48CAAD0W716A2teXp7y8vLCfq2qqir0DmJjVVBQoIKCgt7cFQAAGOD42zQAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIzqVRgpLi5WWlqa4uPjlZmZqT179nQ7vr6+XgsWLNCIESPkdrt13XXXqaysrFcTBgAAA0tspAds3bpVHo9HJSUlyszMVFFRkbKzs3Xo0CElJSV1Gt/S0qJp06YpKSlJ27dv16hRo/Tll19q6NChfTF/AADQz0UcRtavX6/58+dr3rx5kqSSkhKVlpZq48aNWrJkSafxGzdu1MmTJ7Vr1y65XC5JUlpa2sXNGgAADBgRhZGWlhbt3btX+fn5wb6YmBhNnTpVu3fvDnvMW2+9paysLC1YsEBvvvmmrrzySs2ZM0eLFy+W0+kMe4zX65XX6w3uNzQ0SJJ8Pp98Pl8kU+5W4Fx9eU50Rp3tQ63tQZ3tQZ3tEc069/ScEYWRuro6tbW1KTk5OaQ/OTlZBw8eDHvMkSNH9P777+u+++5TWVmZDh8+rEceeUQ+n08FBQVhjyksLNSqVas69b/77rtKSEiIZMo9UlFR0efnRGfU2T7U2h7U2R7U2R7RqHNzc3OPxkV8mSZSfr9fSUlJevHFF+V0OpWRkaFvvvlGTz31VJdhJD8/Xx6PJ7jf0NCg1NRUTZ8+XYmJiX02N5/Pp4qKCk2bNi14CQl9jzrbh1rbgzrbgzrbI5p1DlzZuJCIwsjw4cPldDpVW1sb0l9bW6uUlJSwx4wYMUIulyvkksyNN96ompoatbS0KC4urtMxbrdbbre7U7/L5YrKEzJa50Uo6mwfam0P6mwP6myPaNS5p+eL6KO9cXFxysjIUGVlZbDP7/ersrJSWVlZYY+ZNGmSDh8+LL/fH+z7/PPPNWLEiLBBBAAAXFoi/j0jHo9HGzZs0CuvvKIDBw7o4YcfVlNTU/DTNTk5OSFvcH344Yd18uRJLVy4UJ9//rlKS0u1Zs0aLViwoO8eBQAA6Lcifs/I7NmzdeLECa1YsUI1NTVKT09XeXl58E2tx48fV0zM+YyTmpqqd955R4sWLdKYMWM0atQoLVy4UIsXL+67RwEAAPqtXr2BNS8vT3l5eWG/VlVV1akvKytLH3/8cW/uCgAADHD8bRoAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEb1KowUFxcrLS1N8fHxyszM1J49e3p03JYtW+RwODRr1qze3C0AABiAIg4jW7dulcfjUUFBgfbt26exY8cqOztb3333XbfHHTt2TH/4wx80efLkXk8WAAAMPLGRHrB+/XrNnz9f8+bNkySVlJSotLRUGzdu1JIlS8Ie09bWpvvuu0+rVq3Sv/71L9XX13d7H16vV16vN7jf0NAgSfL5fPL5fJFOuUuBc/XlOdEZdbYPtbYHdbYHdbZHNOvc03M6LMuyenrSlpYWJSQkaPv27SGXWnJzc1VfX68333wz7HEFBQX6z3/+ox07duj+++9XfX293njjjS7vZ+XKlVq1alWn/s2bNyshIaGn0wUAAAY1Nzdrzpw5OnXqlBITE7scF9HKSF1dndra2pScnBzSn5ycrIMHD4Y95sMPP9TLL7+s6urqHt9Pfn6+PB5PcL+hoUGpqamaPn16tw8mUj6fTxUVFZo2bZpcLlefnRehqLN9qLU9qLM9qLM9olnnwJWNC4n4Mk0kGhsbNXfuXG3YsEHDhw/v8XFut1tut7tTv8vlisoTMlrnRSjqbB9qbQ/qbA/qbI9o1Lmn54sojAwfPlxOp1O1tbUh/bW1tUpJSek0/osvvtCxY8c0c+bMYJ/f7z93x7GxOnTokEaPHh3JFAAAwAAT0adp4uLilJGRocrKymCf3+9XZWWlsrKyOo2/4YYb9Omnn6q6ujrY7r77bk2ZMkXV1dVKTU29+EcAAAD6tYgv03g8HuXm5mr8+PGaMGGCioqK1NTUFPx0TU5OjkaNGqXCwkLFx8fr5ptvDjl+6NChktSpHwAAXJoiDiOzZ8/WiRMntGLFCtXU1Cg9PV3l5eXBN7UeP35cMTH8YlcAANAzvXoDa15envLy8sJ+raqqqttjN23a1Ju7BAAAAxRLGAAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjCKMAAAAowgjAADAKMIIAAAwijACAACMIowAAACjCCMAAMAowggAADCKMAIAAIwijAAAAKMIIwAAwCjCCAAAMIowAgAAjOpVGCkuLlZaWpri4+OVmZmpPXv2dDl2w4YNmjx5soYNG6Zhw4Zp6tSp3Y4HAACXlojDyNatW+XxeFRQUKB9+/Zp7Nixys7O1nfffRd2fFVVle69917t3LlTu3fvVmpqqqZPn65vvvnmoicPAAD6v9hID1i/fr3mz5+vefPmSZJKSkpUWlqqjRs3asmSJZ3Gv/rqqyH7L730kv75z3+qsrJSOTk5Ye/D6/XK6/UG9xsaGiRJPp9PPp8v0il3KXCuvjwnOqPO9qHW9qDO9qDO9ohmnXt6TodlWVZPT9rS0qKEhARt375ds2bNCvbn5uaqvr5eb7755gXP0djYqKSkJG3btk133XVX2DErV67UqlWrOvVv3rxZCQkJPZ0uAAAwqLm5WXPmzNGpU6eUmJjY5biIVkbq6urU1tam5OTkkP7k5GQdPHiwR+dYvHixRo4cqalTp3Y5Jj8/Xx6PJ7jf0NAQvLzT3YOJlM/nU0VFhaZNmyaXy9Vn50Uo6mwfam0P6mwP6myPaNY5cGXjQiK+THMx1q5dqy1btqiqqkrx8fFdjnO73XK73Z36XS5XVJ6Q0TovQlFn+1Bre1Bne1Bne0Sjzj09X0RhZPjw4XI6naqtrQ3pr62tVUpKSrfHPv3001q7dq3ee+89jRkzJpK7BQAAA1hEn6aJi4tTRkaGKisrg31+v1+VlZXKysrq8rh169Zp9erVKi8v1/jx43s/WwAAMOBEfJnG4/EoNzdX48eP14QJE1RUVKSmpqbgp2tycnI0atQoFRYWSpKefPJJrVixQps3b1ZaWppqamokSYMHD9bgwYP78KEAAID+KOIwMnv2bJ04cUIrVqxQTU2N0tPTVV5eHnxT6/HjxxUTc37B5YUXXlBLS4t+/etfh5ynoKBAK1euvLjZAwCAfq9Xb2DNy8tTXl5e2K9VVVWF7B87dqw3dwEAAC4R/G0aAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGEUYAQAARhFGAACAUYQRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGBVregIAuub3S62t55rPd3473H5rq+T1Sp9/PkxDhzrkcJzra2s7//W2ttDm94duB/YD2901y+p8213rLYcjtElSTExoX2C//W13zekM3Q7sB7bbt9jYzreSQ0eOXKb//EcaNOhcX2ys5HKd326/73KdnxuAzggjuGS1tZ374X32bOhtx+2OraUl9Daw3ZPm83V9G675/ZE+Kpek/xOFaiFUrKQ7Ij7K5eq6xcV1fdtVc7s7b7e/7arFx4feBrZdLgITzCCMwLi2NunMmXOtufn8dlft7NnO22fPdt4Ot98+eLS2mn7kvdf+FbfTef42NtZSS0uzhgxJUGysI+QVfVct3OpAV6sIHVceOq5MhGtS6HZgvzuBlZT2tx23O67GtF+l6bjd1nZuP9xqUMe+9vvtV5NCV5csnT59VrGx8WptdXRaoWprC/+4AiHzh8rhOB9MumuDBnXeDnfbXUtIOL8dF0cIutQRRtAlyzr3g7up6Vxrbj5/G6519bWmJqe+/nqinnjCGRI4Al//IXxzjokJfZXY8VVjoLV/xdl+2+UK7Q/st38VG+5Vb8ftji0QODou93fF52tVWdl7mjFjhlwul30FvMScq/O7Xda5fZgJBJD22+Fa+xWywLbXe36/q9bdal24lb2Oq34tLefnbVnnQ7udHI7z4SQhoX1QcaqpKUsvv+zU4MHnv9Zd+9GPOm8Hbp1Oex8Xeo4w0s/5/ed+sJ8+fT40NDV13u+qLxAiwu03N/fmMkE4MZKu7NFItzv8K6dAa/+KK9wrtHCv2AItcO6Oy9Tx8YH3AQB9I7By5HKde879kPn95wJJ+1XDjiuJ7Vch2++3X33suGoZbr/j6mfg+4tlnf++EypGUpL+/e++eaxu97lgEmiBoNLV/uDBofvh+gL7ZP+L06tvwcXFxXrqqadUU1OjsWPH6tlnn9WECRO6HL9t2zYtX75cx44d009/+lM9+eSTmjFjRq8n3R9Z1rn/hKdPn2+BgNCxte/vuN0+VJw+fe6cdoiLC/+Ko6tXJIMGnd93u1t18OB+TZw4TomJsSEho/2rofj47l/1A+h7gVXB+Hh779eyzq36dLw0G1gxPXNGOnWqVR9//G9dd91Yeb2xamoKHRN48dS+L9wqbuASX2A16OTJvn88Ltf5YNI+sLTv67jdXd+lFnIiDiNbt26Vx+NRSUmJMjMzVVRUpOzsbB06dEhJSUmdxu/atUv33nuvCgsLddddd2nz5s2aNWuW9u3bp5tvvrlPHkRfa209/8O+sTF8YOhpax8eLuYTBT1xoQTfk9b+lUH7gHExKwc+n6Wysv+rGTPSL5n/WAC653Ccv4Q5dGj4MT6fpfj4rzVjxphef++wrM5hpbvV4Z609t/bA+898/mk778/1/pSXFz4oNIxxAwZ0vW4ji0+/of3Hh2HZUX2IzIzM1M///nP9dxzz0mS/H6/UlNT9fvf/15LlizpNH727NlqamrS22+/Hez7xS9+ofT0dJWUlIS9D6/XK6/XG9w/deqUrrrqKh09elRDhgyJZLrdWrRI2r27UU7nUJ054wg+wbze6P4r/ehHlhISzj0pBg2SBg+2Qq6HDh5shQkFHfuskMAwaNAPd1XB5/Np586dmjJlCu9jiDJqbQ/qbI/+UGevt+NKjCNM2HGErNScPu0IrpQHjj192qEzZ85tNzZKbW3R+znkcFjBMBP4+eLzfa/nnktQenrfXrNubGzU1Vdfrfr6el122WVdD7Qi4PV6LafTae3YsSOkPycnx7r77rvDHpOammr95S9/CelbsWKFNWbMmC7vp6CgwJJEo9FoNBptALSvvvqq23wRUQSqq6tTW1ubkpOTQ/qTk5N18ODBsMfU1NSEHV9TU9Pl/eTn58vj8QT3/X6/Tp48qSuuuEKOPlxbamhoUGpqqr766islJib22XkRijrbh1rbgzrbgzrbI5p1tixLjY2NGjlyZLfjfpCfIXC73XK73SF9Q7u6qNgHEhMTeaLbgDrbh1rbgzrbgzrbI1p17vbyzP8X0bsMhg8fLqfTqdra2pD+2tpapaSkhD0mJSUlovEAAODSElEYiYuLU0ZGhiorK4N9fr9flZWVysrKCntMVlZWyHhJqqio6HI8AAC4tER8mcbj8Sg3N1fjx4/XhAkTVFRUpKamJs2bN0+SlJOTo1GjRqmwsFCStHDhQt1+++165plndOedd2rLli365JNP9OKLL/btI+kFt9utgoKCTpeE0Leos32otT2osz2osz1+CHWO+KO9kvTcc88Ff+lZenq6/vrXvyozM1OSdMcddygtLU2bNm0Kjt+2bZuWLVsW/KVn69atu+R+6RkAAAivV2EEAACgr/xAf00WAAC4VBBGAACAUYQRAABgFGEEAAAYNeDDSHFxsdLS0hQfH6/MzEzt2bOn2/Hbtm3TDTfcoPj4eN1yyy0qKyuzaab9WyR13rBhgyZPnqxhw4Zp2LBhmjp16gX/XXBepM/pgC1btsjhcGjWrFnRneAAEWmd6+vrtWDBAo0YMUJut1vXXXcd3z96INI6FxUV6frrr9egQYOUmpqqRYsW6ezZszbNtn/64IMPNHPmTI0cOVIOh0NvvPHGBY+pqqrSrbfeKrfbrWuvvTbkE7JRcaE/jtefbdmyxYqLi7M2btxo/e9//7Pmz59vDR061KqtrQ07/qOPPrKcTqe1bt0667PPPrOWLVtmuVwu69NPP7V55v1LpHWeM2eOVVxcbO3fv986cOCAdf/991uXXXaZ9fXXX9s88/4n0loHHD161Bo1apQ1efJk61e/+pU9k+3HIq2z1+u1xo8fb82YMcP68MMPraNHj1pVVVVWdXW1zTPvXyKt86uvvmq53W7r1VdftY4ePWq988471ogRI6xFixbZPPP+payszFq6dKn1+uuvW5I6/bHbjo4cOWIlJCRYHo/H+uyzz6xnn33WcjqdVnl5edTmOKDDyIQJE6wFCxYE99va2qyRI0dahYWFYcffc8891p133hnSl5mZaf3ud7+L6jz7u0jr3FFra6s1ZMgQ65VXXonWFAeM3tS6tbXVmjhxovXSSy9Zubm5hJEeiLTOL7zwgnXNNddYLS0tdk1xQIi0zgsWLLB++ctfhvR5PB5r0qRJUZ3nQNKTMPLYY49ZN910U0jf7Nmzrezs7KjNa8BepmlpadHevXs1derUYF9MTIymTp2q3bt3hz1m9+7dIeMlKTs7u8vx6F2dO2pubpbP59Pll18erWkOCL2t9Z/+9CclJSXpt7/9rR3T7Pd6U+e33npLWVlZWrBggZKTk3XzzTdrzZo1amtrs2va/U5v6jxx4kTt3bs3eCnnyJEjKisr45do9jETPwt/kH+1ty/U1dWpra1NycnJIf3Jyck6ePBg2GNqamrCjq+pqYnaPPu73tS5o8WLF2vkyJGdnvwI1Ztaf/jhh3r55ZdVXV1twwwHht7U+ciRI3r//fd13333qaysTIcPH9Yjjzwin8+ngoICO6bd7/SmznPmzFFdXZ1uu+02WZal1tZWPfTQQ3r88cftmPIlo6ufhQ0NDTpz5owGDRrU5/c5YFdG0D+sXbtWW7Zs0Y4dOxQfH296OgNKY2Oj5s6dqw0bNmj48OGmpzOg+f1+JSUl6cUXX1RGRoZmz56tpUuXqqSkxPTUBpSqqiqtWbNGzz//vPbt26fXX39dpaWlWr16temp4SIN2JWR4cOHy+l0qra2NqS/trZWKSkpYY9JSUmJaDx6V+eAp59+WmvXrtV7772nMWPGRHOaA0Kktf7iiy907NgxzZw5M9jn9/slSbGxsTp06JBGjx4d3Un3Q715To8YMUIul0tOpzPYd+ONN6qmpkYtLS2Ki4uL6pz7o97Uefny5Zo7d64eeOABSdItt9yipqYmPfjgg1q6dKliYnh93Re6+lmYmJgYlVURaQCvjMTFxSkjI0OVlZXBPr/fr8rKSmVlZYU9JisrK2S8JFVUVHQ5Hr2rsyStW7dOq1evVnl5ucaPH2/HVPu9SGt9ww036NNPP1V1dXWw3X333ZoyZYqqq6uVmppq5/T7jd48pydNmqTDhw8Hw54kff755xoxYgRBpAu9qXNzc3OnwBEIgBZ/Zq3PGPlZGLW3xv4AbNmyxXK73damTZuszz77zHrwwQetoUOHWjU1NZZlWdbcuXOtJUuWBMd/9NFHVmxsrPX0009bBw4csAoKCvhobw9EWue1a9dacXFx1vbt261vv/022BobG009hH4j0lp3xKdpeibSOh8/ftwaMmSIlZeXZx06dMh6++23raSkJOvPf/6zqYfQL0Ra54KCAmvIkCHWP/7xD+vIkSPWu+++a40ePdq65557TD2EfqGxsdHav3+/tX//fkuStX79emv//v3Wl19+aVmWZS1ZssSaO3ducHzgo71//OMfrQMHDljFxcV8tPdiPfvss9ZVV11lxcXFWRMmTLA+/vjj4Nduv/12Kzc3N2T8a6+9Zl133XVWXFycddNNN1mlpaU2z7h/iqTOP/nJTyxJnVpBQYH9E++HIn1Ot0cY6blI67xr1y4rMzPTcrvd1jXXXGM98cQTVmtrq82z7n8iqbPP57NWrlxpjR492oqPj7dSU1OtRx55xPr+++/tn3g/snPnzrDfcwO1zc3NtW6//fZOx6Snp1txcXHWNddcY/3tb3+L6hwdlsXaFgAAMGfAvmcEAAD0D4QRAABgFGEEAAAYRRgBAABGEUYAAIBRhBEAAGAUYQQAABhFGAEAAEYRRgAAgFGEEQAAYBRhBAAAGPX/AEr/wMiokRLlAAAAAElFTkSuQmCC\n"},"metadata":{}}]}},"07f38b200eb744998dc29e49ff836b57":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"94fecf0825544b4d94e27f33733c9050":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"168dc072c59d41b5b0fd2531e877f6e7":{"model_module":"@jupyter-widgets/controls","model_name":"SliderStyleModel","model_module_version":"1.5.0","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"SliderStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":"","handle_color":null}},"08841daeda554694b84c2b711e237cc2":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./module_four.html" class="pagination-link" aria-label="Module 4 - Partial Differential Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Module 4 - Partial Differential Equations</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

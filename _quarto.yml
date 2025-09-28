@@ -27,7 +27,10 @@ book:
       chapters:
         - week6.ipynb
         - week7.ipynb
+        - week8.ipynb
     - part: module_four.ipynb
+      chapters:
+        - week9.ipynb
 
 execute:
   echo: true
