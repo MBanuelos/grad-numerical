@@ -366,6 +366,50 @@
     ]
   },
   {
+    "objectID": "week7.html",
+    "href": "week7.html",
+    "title": "7  MATH 291T - Week 7 Participation",
+    "section": "",
+    "text": "7.1 Euler’s Method\nThe notion of approximating solutions to differential equations is simple in principle:\nPractice\nConsider the differential equation \\(x' = 0.5x\\) with \\(x(0)=6\\).\nWrite a function that takes the following as input:\nand outputs:\nGraph your approximation with 3 different values of \\(h\\).\nIn this case, the analytical solution is\ndef euler(f,x0,t0,tmax,dt):\n  # write out the quantities needed (number of points, grid, solution)\n  # determine number of points needed, N\n\n  # define t based on N\n\n  # define x\n\n  # define x[0] to be the initial condition\n\n  # for loop to update the solution x(t) with Euler method\n  for n in range(len(t) - 1):\n\n  return t, x\nfp = lambda t, x: 0.5*x\nte, xe = euler(fp, x0=6, t0=0, tmax=10, dt=1e-3)\nte2, xe2 = euler(fp, x0=6, t0=0, tmax=10, dt=1)\n\n# now make some plots!\nf = lambda t, x: 6 * np.exp(0.5*x)\n#t_true = np.linspace(0,10,1000)\nf_true = f(0, te)\nfig = go.Figure()\nfig.add_trace(go.Scatter(x=te, y=xe, mode='markers', name=\"Euler dt=1e-02\"))\nfig.add_trace(go.Scatter(x=te2, y=xe2, mode='markers', name=\"Euler dt=1\"))\nfig.add_trace(go.Scatter(x=te, y=f_true, mode='markers', name=\"Analytical Sol.\"))\nfig.show()\nCalculate the point-wise error (i.e., the error at each point you are estimating the solution) and 1) find the maximum and 2) graph them.\nplt.plot(f_true-xe, 'o')",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week7.html#eulers-method",
+    "href": "week7.html#eulers-method",
+    "title": "7  MATH 291T - Week 7 Participation",
+    "section": "",
+    "text": "make a discrete approximation to the derivative and\nstep forward through time as a difference equation.\n\n\n\n\n\na function \\(f\\)\na step size \\(h\\)\nan initial condition\na start time\nan end time\n\n\n\nthe estimated solution using Euler’s method & the grid where solution is evaluated\n\n\n\nf = lambda x: 6 * np.exp(0.5*x)",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week7.html#midpoint-method",
+    "href": "week7.html#midpoint-method",
+    "title": "7  MATH 291T - Week 7 Participation",
+    "section": "7.2 Midpoint Method",
+    "text": "7.2 Midpoint Method\nNow we get to improve upon Euler’s method. There is a long history of wonderful improvements to the classic Euler’s method - some that work in special cases, some that resolve areas where the error is going to be high, and some that are great for general purpose numerical solutions to ODEs with relatively high accuracy. In this section we’ll make a simple modification to Euler’s method that has a surprisingly great payoff in the error rate.\nLet’s return to the simple differential equation\n\\[\nx'= - 0.5 x\n\\]\nwith \\(x(0)=6\\) that we saw before. Now we’ll propose a slightly different method for approximating the solution.\nAt \\(t=0\\), we know that \\(x(0)=6\\). If we use the slope at time \\(t=0\\) to step forward in time then we will get the Euler approximation of the solution. Consider this alternative approach:\n\nUse the slope at time \\(t=0\\) and move half a step forward.\nFind the slope at the half-way point\nThen use the slope from the half way point to go a full step forward from time \\(t=0\\).\n\nLet’s build this idea together:\n\nWhat is the slope at time \\(t=0\\)? \\(x'(0) = ?\\).\nUse this slope to step a half step forward and find the \\(x\\) value: \\(x(0.5) \\approx ?\\)\nNow use the differential equation to find the slope at time\n\\(t=0.5\\). \\(x'(0.5) = ?\\).\nNow take your answer from the previous step, and go one full step forward from time \\(t=0\\). What \\(x\\) value do you end up with?\nRepeat the process outlined in part (a) to approximate the solution to the differential equation at times \\(t=2, 3, \\ldots\\) 6. Plot the analytical solution, the approximation using Euler’s method, and this new method.\n\nPractice\nComplete the code below to implement the midpoint method in one dimension.\nThen, apply it to the previous problem (\\(x' = -0.5x\\)).\n\ndef midpoint1d(f,x0,t0,tmax,dt):\n    N = int(np.floor((tmax-t0)/dt) +1)\n    t = np.linspace(t0, tmax, N)# build the times\n    x = np.zeros(len(t))# build an array for the x values\n    x[0] = x0# build the initial condition\n    # On the next line: be careful about how far you're looping\n    for n in range( ... ):\n        # The interesting part of the code goes here.\n    return t, x\n\n\nf2 = lambda t, x: 3*x + t\nprint(midpoint1d(f2, x0 = 4, t0 = 0, tmax = 1, dt = 1))\n\n(array([0., 1.]), array([ 4. , 34.5]))\n\n\n\nf1 = lambda t, x: 0.2*x + 1\nprint(midpoint1d(f1, x0 = 0, t0 = 0, tmax = 1, dt = 1))\n\n(array([0., 1.]), array([0. , 1.1]))\n\n\n\n# write some code below to make some plots\nfig = go.Figure()\n#fig.add_trace(go.Scatter(x=, y=, mode='markers', name=\"Midpoint Method\"))\n#fig.add_trace(go.Scatter(x=, y=, mode='markers', name=\"Analytical Sol.\"))\n\nThe goal in building the midpoint method was to hopefully capture some of the upcoming curvature in the solution before we overshot it.\nPractice\nConsider the differential equation \\(x' = -1/3x + \\sin(t)\\) with initial condition \\(x(0)=1\\) on the domain \\(t\\in[0,4]\\). First get a numerical solution with Euler’s method using \\(\\Delta t = 0.1\\). Then get a numerical solution with the midpoint method using the same value for \\(\\Delta t\\). Plot the two solutions on top of each other along with the exact solution\n\\[\nx(t) = 1/10 \\left(19 e^{-t/3} + 3 \\sin(t) - 9 \\cos(t) \\right)\n\\]\nWhat do you observe? What do you observe if you make \\(\\Delta t\\) a bit larger (like 0.2 or 0.3)? What do you observe if you make \\(\\Delta t\\) very very small (like 0.001 or 0.0001)?\n\n# define the right-hand side (rhs)\nfp = lambda t, x: -1/3*x + np.sin(t)\n# set dt\ndt1 = 0.1\n# solve with Euler's method\nte, xe = ...\n# solve with Midpoint method\ntm, xm = ...\n\n# define the analytical solution\nf = lambda t, x: 1/10 *(19*np.exp(-t/3) + 3*np.sin(t) - 9*np.cos(t))\n# evaluate the solution at the grid above\nftrue = f(te, 0)\n\n\n# add plots and analysis :]",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+    ]
+  },
+  {
+    "objectID": "week7.html#interactive-odes",
+    "href": "week7.html#interactive-odes",
+    "title": "7  MATH 291T - Week 7 Participation",
+    "section": "7.3 Interactive ODEs",
+    "text": "7.3 Interactive ODEs\n\nf = lambda t, x: -(1/3.0)*x + np.sin(t)\nt0 = 0\n\n\ndef eulerAnimator(x0,tmax,dt):\n    # call on the euler function to build the solution\n    t, x = euler(f,x0,t0,tmax,dt)\n    plt.plot(t, x, 'b-') # plot the solution\n    plt.xlim(0,30)\n    plt.ylim( np.min(x)-1, np.max(x)+1)\n    plt.grid()\n    plt.show()\n\n\ninteractive_plot = interactive(eulerAnimator,\n                               x0=(-2, 5, 0.5),\n                               tmax=(1, 30, 0.1),\n                               dt=(0.01, 0.75, 0.005))\ninteractive_plot\n\n\n\n\nPractice\nModify the previous exercise to use a different numerical solver (e.g. the midpoint method) instead of Euler’s method.\nIF Time permits",
+    "crumbs": [
+      "Module 3 - Ordinary Differential Equations",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+    ]
+  },
+  {
     "objectID": "module_four.html",
     "href": "module_four.html",
     "title": "Module 4 - Partial Differential Equations",
@@ -390,7 +434,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\n\nModule 4",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\n\nModule 4",
     "crumbs": [
       "Table of Contents"
     ]

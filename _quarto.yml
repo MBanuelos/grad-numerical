@@ -26,6 +26,7 @@ book:
     - part: module_three.ipynb
       chapters:
         - week6.ipynb
+        - week7.ipynb
     - part: module_four.ipynb
 
 execute:
