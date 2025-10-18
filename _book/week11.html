@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; MATH 291T - Week 11 Participation – Numerical Methods in Applied Mathematics, with Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./week12.html" rel="next">
+<link href="./week10.html" rel="prev">
+<link href="./nmam.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_four.html">Module 4 - Partial Differential Equations</a></li><li class="breadcrumb-item"><a href="./week11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MATH 291T - Week 11 Participation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./nmam.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Numerical Methods in Applied Mathematics, with Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of Contents</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface - Ready to Start?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_one.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 1 - What is Numerical Analysis?</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Week 1 - Intro to Numerical Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Week 2: Approximating Functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_two.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 - Numerical Calculus</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Week 3: Numerical Calculus Intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Week 4 - Error Analysis &amp; Integration Intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Week 5 - Integration</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_three.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 - Ordinary Differential Equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MATH 291T - Week 7 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Week 8 Participation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./module_four.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4 - Partial Differential Equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Week 9 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">MATH 291T - Week 10 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MATH 291T - Week 11 Participation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">MATH 291T - Week 12 Participation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#solving-the-heat-eq." id="toc-solving-the-heat-eq." class="nav-link active" data-scroll-target="#solving-the-heat-eq."><span class="header-section-number">11.1</span> Solving the Heat Eq.</a></li>
+  <li><a href="#d-heat-equation---numerical-solution" id="toc-d-heat-equation---numerical-solution" class="nav-link" data-scroll-target="#d-heat-equation---numerical-solution"><span class="header-section-number">11.2</span> 2D Heat Equation - Numerical Solution</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_four.html">Module 4 - Partial Differential Equations</a></li><li class="breadcrumb-item"><a href="./week11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MATH 291T - Week 11 Participation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MATH 291T - Week 11 Participation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week11.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<p><strong>Name:</strong> [Type Your Name Here]</p>
+<hr>
+<p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking <strong>File -&gt; Save a copy in Drive</strong></p>
+<hr>
+<p>This assignment is due <strong>Friday, 11/3 by 11:59PM.</strong></p>
+<section id="solving-the-heat-eq." class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="solving-the-heat-eq."><span class="header-section-number">11.1</span> Solving the Heat Eq.</h2>
+<p>Read and review Sections 6.1 - 6.4 from <a href="https://numericalmethodssullivan.github.io/ch-pdes.html">the textbook</a>.</p>
+<p>and answer the following</p>
+<p>Consider the time dependent heat equation in one dimension</p>
+<p><span class="math display">\[
+u_t = D \; u_{xx}
+\]</span></p>
+<p>in 1 spatial dimension. Note that <span class="math inline">\(D\)</span> is the diffusivity (the rate of diffusion) so in terms of physical problems, if <span class="math inline">\(D\)</span> is small then the diffusion occurs slowly and if <span class="math inline">\(D\)</span> is large then the diffusion occurs quickly.</p>
+<p>We want to build a numerical approximation to the function <span class="math inline">\(u(t,x)\)</span> for a given collection of initial and boundary conditions.</p>
+<p>First we need to introduce some notation for the numerical solution. As you’ll see in a moment, there is a lot to keep track of in numerical PDEs so careful index and well-chosen notation is essential. Let <span class="math inline">\(U_i^n\)</span> be the approximation of the solution to <span class="math inline">\(u(t,x)\)</span> at the point <span class="math inline">\(t=t_n\)</span> and <span class="math inline">\(x=x_i\)</span> (since we have two variables we need to two indices). For example, <span class="math inline">\(U_4^1\)</span> is the value of the approximation at time <span class="math inline">\(t_1\)</span> and at the spatial point <span class="math inline">\(x_4\)</span>.</p>
+<p>Next, we need to approximate both derivatives <span class="math inline">\(u_t\)</span> and <span class="math inline">\(u_{xx}\)</span> in the PDE using methods that we have used before. Now, would be a good time to go back to review your notes for how we build approximations of derivatives.</p>
+<hr>
+<ol type="a">
+<li>Give an approximation of <span class="math inline">\(u_t\)</span>, similar to Euler’s method</li>
+</ol>
+<p><span class="math display">\[
+u_t \approx \frac{??? - ???}{???}.
+\]</span></p>
+<p>ANS:</p>
+<ol start="2" type="a">
+<li>Give an approximation of <span class="math inline">\(u_{xx}\)</span> using the approximation for the second derivative from HW 03</li>
+</ol>
+<p><span class="math display">\[
+u_{xx} \approx \frac{??? - ??? + ???}{???}.
+\]</span></p>
+<p>ANS:</p>
+<ol start="3" type="a">
+<li>Put your answers from parts (a) and (b) together using the 1D heat equation</li>
+</ol>
+<p><span class="math display">\[
+\frac{??? - ???}{\Delta t} = D \left( \frac{??? - ??? + ???}{\Delta x^2} \right).
+\]</span></p>
+<p>Be sure that your indexing is correct: the superscript <span class="math inline">\(n\)</span> is the index for time and the subscript <span class="math inline">\(i\)</span> is the index for space.</p>
+<p>ANS:</p>
+<ol start="4" type="a">
+<li>Rearrange your result from part (c) to solve for <span class="math inline">\(U_i^{n+1}\)</span></li>
+</ol>
+<p><span class="math display">\[
+U_i^{n+1} = ??? + \frac{D \Delta t}{\Delta x^2} \left( ??? - ??? + ??? \right).
+\]</span></p>
+<p>ANS:</p>
+<ol start="5" type="a">
+<li>Read the first 3 pages of <a href="http://people.uncw.edu/hermanr/pde1/NumHeatEqn.pdf">these lecture notes</a> and compare them with what you derived above.</li>
+</ol>
+<p>ANS:</p>
+<ol start="6" type="a">
+<li>What do you think the expected error for this method is?</li>
+</ol>
+<p>ANS:</p>
+<p><strong>Practice</strong></p>
+<p>Now we want to implement your answers of the previous exercise to approximate the solution to the following problem:</p>
+<p><span class="math display">\[
+\text{Solve: } u_t = 0.5u_{xx}
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+x \in (0,1), \, u(0,x) = \sin(2 \pi x), \, u(t,0) = 0, \, \text{and} \, u(t,1) = 0.
+\]</span></p>
+<div id="cell-16" class="cell" data-outputid="d4589656-5244-491e-dbfc-f18e92abdb79">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interactive</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write code to give an array of times starting at t=0 and ending</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># at t=1.  Be sure that you use many points in the partition of</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the time domain.  Be sure to either specify or calculate the</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># value of Delta t.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.00005</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="bu">int</span>(np.floor(<span class="dv">1</span><span class="op">/</span>dt)<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#print(t)</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Write code to give an array of x values starting at x=0 and</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ending exactly at x=1. This is best done with the np.linspace()</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># command since you can guarantee that you end exactly at x=1.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Be sure to either specify or calculate the value of Delta x as</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># part of your code.</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="bu">int</span>(np.floor(<span class="dv">1</span><span class="op">/</span>dx)<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#print(x)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The next two lines build two parameters that are of interest</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># for the finite difference scheme.</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># The diffusion coefficient for the heat equation given.</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># The coefficient "a" appears in the finite difference scheme.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> D<span class="op">*</span>dt <span class="op">/</span> (dx<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dt="</span>,dt,<span class="st">", dx="</span>,dx,<span class="st">" and D dt/dx^2="</span>,a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dt= 5e-05 , dx= 0.01  and D dt/dx^2= 0.25</code></pre>
+</div>
+</div>
+<p>Next we build the array <span class="math inline">\(U\)</span> so we can store all of the approximations at all times and at all spatial points. The array will have the dimensions <code>len(t)</code> versus <code>len(x)</code>. We then need to enforce the boundary conditions so for all times we fill the proper portions of the array with the proper boundary conditions. Lastly, we will build the initial condition for all spatial steps in the first time step.</p>
+<div id="cell-18" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.zeros( (<span class="bu">len</span>(t),<span class="bu">len</span>(x)) )</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># left boundary condition</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># right boundary condition</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the function for the init. condition (should depend on x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we step through a loop that fills the <span class="math inline">\(U\)</span> array one row at a time. Keep in mind that we want to leave the boundary conditions fixed so we will only fill indices <code>1</code> through <code>-2</code> (stop and explain this). Be careful to get the indexing correct. For example, if we want <span class="math inline">\(U_i^n\)</span>, we use <code>U[n,1:-1]</code>, if we want <span class="math inline">\(U_{i+1}^n\)</span>, we use <code>U[n,2:]</code>, if we want <span class="math inline">\(U_i^{n+1}\)</span> we use <code>U[n+1,1:-1]</code></p>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t)<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let’s plot the solution</p>
+<div id="cell-22" class="cell" data-outputid="bbfbd5af-1043-4626-a813-a7ea635872ab">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotter(Frame):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    plt.plot(x,U[Frame,:],<span class="st">'b'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    plt.grid()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="op">=</span> interactive(plotter, Frame<span class="op">=</span>(<span class="dv">0</span>,<span class="bu">len</span>(t)<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major":2,"version_minor":0,"model_id":"60e236ffbb304e5cb7a96cab7768f5eb","quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<div id="cell-23" class="cell" data-outputid="f5815103-216d-490e-9286-6ae9f27f896e">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Frame <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(t),<span class="dv">2000</span>): <span class="co"># ex: build every 20th frame</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    plotter(Frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week11_files/figure-html/cell-6-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Practice</strong></p>
+<p>You may have found that you didn’t get a sensible solution out for the previous problem. The point of this exercise is to show that value of <span class="math inline">\(a = D\frac{\Delta t}{\Delta x^2}\)</span> controls the stability of the finite difference solution to the heat equation, and furthermore that there is a cutoff for <span class="math inline">\(a\)</span> below which the finite difference scheme will be stable. Experiment with values of <span class="math inline">\(\Delta t\)</span> and <span class="math inline">\(\Delta x\)</span> and conjecture the values of</p>
+<p><span class="math display">\[
+a = D\frac{\Delta t}{\Delta x^2}
+\]</span></p>
+<p>that give a stable result. Your conjecture should take the form:</p>
+<p>If <span class="math inline">\(a = D\frac{\Delta t}{\Delta x^2} &lt; ??\)</span>, then the finite difference solution for the 1D heat equation is stable. Otherwise it is unstable.</p>
+<p>ANS:</p>
+<p><strong>Practice</strong></p>
+<p>Consider the one dimensional heat equation with diffusion coefficient <span class="math inline">\(D=1\)</span>:</p>
+<p><span class="math display">\[
+u_t = u_{xx}
+\]</span></p>
+<p>We want to solve this equation on the domain <span class="math inline">\(x \in (0,1)\)</span> and <span class="math inline">\(t\in (0, 0.5)\)</span> subject to the initial condition <span class="math inline">\(u(0,x) = \sin(\pi x )\)</span> and the boundary conditions <span class="math inline">\(u(t,0)=u(t,1)=0\)</span>.</p>
+<ol type="a">
+<li><p>Prove that the function <span class="math inline">\(u(t,x) = e^{-\pi^2 t} \sin(\pi x)\)</span> is a solution to this heat equation, satisfies the initial condition, and satisfies the boundary conditions.</p></li>
+<li><p>Pick values of <span class="math inline">\(\Delta t\)</span> and <span class="math inline">\(\Delta x\)</span> so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (a).</p></li>
+</ol>
+<p>(c and d optional –)</p>
+<ol start="3" type="a">
+<li><p>Now let’s change the initial condition to <span class="math inline">\(u(0,x)=\sin(\pi x) + 0.1\sin(100 \pi x)\)</span>. Prove that the function <span class="math inline">\(u(t,x) = e^{-\pi^2 t} \sin(\pi x) + 0.1 e^{-10^4\pi^2t}\sin(100\pi x)\)</span> is a solution to this heat equation, matches this new initial condition, and matches the boundary conditions.</p></li>
+<li><p>Pick values of <span class="math inline">\(\Delta t\)</span> and <span class="math inline">\(\Delta x\)</span> so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (c).</p></li>
+</ol>
+<p>ANS:</p>
+</section>
+<section id="d-heat-equation---numerical-solution" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="d-heat-equation---numerical-solution"><span class="header-section-number">11.2</span> 2D Heat Equation - Numerical Solution</h2>
+<p>After writing out your steps, replace the ??? with the appropriate indices.</p>
+<p><span class="math display">\[
+U_{i,j}^{n+1} = U_{???,???}^{???} + \frac{D \cdot ???}{???} \left( ??? + ??? - ??? + ??? + ??? \right)
+\]</span></p>
+<p><strong>Practice</strong></p>
+<p>Now, we need to implement the finite difference scheme that you developed in the previous problem. As a model problem, consider the 2D heat equation</p>
+<p><span class="math display">\[
+u_t = D(u_{xx} + u_{yy})
+\]</span></p>
+<p>on the domain <span class="math inline">\((x,y) \in [0,1] \times [0,1]\)</span> with the initial condition <span class="math inline">\(u(0,x,y) = \sin(\pi x)\sin(\pi y)\)</span>, homogeneous Dirichlet boundary conditions, and<br>
+<span class="math inline">\(D=1\)</span>. Fill in the empty spaces in the following code chunks.</p>
+<p>First we import the proper libraries and set up the domains for <span class="math inline">\(x, y,\)</span> and <span class="math inline">\(t\)</span>.</p>
+<div id="cell-32" class="cell" data-outputid="5c3185c8-d9dc-4732-f444-252ac14417d3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>array([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])</code></pre>
+</div>
+</div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> cm <span class="co"># this allows for color maps</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interactive</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write code to build a linearly spaced array of x values</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># starting at 0 and ending at exactly 1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> ??? <span class="co"># your code here</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> ???<span class="co"># This is a step that allows for us to have y = x</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The consequence of the previous line is that dy = dx.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract dx from your array of x values. # dx = x[1] - x[0]</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Now write code to build a linearly spaced array of time values</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># starting at 0 and ending at 0.25.</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># You will want to use many more values for time than for space</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># (think about the stability conditions from the 1D heat equation).</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract dt from your array of t values</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Next we will use the np.meshgrid() command to turn the arrays of</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># x and y values into 2D grids of x and y values.</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># If you match the corresponding entries of X and Y then you get</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># every ordered pair in the domain.</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.meshgrid(x,y)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Next we set up a 3 dimensional array of zeros to store all of</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co"># the time steps of the solutions.</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.zeros( (<span class="bu">len</span>(t), <span class="bu">len</span>(x), <span class="bu">len</span>(y)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initial condition depending on X and Y</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># boundary condition for x=0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># boundary condition for x=1 (</span><span class="al">NOTE</span><span class="co">: -1 represents the last element of the array)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># boundary condition for y=0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># boundary condition for y=1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-35" class="cell" data-outputid="117610ee-3e59-4ae3-d36b-c6300290cffa">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> D<span class="op">*</span>dt<span class="op">/</span>dx<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.25</code></pre>
+</div>
+</div>
+<div id="cell-36" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: the \ is to break up the line for readability</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(t)<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  U[n<span class="op">+</span><span class="dv">1</span>,<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> U[n,<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    a<span class="op">*</span>(U[n, ?:? , ?:?] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>       U[n, ?:?, ?:?] <span class="op">-</span> <span class="op">\</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="dv">4</span><span class="op">*</span>U[n, ?:?, ?:?] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       U[n, ?:?, ?:?] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>       U[n, ?:?, ?:?])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-37" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotter(Frame):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">10</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  ax <span class="op">=</span> fig.gca(projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  ax.plot_surface(X,Y,U[Frame,:,:], cmap<span class="op">=</span>cm.coolwarm)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  ax.set_zlim(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  plt.show()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="op">=</span> interactive(plotter, Frame<span class="op">=</span>(<span class="dv">0</span>,<span class="bu">len</span>(t)))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"60e236ffbb304e5cb7a96cab7768f5eb":{"model_module":"@jupyter-widgets/controls","model_name":"VBoxModel","model_module_version":"1.5.0","state":{"_dom_classes":["widget-interact"],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"VBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"VBoxView","box_style":"","children":["IPY_MODEL_d8b977e186e7496ea698fb3cce007a24","IPY_MODEL_d801abdee8794f5f9194f6efe492df96"],"layout":"IPY_MODEL_f5600fe435a9401298b0b7bcdce5e2c5"}},"d8b977e186e7496ea698fb3cce007a24":{"model_module":"@jupyter-widgets/controls","model_name":"IntSliderModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"IntSliderModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"IntSliderView","continuous_update":true,"description":"Frame","description_tooltip":null,"disabled":false,"layout":"IPY_MODEL_14bde8d1ef61457e9cadb60da9e3ca61","max":20000,"min":0,"orientation":"horizontal","readout":true,"readout_format":"d","step":1,"style":"IPY_MODEL_ddaf9704c7e94a6ea60edb5696df8f72","value":2097}},"d801abdee8794f5f9194f6efe492df96":{"model_module":"@jupyter-widgets/output","model_name":"OutputModel","model_module_version":"1.0.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/output","_model_module_version":"1.0.0","_model_name":"OutputModel","_view_count":null,"_view_module":"@jupyter-widgets/output","_view_module_version":"1.0.0","_view_name":"OutputView","layout":"IPY_MODEL_07c94af5748a4dfe8af723c72d419549","msg_id":"","outputs":[{"output_type":"display_data","data":{"text/plain":"<Figure size 640x480 with 1 Axes>","image/png":"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xhv36vHHs2v1exUXF+uuu+6qVsDx6knGhw4dUmlpqSIjIz2WR0ZG6ocffqhynby8vCr75+Xlud8vX3amPr82fvx4paSkuF+Xz+AMGDCgVmdw2reXSktP6corv1ZKSiddfnmUJM6E9Ab+EvONulLn4cPN18OHS7ViRZmWLvXTp586tHdvfb3//tV6//2r1aJF+cyOpeuusy6qGwvWlTrXddS59hQWSv/6l0NLl/rpX/9yqKio4q+HyEhLt9xySs2b76r1WhcUFFS77yVxFZXT6ZTT6ay0PCAgoFYLf9VV0ty5Lq1cma/LL6/dsVG12v5/iKrVlTpHRUn332/asWPmLsoffmielbVzp0MzZvhrxgxzztsf/mBar17mCq2LQV2pc11Hnc/Pzz9X/Jtatcrcab9cs2bS7beb1rOnQ2Vl0sqVh2u91jUZy6v/rBs3bix/f3/l/+rR1vn5+Yo6wzWeUVFRZ+1f/jU/P1/R0dEefU4/ZAXg0taggZnZGT7c3A08NdX8Yl6xQvrpJ+mNN0xr3NjcRPMPf5D69TOXrQMw8vPNPaqWLJHWrPG8CW2rVhWh5rrrPO/XVlbm802txKuTtIGBgerWrZvS09Pdy8rKypSenq74+Pgq14mPj/foL0lpaWnu/i1atFBUVJRHn4KCAmVlZZ1xTACXtssuM7+EFy0yz3NbvlwaNUoKDzcPBJ0711zd2KSJufngP/8pHT9+obcauDB27JBef93MbkZHSw88IK1ebcLNNddIEyaYW51s3WquXuzR4+K8Ga3XJ2ZTUlJ07733qnv37urRo4dmzpypoqIijRo1SpI0YsQINW3aVNOmTZMk/c///I969+6t119/XYMGDdLixYv19ddf66233pIkORwOPfroo3rxxRd11VVXqUWLFnr++ecVExPjcSIzAFQlKMg8nPb3vze/sNeurbij+P790uLFpjmdUkKCufHmLbdIEREXessB77AsE1iWLTPt1zehve468wfCbbdJbdpciC08P14POEOHDtXBgwc1YcIE5eXlqUuXLkpNTXWfJLx79275nXa2X8+ePbVo0SI999xzeuaZZ3TVVVdp2bJluuaaa9x9nnrqKRUVFWnMmDE6evSoevXqpdTUVAUFBXl7dwDYSL165mabfftKs2aZp58vXWra1q3mobeffGL+Ou3Z09xB+dZb69YveaAqLpf0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Tnh4+Blv6idJzZs3l2VZ7td9+vTxeF2VpKQkjxv8AQAA/BrPogIAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALZDwAEAALbj1YBz5MgRDR8+XKGhoQoLC9N9992nwsLCs67Tp08fORwOj/bAAw949Nm9e7cGDRqkkJAQRURE6Mknn9SpU6e8uSsAAKAOqefNwYcPH679+/crLS1NLpdLo0aN0pgxY7Ro0aKzrjd69GhNnjzZ/TokJMT936WlpRo0aJCioqK0fv167d+/XyNGjFBAQICmTp3qtX0BAAB1h9cCTm5urlJTU/XVV1+pe/fukqQ33nhDAwcO1PTp0xUTE3PGdUNCQhQVFVXle6tXr9b333+vTz/9VJGRkerSpYumTJmip59+Wi+88IICAwO9sj8AAKDu8FrAyczMVFhYmDvcSFJCQoL8/PyUlZWl22677YzrLly4UH//+98VFRWlW265Rc8//7x7FiczM1MdO3ZUZGSku39iYqIefPBBbd68WV27dq00XklJiUpKStyvCwoKJEkul0sul+s37+vpyser7XHhiTr7BnX2DersG9TZd7xV65qM57WAk5eXp4iICM9vVq+ewsPDlZeXd8b17rrrLl155ZWKiYnRt99+q6efflpbtmzRkiVL3OOeHm4kuV+fadxp06Zp0qRJlZavXr3a4/BXbUpLS/PKuPBEnX2DOvsGdfYN6uw7tV3r4uLiavetccAZN26cXnnllbP2yc3NremwbmPGjHH/d8eOHRUdHa1+/fpp+/btatWq1XmNOX78eKWkpLhfFxQUKDY2VgMGDFBoaOh5b2tVXC6X0tLS1L9/fwUEBNTq2KhAnX2DOvsGdfYN6uw73qp1+RGY6qhxwHn88cc1cuTIs/Zp2bKloqKidODAAY/lp06d0pEjR854fk1V4uLiJEnbtm1Tq1atFBUVpQ0bNnj0yc/Pl6Qzjut0OuV0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eS63ePFiORwO920ccHY1rfPRo0c1duxYRUdHy+l0qk2bNvzuqIaa1nnmzJm6+uqrFRwcrNjYWD322GM6ceKEj7a2blq7dq1uueUWxcTEyOFwaNmyZedcJyMjQ9dee62cTqdat25d7Qdx/ybnfFoVPCxevNgKDAy05s2bZ23evNkaPXq0FRYWZuXn51fZf926dZa/v7/16quvWt9//7313HPPWQEBAdZ3333n4y2vW2pa57vuusuaPXu2tWnTJis3N9caOXKk1aBBA2vv3r0+3vK6paZ1Lrdz506radOm1o033mgNHjzYNxtbh9W0ziUlJVb37t2tgQMHWl988YW1c+dOKyMjw8rJyfHxltctNa3zwoULLafTaS1cuNDauXOntWrVKis6Otp67LHHfLzldcvKlSutZ5991lqyZIklyVq6dOlZ++/YscMKCQmxUlJSrO+//9564403LH9/fys1NdWr20nAqaEePXpYY8eOdb8uLS21YmJirGnTplXZ/84777QGDRrksSwuLs767//+b69uZ11X0zr/2qlTp6z69etbCxYs8NYm2sL51PnUqVNWz549rb/97W/WvffeS8CphprW+a9//avVsmVL6+TJk77aRFuoaZ3Hjh1r9e3b12NZSkqKdcMNN3h1O+2kOgHnqaeesjp06OCxbOjQoVZiYqIXt8yyOERVAydPnlR2drYSEhLcy/z8/JSQkKDMzMwq18nMzPToL0mJiYln7I/zq/OvFRcXy+VyKTw83FubWeedb50nT56siIgI3Xfffb7YzDrvfOr88ccfKz4+XmPHjlVkZKSuueYaTZ06VaWlpb7a7DrnfOrcs2dPZWdnuw9j7dixQytXrtTAgQN9ss2Xigv1OVijZ1Fd6g4dOqTS0lJFRkZ6LI+MjNQPP/xQ5Tp5eXlV9s/Ly/PadtZ151PnX3v66acVExNT6R8VKpxPnb/44gvNnTtXOTk5PthCezifOu/YsUNr1qzR8OHDtXLlSm3btk0PPfSQXC6XJk6c6IvNrnPOp8533XWXDh06pF69esmyLJ06dUoPPPCAnnnmGV9s8iXjTJ+DBQUF+uWXXxQcHOyV78sMDmzn5Zdf1uLFi7V06VIFBQVd6M2xjePHj+uee+7R22+/rcaNG1/ozbG1srIyRURE6K233lK3bt00dOhQPfvss5ozZ86F3jRbycjI0NSpU/Xmm29q48aNWrJkiT755BNNmTLlQm8aagEzODXQuHFj+fv7Kz8/32N5fn6+oqKiqlwnKiqqRv1xfnUuN336dL388sv69NNP1alTJ29uZp1X0zpv375du3bt0i233OJeVlZWJkmqV6+etmzZolatWnl3o+ug8/l5jo6OVkBAgPz9/d3L2rVrp7y8PJ08eVKBgYFe3ea66Hzq/Pzzz+uee+7R/fffL0nq2LGjioqKNGbMGD377LPy82MOoDac6XMwNDTUa7M3EjM4NRIYGKhu3bopPT3dvaysrEzp6emKj4+vcp34+HiP/pKUlpZ2xv44vzpL0quvvqopU6YoNTVV3bt398Wm1mk1rXPbtm313XffKScnx91uvfVW3XTTTcrJyVFsbKwvN7/OOJ+f5xtuuEHbtm1zB0hJ+s9//qPo6GjCzRmcT52Li4srhZjyUGnxmMZac8E+B716CrMNLV682HI6ndY777xjff/999aYMWOssLAwKy8vz7Isy7rnnnuscePGufuvW7fOqlevnjV9+nQrNzfXmjhxIpeJV0NN6/zyyy9bgYGB1gcffGDt37/f3Y4fP36hdqFOqGmdf42rqKqnpnXevXu3Vb9+fSs5OdnasmWLtWLFCisiIsJ68cUXL9Qu1Ak1rfPEiROt+vXrW//4xz+sHTt2WKtXr7ZatWpl3XnnnRdqF+qE48ePW5s2bbI2bdpkSbJmzJhhbdq0yfrxxx8ty7KscePGWffcc4+7f/ll4k8++aSVm5trzZ49m8vEL1ZvvPGGdcUVV1iBgYFWjx49rC+//NL9Xu/eva17773Xo/8///lPq02bNlZgYKDVoUMH65NPPvHxFtdNNanzlVdeaUmq1CZOnOj7Da9javrzfDoCTvXVtM7r16+34uLiLKfTabVs2dJ66aWXrFOnTvl4q+uemtTZ5XJZL7zwgtWqVSsrKCjIio2NtR566CHr559/9v2G1yGfffZZlb9vy2t77733Wr179660TpcuXazAwECrZcuW1vz5872+nQ7LYh4OAADYC+fgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2yHgAAAA2/l/He+K1RdI6S8AAAAASUVORK5CYII=\n"},"metadata":{}}]}},"f5600fe435a9401298b0b7bcdce5e2c5":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"14bde8d1ef61457e9cadb60da9e3ca61":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"ddaf9704c7e94a6ea60edb5696df8f72":{"model_module":"@jupyter-widgets/controls","model_name":"SliderStyleModel","model_module_version":"1.5.0","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"SliderStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":"","handle_color":null}},"07c94af5748a4dfe8af723c72d419549":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week10.html" class="pagination-link" aria-label="MATH 291T - Week 10 Participation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">MATH 291T - Week 10 Participation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./week12.html" class="pagination-link" aria-label="MATH 291T - Week 12 Participation">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">MATH 291T - Week 12 Participation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
