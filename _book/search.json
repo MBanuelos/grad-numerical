@@ -324,89 +324,67 @@
   {
     "objectID": "week6.html",
     "href": "week6.html",
-    "title": "6  MATH 291T - Week 6 Participation",
+    "title": "6  Intro to ODEs",
     "section": "",
-    "text": "6.1 Intro to ODEs\nPractice\nDescribe the plot of the function that would model the following scenario,\nA drug is eliminated from the body via natural metabolism. Assume that there is some initial amount of drug in the body. What does the function modeling the amount of drug in the system look like over time?\nPractice\nConsider the differential equation \\(x' = 3x\\) with an initial condition \\(x(0)=4.\\) Which of the following functions is a solution to this differential equation, and what is the value of the constant in the function?\nFor the one that is the solution, please type your solution below.",
+    "text": "6.1 Separation of Variables\nPractice\nSolve the differential equation \\(x' = 2x + 12\\) with \\(x(0)=2\\) using separation of variables.\nPlease type your answer below.\nSubstitute your solution into the differential equation and verify that it solves it.\nANS:\nPractice\nSolve the differential equation \\[\n\\frac{dx}{dt} = x \\sin(t)\n\\]\nwith \\(x(0) = 1\\) using separation of variables.\nPlease type your answer below. Substitute your solution into the differential equation and verify that it solves it.\nANS:",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
-    ]
-  },
-  {
-    "objectID": "week6.html#intro-to-odes",
-    "href": "week6.html#intro-to-odes",
-    "title": "6  MATH 291T - Week 6 Participation",
-    "section": "",
-    "text": "\\(x(t) = C \\sin(3t)\\)\n\\(x(t) = C e^{3t}\\)\n$x(t) = C t^3 $\n\\(x(t) = \\sin(3t) + C\\)\n\\(x(t) = e^{3t} + C\\)",
-    "crumbs": [
-      "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
-    ]
-  },
-  {
-    "objectID": "week6.html#separation-of-variables",
-    "href": "week6.html#separation-of-variables",
-    "title": "6  MATH 291T - Week 6 Participation",
-    "section": "6.2 Separation of Variables",
-    "text": "6.2 Separation of Variables\nPractice\nSolve the differential equation \\(x' = 2x + 12\\) with \\(x(0)=2\\) using separation of variables.\nPlease type your answer below.\nSubstitute your solution into the differential equation and verify that it solves it.\nANS:\nPractice\nSolve the differential equation \\[\n\\frac{dx}{dt} = x \\sin(t)\n\\]\nwith \\(x(0) = 1\\) using separation of variables.\nPlease type your answer below. Substitute your solution into the differential equation and verify that it solves it.\nANS:",
-    "crumbs": [
-      "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Intro to ODEs</span>"
     ]
   },
   {
     "objectID": "week6.html#eulers-method",
     "href": "week6.html#eulers-method",
-    "title": "6  MATH 291T - Week 6 Participation",
-    "section": "6.3 Euler’s Method",
-    "text": "6.3 Euler’s Method\nWe want to approximate a solution to \\(x'(t) = f(t,x(t))\\).\nRecall that \\[\nx'(t) = \\frac{x(t+h) - x(t)}{h} + \\mathcal{O}(h)\n\\]\nso the differential equation \\(x'(t) = f(x(t),t)\\) becomes\n\\[\n\\frac{x(t+h) - x(t)}{h} \\approx f(x(t),t).\n\\]\nRewriting as a difference equation, letting \\(x_{n+1} = x(t_n+h)\\) and \\(x_n = x(t_n)\\), we get\n\\[\nx_{n+1} = x_n + h f(x_n, t_n)\n\\]\nPractice\nConsider the differential equation \\(x' = 0.5x\\) with \\(x(0)=6\\).\nComplete the following table using Euler’s method, with \\(h=1\\).\nYou can either write code to do this or do it by hand.\n\n\n\nt\n0\n1\n2\n3\n4\n5\n6\n\n\n\n\nApproximation of x(t)\n6\n-\n-\n-\n-\n-\n-\n\n\n\n\n# if time permits, create a plot with your analytical\n# solution and the approximate solution\nimport numpy as np\nt = np.array([0,1,2,3,4,5,6])\napprox = [6, 9, 13.5, 20.25, 30.375, 45.5625, 68.34375]\n\nf = lambda x: 6 * np.exp(0.5*x)\nactual = f(t)\n\n\nimport matplotlib.pyplot as plt\nplt.plot(t,actual)\nplt.plot(t, approx, 'o')",
+    "title": "6  Intro to ODEs",
+    "section": "6.2 Euler’s Method",
+    "text": "6.2 Euler’s Method\nWe want to approximate a solution to \\(x'(t) = f(t,x(t))\\).\nRecall that \\[\nx'(t) = \\frac{x(t+h) - x(t)}{h} + \\mathcal{O}(h)\n\\]\nso the differential equation \\(x'(t) = f(x(t),t)\\) becomes\n\\[\n\\frac{x(t+h) - x(t)}{h} \\approx f(x(t),t).\n\\]\nRewriting as a difference equation, letting \\(x_{n+1} = x(t_n+h)\\) and \\(x_n = x(t_n)\\), we get\n\\[\nx_{n+1} = x_n + h f(x_n, t_n)\n\\]\nPractice\nConsider the differential equation \\(x' = 0.5x\\) with \\(x(0)=6\\).\nComplete the following table using Euler’s method, with \\(h=1\\).\nYou can either write code to do this or do it by hand.\n\n\n\nt\n0\n1\n2\n3\n4\n5\n6\n\n\n\n\nApproximation of x(t)\n6\n-\n-\n-\n-\n-\n-\n\n\n\n\n# if time permits, create a plot with your analytical\n# solution and the approximate solution\nimport numpy as np\nt = np.array([0,1,2,3,4,5,6])\napprox = [6, 9, 13.5, 20.25, 30.375, 45.5625, 68.34375]\n\nf = lambda x: 6 * np.exp(0.5*x)\nactual = f(t)\n\n\nimport matplotlib.pyplot as plt\nplt.plot(t,actual)\nplt.plot(t, approx, 'o')",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>MATH 291T - Week 6 Participation</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Intro to ODEs</span>"
     ]
   },
   {
     "objectID": "week7.html",
     "href": "week7.html",
-    "title": "7  MATH 291T - Week 7 Participation",
+    "title": "7  Week 7 Participation",
     "section": "",
     "text": "7.1 Euler’s Method\nThe notion of approximating solutions to differential equations is simple in principle:\nPractice\nConsider the differential equation \\(x' = 0.5x\\) with \\(x(0)=6\\).\nWrite a function that takes the following as input:\nand outputs:\nGraph your approximation with 3 different values of \\(h\\).\nIn this case, the analytical solution is\ndef euler(f,x0,t0,tmax,dt):\n  # write out the quantities needed (number of points, grid, solution)\n  # determine number of points needed, N\n\n  # define t based on N\n\n  # define x\n\n  # define x[0] to be the initial condition\n\n  # for loop to update the solution x(t) with Euler method\n  for n in range(len(t) - 1):\n\n  return t, x\nfp = lambda t, x: 0.5*x\nte, xe = euler(fp, x0=6, t0=0, tmax=10, dt=1e-3)\nte2, xe2 = euler(fp, x0=6, t0=0, tmax=10, dt=1)\n\n# now make some plots!\nf = lambda t, x: 6 * np.exp(0.5*x)\n#t_true = np.linspace(0,10,1000)\nf_true = f(0, te)\nfig = go.Figure()\nfig.add_trace(go.Scatter(x=te, y=xe, mode='markers', name=\"Euler dt=1e-02\"))\nfig.add_trace(go.Scatter(x=te2, y=xe2, mode='markers', name=\"Euler dt=1\"))\nfig.add_trace(go.Scatter(x=te, y=f_true, mode='markers', name=\"Analytical Sol.\"))\nfig.show()\nCalculate the point-wise error (i.e., the error at each point you are estimating the solution) and 1) find the maximum and 2) graph them.\nplt.plot(f_true-xe, 'o')",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Week 7 Participation</span>"
     ]
   },
   {
     "objectID": "week7.html#eulers-method",
     "href": "week7.html#eulers-method",
-    "title": "7  MATH 291T - Week 7 Participation",
+    "title": "7  Week 7 Participation",
     "section": "",
     "text": "make a discrete approximation to the derivative and\nstep forward through time as a difference equation.\n\n\n\n\n\na function \\(f\\)\na step size \\(h\\)\nan initial condition\na start time\nan end time\n\n\n\nthe estimated solution using Euler’s method & the grid where solution is evaluated\n\n\n\nf = lambda x: 6 * np.exp(0.5*x)",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Week 7 Participation</span>"
     ]
   },
   {
     "objectID": "week7.html#midpoint-method",
     "href": "week7.html#midpoint-method",
-    "title": "7  MATH 291T - Week 7 Participation",
+    "title": "7  Week 7 Participation",
     "section": "7.2 Midpoint Method",
     "text": "7.2 Midpoint Method\nNow we get to improve upon Euler’s method. There is a long history of wonderful improvements to the classic Euler’s method - some that work in special cases, some that resolve areas where the error is going to be high, and some that are great for general purpose numerical solutions to ODEs with relatively high accuracy. In this section we’ll make a simple modification to Euler’s method that has a surprisingly great payoff in the error rate.\nLet’s return to the simple differential equation\n\\[\nx'= - 0.5 x\n\\]\nwith \\(x(0)=6\\) that we saw before. Now we’ll propose a slightly different method for approximating the solution.\nAt \\(t=0\\), we know that \\(x(0)=6\\). If we use the slope at time \\(t=0\\) to step forward in time then we will get the Euler approximation of the solution. Consider this alternative approach:\n\nUse the slope at time \\(t=0\\) and move half a step forward.\nFind the slope at the half-way point\nThen use the slope from the half way point to go a full step forward from time \\(t=0\\).\n\nLet’s build this idea together:\n\nWhat is the slope at time \\(t=0\\)? \\(x'(0) = ?\\).\nUse this slope to step a half step forward and find the \\(x\\) value: \\(x(0.5) \\approx ?\\)\nNow use the differential equation to find the slope at time\n\\(t=0.5\\). \\(x'(0.5) = ?\\).\nNow take your answer from the previous step, and go one full step forward from time \\(t=0\\). What \\(x\\) value do you end up with?\nRepeat the process outlined in part (a) to approximate the solution to the differential equation at times \\(t=2, 3, \\ldots\\) 6. Plot the analytical solution, the approximation using Euler’s method, and this new method.\n\nPractice\nComplete the code below to implement the midpoint method in one dimension.\nThen, apply it to the previous problem (\\(x' = -0.5x\\)).\n\ndef midpoint1d(f,x0,t0,tmax,dt):\n    N = int(np.floor((tmax-t0)/dt) +1)\n    t = np.linspace(t0, tmax, N)# build the times\n    x = np.zeros(len(t))# build an array for the x values\n    x[0] = x0# build the initial condition\n    # On the next line: be careful about how far you're looping\n    for n in range( ... ):\n        # The interesting part of the code goes here.\n    return t, x\n\n\nf2 = lambda t, x: 3*x + t\nprint(midpoint1d(f2, x0 = 4, t0 = 0, tmax = 1, dt = 1))\n\n(array([0., 1.]), array([ 4. , 34.5]))\n\n\n\nf1 = lambda t, x: 0.2*x + 1\nprint(midpoint1d(f1, x0 = 0, t0 = 0, tmax = 1, dt = 1))\n\n(array([0., 1.]), array([0. , 1.1]))\n\n\n\n# write some code below to make some plots\nfig = go.Figure()\n#fig.add_trace(go.Scatter(x=, y=, mode='markers', name=\"Midpoint Method\"))\n#fig.add_trace(go.Scatter(x=, y=, mode='markers', name=\"Analytical Sol.\"))\n\nThe goal in building the midpoint method was to hopefully capture some of the upcoming curvature in the solution before we overshot it.\nPractice\nConsider the differential equation \\(x' = -1/3x + \\sin(t)\\) with initial condition \\(x(0)=1\\) on the domain \\(t\\in[0,4]\\). First get a numerical solution with Euler’s method using \\(\\Delta t = 0.1\\). Then get a numerical solution with the midpoint method using the same value for \\(\\Delta t\\). Plot the two solutions on top of each other along with the exact solution\n\\[\nx(t) = 1/10 \\left(19 e^{-t/3} + 3 \\sin(t) - 9 \\cos(t) \\right)\n\\]\nWhat do you observe? What do you observe if you make \\(\\Delta t\\) a bit larger (like 0.2 or 0.3)? What do you observe if you make \\(\\Delta t\\) very very small (like 0.001 or 0.0001)?\n\n# define the right-hand side (rhs)\nfp = lambda t, x: -1/3*x + np.sin(t)\n# set dt\ndt1 = 0.1\n# solve with Euler's method\nte, xe = ...\n# solve with Midpoint method\ntm, xm = ...\n\n# define the analytical solution\nf = lambda t, x: 1/10 *(19*np.exp(-t/3) + 3*np.sin(t) - 9*np.cos(t))\n# evaluate the solution at the grid above\nftrue = f(te, 0)\n\n\n# add plots and analysis :]",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Week 7 Participation</span>"
     ]
   },
   {
     "objectID": "week7.html#interactive-odes",
     "href": "week7.html#interactive-odes",
-    "title": "7  MATH 291T - Week 7 Participation",
+    "title": "7  Week 7 Participation",
     "section": "7.3 Interactive ODEs",
     "text": "7.3 Interactive ODEs\n\nf = lambda t, x: -(1/3.0)*x + np.sin(t)\nt0 = 0\n\n\ndef eulerAnimator(x0,tmax,dt):\n    # call on the euler function to build the solution\n    t, x = euler(f,x0,t0,tmax,dt)\n    plt.plot(t, x, 'b-') # plot the solution\n    plt.xlim(0,30)\n    plt.ylim( np.min(x)-1, np.max(x)+1)\n    plt.grid()\n    plt.show()\n\n\ninteractive_plot = interactive(eulerAnimator,\n                               x0=(-2, 5, 0.5),\n                               tmax=(1, 30, 0.1),\n                               dt=(0.01, 0.75, 0.005))\ninteractive_plot\n\n\n\n\nPractice\nModify the previous exercise to use a different numerical solver (e.g. the midpoint method) instead of Euler’s method.\nIF Time permits",
     "crumbs": [
       "Module 3 - Ordinary Differential Equations",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>MATH 291T - Week 7 Participation</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Week 7 Participation</span>"
     ]
   },
   {
@@ -477,100 +455,100 @@
   {
     "objectID": "week10.html",
     "href": "week10.html",
-    "title": "10  MATH 291T - Week 10 Participation",
+    "title": "10  Week 10 Participation",
     "section": "",
     "text": "10.1 Part 1\nFor this class participation, please complete the following parts\nWork on your Midterm 2 Project during one of our class meetings and provide a brief (~5-7 sentences) summary on your progress, any questions that have come up, and what you will do moving forward.\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>MATH 291T - Week 10 Participation</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Week 10 Participation</span>"
     ]
   },
   {
     "objectID": "week10.html#part-2",
     "href": "week10.html#part-2",
-    "title": "10  MATH 291T - Week 10 Participation",
+    "title": "10  Week 10 Participation",
     "section": "10.2 Part 2",
     "text": "10.2 Part 2\nWatch the following videos on\n\nHeat Equation Intuition (~ 8 min)\nBut what is a PDE? (~17 min)\nSolving the Heat Equation (~14 min)\n\nProvide a 250 - 500 word summary (total) on the three videos.\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>MATH 291T - Week 10 Participation</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Week 10 Participation</span>"
     ]
   },
   {
     "objectID": "week10.html#part-3",
     "href": "week10.html#part-3",
-    "title": "10  MATH 291T - Week 10 Participation",
+    "title": "10  Week 10 Participation",
     "section": "10.3 Part 3",
     "text": "10.3 Part 3\n\nRead and review Sections 6.1 - 6.4 from the textbook.\nWatch Week 10 - Discretizing the Heat Equation\n\nand answer the following\nConsider the time dependent heat equation in one dimension\n\\[\nu_t = D \\; u_{xx}\n\\]\nin 1 spatial dimension. Note that \\(D\\) is the diffusivity (the rate of diffusion) so in terms of physical problems, if \\(D\\) is small then the diffusion occurs slowly and if \\(D\\) is large then the diffusion occurs quickly.\nWe want to build a numerical approximation to the function \\(u(t,x)\\) for a given collection of initial and boundary conditions.\nFirst we need to introduce some notation for the numerical solution. As you’ll see in a moment, there is a lot to keep track of in numerical PDEs so careful index and well-chosen notation is essential. Let \\(U_i^n\\) be the approximation of the solution to \\(u(t,x)\\) at the point \\(t=t_n\\) and \\(x=x_i\\) (since we have two variables we need to two indices). For example, \\(U_4^1\\) is the value of the approximation at time \\(t_1\\) and at the spatial point \\(x_4\\).\nNext, we need to approximate both derivatives \\(u_t\\) and \\(u_{xx}\\) in the PDE using methods that we have used before. Now, would be a good time to go back to review your notes for how we build approximations of derivatives.\n\n\nGive an approximation of \\(u_t\\), similar to Euler’s method\n\n\\[\nu_t \\approx \\frac{??? - ???}{???}.\n\\]\nANS:\n\nGive an approximation of \\(u_{xx}\\) using the approximation for the second derivative from HW 03\n\n\\[\nu_{xx} \\approx \\frac{??? - ??? + ???}{???}.\n\\]\nANS:\n\nPut your answers from parts (a) and (b) together using the 1D heat equation\n\n\\[\n\\frac{??? - ???}{\\Delta t} = D \\left( \\frac{??? - ??? + ???}{\\Delta x^2} \\right).\n\\]\nBe sure that your indexing is correct: the superscript \\(n\\) is the index for time and the subscript \\(i\\) is the index for space.\nANS:\n\nRearrange your result from part (c) to solve for \\(U_i^{n+1}\\)\n\n\\[\nU_i^{n+1} = ??? + \\frac{D \\Delta t}{\\Delta x^2} \\left( ??? - ??? + ??? \\right).\n\\]\nANS:\n\nRead the first 3 pages of these lecture notes and compare them with what you derived above.\n\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>MATH 291T - Week 10 Participation</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Week 10 Participation</span>"
     ]
   },
   {
     "objectID": "week11.html",
     "href": "week11.html",
-    "title": "11  MATH 291T - Week 11 Participation",
+    "title": "11  Week 11 Participation",
     "section": "",
     "text": "11.1 Solving the Heat Eq.\nRead and review Sections 6.1 - 6.4 from the textbook.\nand answer the following\nConsider the time dependent heat equation in one dimension\n\\[\nu_t = D \\; u_{xx}\n\\]\nin 1 spatial dimension. Note that \\(D\\) is the diffusivity (the rate of diffusion) so in terms of physical problems, if \\(D\\) is small then the diffusion occurs slowly and if \\(D\\) is large then the diffusion occurs quickly.\nWe want to build a numerical approximation to the function \\(u(t,x)\\) for a given collection of initial and boundary conditions.\nFirst we need to introduce some notation for the numerical solution. As you’ll see in a moment, there is a lot to keep track of in numerical PDEs so careful index and well-chosen notation is essential. Let \\(U_i^n\\) be the approximation of the solution to \\(u(t,x)\\) at the point \\(t=t_n\\) and \\(x=x_i\\) (since we have two variables we need to two indices). For example, \\(U_4^1\\) is the value of the approximation at time \\(t_1\\) and at the spatial point \\(x_4\\).\nNext, we need to approximate both derivatives \\(u_t\\) and \\(u_{xx}\\) in the PDE using methods that we have used before. Now, would be a good time to go back to review your notes for how we build approximations of derivatives.\n\\[\nu_t \\approx \\frac{??? - ???}{???}.\n\\]\nANS:\n\\[\nu_{xx} \\approx \\frac{??? - ??? + ???}{???}.\n\\]\nANS:\n\\[\n\\frac{??? - ???}{\\Delta t} = D \\left( \\frac{??? - ??? + ???}{\\Delta x^2} \\right).\n\\]\nBe sure that your indexing is correct: the superscript \\(n\\) is the index for time and the subscript \\(i\\) is the index for space.\nANS:\n\\[\nU_i^{n+1} = ??? + \\frac{D \\Delta t}{\\Delta x^2} \\left( ??? - ??? + ??? \\right).\n\\]\nANS:\nANS:\nANS:\nPractice\nNow we want to implement your answers of the previous exercise to approximate the solution to the following problem:\n\\[\n\\text{Solve: } u_t = 0.5u_{xx}\n\\]\nwith\n\\[\nx \\in (0,1), \\, u(0,x) = \\sin(2 \\pi x), \\, u(t,0) = 0, \\, \\text{and} \\, u(t,1) = 0.\n\\]\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport plotly.graph_objects as go\nfrom ipywidgets import interactive\n\n# Write code to give an array of times starting at t=0 and ending\n# at t=1.  Be sure that you use many points in the partition of\n# the time domain.  Be sure to either specify or calculate the\n# value of Delta t.\ndt = 0.00005\nt = np.linspace(0,1,int(np.floor(1/dt)+1))\n#print(t)\n# Write code to give an array of x values starting at x=0 and\n# ending exactly at x=1. This is best done with the np.linspace()\n# command since you can guarantee that you end exactly at x=1.\n# Be sure to either specify or calculate the value of Delta x as\n# part of your code.\ndx = 0.01\nx = np.linspace(0,1,int(np.floor(1/dx)+1))\n#print(x)\n# The next two lines build two parameters that are of interest\n# for the finite difference scheme.\nD = 0.5 # The diffusion coefficient for the heat equation given.\n# The coefficient \"a\" appears in the finite difference scheme.\na = D*dt / (dx**2)\nprint(\"dt=\",dt,\", dx=\",dx,\" and D dt/dx^2=\",a)\n\ndt= 5e-05 , dx= 0.01  and D dt/dx^2= 0.25\nNext we build the array \\(U\\) so we can store all of the approximations at all times and at all spatial points. The array will have the dimensions len(t) versus len(x). We then need to enforce the boundary conditions so for all times we fill the proper portions of the array with the proper boundary conditions. Lastly, we will build the initial condition for all spatial steps in the first time step.\nU = np.zeros( (len(t),len(x)) )\n# left boundary condition\n# right boundary condition\n# the function for the init. condition (should depend on x)\nNow we step through a loop that fills the \\(U\\) array one row at a time. Keep in mind that we want to leave the boundary conditions fixed so we will only fill indices 1 through -2 (stop and explain this). Be careful to get the indexing correct. For example, if we want \\(U_i^n\\), we use U[n,1:-1], if we want \\(U_{i+1}^n\\), we use U[n,2:], if we want \\(U_i^{n+1}\\) we use U[n+1,1:-1]\nfor n in range(len(t)-1):\n    ...\nNow, let’s plot the solution\ndef plotter(Frame):\n    plt.plot(x,U[Frame,:],'b')\n    plt.grid()\n    plt.ylim(-1,1)\n    plt.show()\ninteractive_plot = interactive(plotter, Frame=(0,len(t)-1,1))\ninteractive_plot\nfor Frame in range(0,len(t),2000): # ex: build every 20th frame\n    plotter(Frame)\nPractice\nYou may have found that you didn’t get a sensible solution out for the previous problem. The point of this exercise is to show that value of \\(a = D\\frac{\\Delta t}{\\Delta x^2}\\) controls the stability of the finite difference solution to the heat equation, and furthermore that there is a cutoff for \\(a\\) below which the finite difference scheme will be stable. Experiment with values of \\(\\Delta t\\) and \\(\\Delta x\\) and conjecture the values of\n\\[\na = D\\frac{\\Delta t}{\\Delta x^2}\n\\]\nthat give a stable result. Your conjecture should take the form:\nIf \\(a = D\\frac{\\Delta t}{\\Delta x^2} &lt; ??\\), then the finite difference solution for the 1D heat equation is stable. Otherwise it is unstable.\nANS:\nPractice\nConsider the one dimensional heat equation with diffusion coefficient \\(D=1\\):\n\\[\nu_t = u_{xx}\n\\]\nWe want to solve this equation on the domain \\(x \\in (0,1)\\) and \\(t\\in (0, 0.5)\\) subject to the initial condition \\(u(0,x) = \\sin(\\pi x )\\) and the boundary conditions \\(u(t,0)=u(t,1)=0\\).\n(c and d optional –)\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MATH 291T - Week 11 Participation</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Week 11 Participation</span>"
     ]
   },
   {
     "objectID": "week11.html#solving-the-heat-eq.",
     "href": "week11.html#solving-the-heat-eq.",
-    "title": "11  MATH 291T - Week 11 Participation",
+    "title": "11  Week 11 Participation",
     "section": "",
     "text": "Give an approximation of \\(u_t\\), similar to Euler’s method\n\n\n\n\nGive an approximation of \\(u_{xx}\\) using the approximation for the second derivative from HW 03\n\n\n\n\nPut your answers from parts (a) and (b) together using the 1D heat equation\n\n\n\n\n\nRearrange your result from part (c) to solve for \\(U_i^{n+1}\\)\n\n\n\n\nRead the first 3 pages of these lecture notes and compare them with what you derived above.\n\n\n\nWhat do you think the expected error for this method is?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProve that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x)\\) is a solution to this heat equation, satisfies the initial condition, and satisfies the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (a).\n\n\n\nNow let’s change the initial condition to \\(u(0,x)=\\sin(\\pi x) + 0.1\\sin(100 \\pi x)\\). Prove that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x) + 0.1 e^{-10^4\\pi^2t}\\sin(100\\pi x)\\) is a solution to this heat equation, matches this new initial condition, and matches the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (c).",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MATH 291T - Week 11 Participation</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Week 11 Participation</span>"
     ]
   },
   {
     "objectID": "week11.html#d-heat-equation---numerical-solution",
     "href": "week11.html#d-heat-equation---numerical-solution",
-    "title": "11  MATH 291T - Week 11 Participation",
+    "title": "11  Week 11 Participation",
     "section": "11.2 2D Heat Equation - Numerical Solution",
     "text": "11.2 2D Heat Equation - Numerical Solution\nAfter writing out your steps, replace the ??? with the appropriate indices.\n\\[\nU_{i,j}^{n+1} = U_{???,???}^{???} + \\frac{D \\cdot ???}{???} \\left( ??? + ??? - ??? + ??? + ??? \\right)\n\\]\nPractice\nNow, we need to implement the finite difference scheme that you developed in the previous problem. As a model problem, consider the 2D heat equation\n\\[\nu_t = D(u_{xx} + u_{yy})\n\\]\non the domain \\((x,y) \\in [0,1] \\times [0,1]\\) with the initial condition \\(u(0,x,y) = \\sin(\\pi x)\\sin(\\pi y)\\), homogeneous Dirichlet boundary conditions, and\n\\(D=1\\). Fill in the empty spaces in the following code chunks.\nFirst we import the proper libraries and set up the domains for \\(x, y,\\) and \\(t\\).\n\nnp.linspace(0,1,11)\n\narray([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])\n\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib import cm # this allows for color maps\nfrom ipywidgets import interactive\n\n# Write code to build a linearly spaced array of x values\n# starting at 0 and ending at exactly 1\nx = ??? # your code here\ny = ???# This is a step that allows for us to have y = x\n\n# The consequence of the previous line is that dy = dx.\n\n# Extract dx from your array of x values. # dx = x[1] - x[0]\n\n# Now write code to build a linearly spaced array of time values\n# starting at 0 and ending at 0.25.\n# You will want to use many more values for time than for space\n# (think about the stability conditions from the 1D heat equation).\n\n# your code here\n#Extract dt from your array of t values\n\n# Next we will use the np.meshgrid() command to turn the arrays of\n# x and y values into 2D grids of x and y values.\n# If you match the corresponding entries of X and Y then you get\n# every ordered pair in the domain.\nX, Y = np.meshgrid(x,y)\n\n# Next we set up a 3 dimensional array of zeros to store all of\n# the time steps of the solutions.\nU = np.zeros( (len(t), len(x), len(y)))\n\n\n# initial condition depending on X and Y\n# boundary condition for x=0\n# boundary condition for x=1 (NOTE: -1 represents the last element of the array)\n# boundary condition for y=0\n# boundary condition for y=1\n\n\nD = 1\na = D*dt/dx**2\nprint(a)\n\n0.25\n\n\n\n# NOTE: the \\ is to break up the line for readability\nfor n in range(len(t)-1):\n  U[n+1,1:-1,1:-1] = U[n,1:-1,1:-1] + \\\n    a*(U[n, ?:? , ?:?] + \\\n       U[n, ?:?, ?:?] - \\\n       4*U[n, ?:?, ?:?] + \\\n       U[n, ?:?, ?:?] + \\\n       U[n, ?:?, ?:?])\n\n\ndef plotter(Frame):\n  fig = plt.figure(figsize=(12,10))\n  ax = fig.gca(projection='3d')\n  ax.plot_surface(X,Y,U[Frame,:,:], cmap=cm.coolwarm)\n  ax.set_zlim(0,1)\n  plt.show()\n\ninteractive_plot = interactive(plotter, Frame=(0,len(t)))\ninteractive_plot",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>MATH 291T - Week 11 Participation</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Week 11 Participation</span>"
     ]
   },
   {
     "objectID": "week12.html",
     "href": "week12.html",
-    "title": "12  MATH 291T - Week 12 Participation",
+    "title": "12  Week 12 Participation",
     "section": "",
     "text": "12.1 2D Heat Equation - Numerical Solution\nAfter writing out your steps, replace the ??? with the appropriate indices.\n\\[\nU_{i,j}^{n+1} = U_{???,???}^{???} + \\frac{D \\cdot ???}{???} \\left( ??? + ??? - ??? + ??? + ??? \\right)\n\\]\nPractice\nNow, we need to implement the finite difference scheme that you developed in the previous problem. As a model problem, consider the 2D heat equation\n\\[\nu_t = D(u_{xx} + u_{yy})\n\\]\non the domain \\((x,y) \\in [0,1] \\times [0,1]\\) with the initial condition \\(u(0,x,y) = \\sin(\\pi x)\\sin(\\pi y)\\), homogeneous Dirichlet boundary conditions, and\n\\(D=1\\). Fill in the empty spaces in the following code chunks.\nFirst we import the proper libraries and set up the domains for \\(x, y,\\) and \\(t\\).\nnp.linspace(0,1,11)\n\narray([0. , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1. ])\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib import cm # this allows for color maps\nfrom ipywidgets import interactive\n\n# Write code to build a linearly spaced array of x values\n# starting at 0 and ending at exactly 1\nx = np.linspace(0,1,26)# your code here\ny = x # This is a step that allows for us to have y = x\n# The consequence of the previous line is that dy = dx.\n#dx = 1/100 # Extract dx from your array of x values. #\ndx = x[1] - x[0]\n# Now write code to build a linearly spaced array of time values\n# starting at 0 and ending at 0.25.\n# You will want to use many more values for time than for space\n# (think about the stability conditions from the 1D heat equation).\nt = np.linspace(0,0.25,1001) # your code here\ndt = t[1] - t[0] #Extract dt from your array of t values\n\n# Next we will use the np.meshgrid() command to turn the arrays of\n# x and y values into 2D grids of x and y values.\n# If you match the corresponding entries of X and Y then you get\n# every ordered pair in the domain.\nX, Y = np.meshgrid(x,y)\n\n# Next we set up a 3 dimensional array of zeros to store all of\n# the time steps of the solutions.\nU = np.zeros( (len(t), len(x), len(y)))\nU[0,:,:] = np.sin(np.pi*x) * np.sin(np.pi*y) # initial condition depending on X and Y\nU[:,0,:] = 0# boundary condition for x=0\nU[:,-1,:] = 0# boundary condition for x=1 (NOTE: -1 represents the last element of the array)\nU[:,:,0] = 0# boundary condition for y=0\nU[:,:,-1] = 0# boundary condition for y=1\nD = 1\na = D*dt/dx**2\nprint(a)\n\n0.15625\nfor n in range(len(t)-1):\n  U[n+1,1:-1,1:-1] = U[n,1:-1,1:-1] + \\\n    a*(U[n, 2:, 1:-1] + \\\n       U[n, :-2, 1:-1] - \\\n       4*U[n, 1:-1, 1:-1] + \\\n       U[n, 1:-1, 2:] + \\\n       U[n, 1:-1, :-2])\ndef plotter(Frame):\n  fig = plt.figure(figsize=(12,10))\n  ax = plt.axes(projection='3d')\n  ax.plot_surface(X,Y,U[Frame,:,:], cmap=cm.coolwarm)\n  ax.set_zlim(0,1)\n  plt.show()\n\ninteractive_plot = interactive(plotter, Frame=(0,len(t)-1))\ninteractive_plot\nfig = go.Figure(data=go.Heatmap(\n                   z=U[100,:,:],\n                   x=x,\n                   y=y,\n                   hoverongaps = False))\nfig.show()\nimport plotly.graph_objects as go\nimport pandas as pd\nimport numpy as np\nTEMP = 100\n\n# Create figure\n\nz = U[TEMP,:,:]\nfig = go.Figure(data=[go.Surface(z=z, x=x, y=y)])\nfig.update_layout(title='Heat Equation Solution', autosize=False,\n                  width=500, height=500,\n                  margin=dict(l=65, r=50, b=65, t=90))\nfig.show()\n# this is not working :( --- UPDATE, it's working now :]\nfig = go.Figure(\n    data=[go.Surface(x=[], y=[], z=[],cmin=0, cmax=1)])\n\n\nfig.update_layout(\n\n         scene = dict(\n\n        xaxis=dict(range=[min(x), max(x)], autorange=False),\n        yaxis=dict(range=[min(y), max(y)], autorange=False),\n        zaxis=dict(range=[0, 1], autorange=False),\n        )),\n\nframes = [go.Frame(data= [go.Surface(\n                                       x=x,\n                                       y=y,\n                                       z=U[k+1,:,:])],\n\n                   traces= [0],\n                   name=f'frame{k}'\n                  )for k  in  range(len(U[:,:,:])-1)]\n\nfig.update(frames=frames),\n\n\nfig.update_layout(updatemenus=[dict(type=\"buttons\",\n                          buttons=[dict(label=\"Play\",\n                                        method=\"animate\",\n                                        args=[None, dict(frame=dict(redraw=True,fromcurrent=True, mode='immediate'))      ])])])\n\n\nfig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 1\n\nfig.show()\n# this is not working :( --- UPDATE, it's working now :]\nfig = go.Figure(\n    data=[go.Heatmap(x=[], y=[], z=[], hoverongaps = False, zmin=0,zmax=1)])\n\nfig.update_layout(\n\n         scene = dict(\n\n        xaxis=dict(range=[0, 1], autorange=False),\n        yaxis=dict(range=[0, 1], autorange=False),\n        zaxis=dict(range=[0, 1], autorange=False),\n        )),\n\nframes = [go.Frame(data= [go.Heatmap(\n                                       x=x,\n                                       y=y,\n                                       z=U[k+1,:,:])],\n                   traces= [0],\n                   name=f'frame{k}'\n                  )for k  in  range(len(U[:,:,:])-1)]\n\nfig.update(frames=frames),\n\n\nfig.update_layout(updatemenus=[dict(type=\"buttons\",\n                          buttons=[dict(label=\"Play\",\n                                        method=\"animate\",\n                                        args=[None, dict(frame=dict(redraw=True,fromcurrent=True, mode='immediate'))      ])])])\n\n\nfig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 10\n\nfig.show()\nTheorem. In order for the finite difference solution to the 2D heat equation on a square domain to be stable then we need\n\\[\nD\\Delta t / \\Delta x^2 &lt; ???\n\\]\nExperiment with several parameters to imperically determine the bound.",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MATH 291T - Week 12 Participation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Week 12 Participation</span>"
     ]
   },
   {
     "objectID": "week12.html#the-wave-equation",
     "href": "week12.html#the-wave-equation",
-    "title": "12  MATH 291T - Week 12 Participation",
+    "title": "12  Week 12 Participation",
     "section": "12.2 The Wave Equation",
     "text": "12.2 The Wave Equation\nThe problems that we’ve dealt with thus far all model natural diffusion processes: heat transport, molecular diffusion, etc. Another interesting physical phenomenon is that of wave propagation. Previously it was given that the 1D wave equation is\n\\[\nu_{tt} = c \\; u_{xx}\n\\]\nwhere \\(c\\) is a parameter modeling the stiffness of the medium the wave is traveling through.\n\nLet’s take a few minutes to derive this in the guitar string example.\n\nPractice\nAs before, we use the notation \\(U^n_i\\) to represent the approximate solution \\(u(t,x)\\) at the point \\(t=t_n\\) and \\(x=x_i\\).\n\nBased on our previous work, give an approximation of \\(u_{tt}\\)\n\n\\[\nu_{tt}(t_n, x_i) \\approx \\frac{??? - ??? + ???}{???}.\n\\]\n\nGive an approximation of \\(u_{xx}\\)\n\n\\[\nu_{xx}(t_n, x_i) \\approx \\frac{??? - ??? + ???}{???}.\n\\]\n\nPut your answers from parts (a) and (b) together using the 1D wave equation\n\n\\[\n\\frac{??? - ??? + ???}{\\Delta t^2} = c \\left( \\frac{??? - ??? + ???}{\\Delta x^2} \\right).\n\\]\nBe sure that your indexing is correct: the superscript \\(n\\) is the index for time and the subscript \\(i\\) is the index for space.\nANS:\n\nRearrange your result from part (c) to solve for \\(U_i^{n+1}\\)\n\n\\[\nU_i^{n+1} =\n\\]\n\nYou should notice that the finite difference scheme for the wave equation references two different times:\n\n\\[\nU^n_i \\text{ and } U^{n-1}_i.\n\\]\nBased on this observation, what information do we need to in order to actually start our numerical solution?\nANS:\nPractice\nNow we want to implement your answers of the previous exercise to approximate the solution to the following problem:\n\\[\n\\text{Solve: } u_{tt} = 2 u_{xx}\n\\]\nwith\n\\[\nx \\in (0,1), \\, u(0,x) = 4x (1-x), \\, u_t(0,x) = 0, \\, \\text{and} \\, u(t,0) = u(t,1) = 0.\n\\]",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MATH 291T - Week 12 Participation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Week 12 Participation</span>"
     ]
   },
   {
     "objectID": "week12.html#the-wave-equation---2d",
     "href": "week12.html#the-wave-equation---2d",
-    "title": "12  MATH 291T - Week 12 Participation",
+    "title": "12  Week 12 Participation",
     "section": "12.3 The Wave Equation - 2D",
     "text": "12.3 The Wave Equation - 2D\nNow consider the 2D wave equation\n\\[\nu_{tt} = c\\left( u_{xx} + u_{yy} \\right).\n\\]\nWe want to build a numerical solution to this new PDE. Just like with the 2D heat equation we propose the notation \\(U_{i,j}^n\\) for the approximation of the function \\(u(t,x,y)\\) at the point \\(t=t_n, x=x_i, y=y_i\\).\nPractice\n\nGive discretizations of the derivatives \\(u_{tt}, u_{xx},\\) and \\(u_{yy}\\)\n\nANS:\n\nSubstitute your discretizations into the 2D wave equation, make the simplifying assumption that \\(\\Delta x = \\Delta y\\), and solve for \\(U^{n+1}_{i,j}\\). This is the finite difference scheme for the 2D wave equation.\n\nANS:\n\nWrite code to implement the finite difference scheme from part (b) on the domain \\((x,y) \\in (0,1)\\times (0,1)\\) with homogeneous Dirichlet boundary conditions, initial condition \\(u(0,x,y) = \\sin(2\\pi(x-0.5))\\sin(2\\pi(y-0.5))\\) and zero initial velocity.\n\nANS:\n\nDraw the finite difference stencil for the 2D WAVE equation.\n\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>MATH 291T - Week 12 Participation</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Week 12 Participation</span>"
     ]
   },
   {
