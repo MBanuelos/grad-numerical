@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; MATH 291T - Week 6 Participation – Numerical Methods in Applied Mathematics, with Python</title>
+<title>6&nbsp; Intro to ODEs – Numerical Methods in Applied Mathematics, with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to ODEs</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -253,13 +253,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week6.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to ODEs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MATH 291T - Week 7 Participation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Week 7 Participation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -288,19 +288,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">MATH 291T - Week 10 Participation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Week 10 Participation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">MATH 291T - Week 11 Participation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Week 11 Participation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./week12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">MATH 291T - Week 12 Participation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Week 12 Participation</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,18 +315,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#intro-to-odes" id="toc-intro-to-odes" class="nav-link active" data-scroll-target="#intro-to-odes"><span class="header-section-number">6.1</span> Intro to ODEs</a></li>
-  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link" data-scroll-target="#separation-of-variables"><span class="header-section-number">6.2</span> Separation of Variables</a></li>
-  <li><a href="#eulers-method" id="toc-eulers-method" class="nav-link" data-scroll-target="#eulers-method"><span class="header-section-number">6.3</span> Euler’s Method</a></li>
+  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link active" data-scroll-target="#separation-of-variables"><span class="header-section-number">6.1</span> Separation of Variables</a></li>
+  <li><a href="#eulers-method" id="toc-eulers-method" class="nav-link" data-scroll-target="#eulers-method"><span class="header-section-number">6.2</span> Euler’s Method</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./module_three.html">Module 3 - Ordinary Differential Equations</a></li><li class="breadcrumb-item"><a href="./week6.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to ODEs</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">MATH 291T - Week 6 Participation</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Intro to ODEs</span></h1>
 </div>
 
 
@@ -345,6 +344,7 @@ window.Quarto = {
 
 <p><a href="https://colab.research.google.com/github/MBanuelos/grad-numerical/blob/main/week6.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
 <p><strong>Name:</strong> [Type Your Name Here]</p>
+<p>#Week 6 Participation</p>
 <hr>
 <p>To begin all assignments (whether participation or homework), please save a copy of this notebook to your Google Drive by clicking <strong>File -&gt; Save a copy in Drive</strong></p>
 <hr>
@@ -354,8 +354,6 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.misc</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.integrate </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="intro-to-odes" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="intro-to-odes"><span class="header-section-number">6.1</span> Intro to ODEs</h2>
 <p><strong>Practice</strong></p>
 <p>Describe the plot of the function that would model the following scenario,</p>
 <p>A drug is eliminated from the body via natural metabolism. Assume that there is some initial amount of drug in the body. What does the function modeling the amount of drug in the system look like over time?</p>
@@ -369,9 +367,8 @@ window.Quarto = {
 <li><span class="math inline">\(x(t) = e^{3t} + C\)</span></li>
 </ol>
 <p>For the one that is the solution, please type your solution below.</p>
-</section>
-<section id="separation-of-variables" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">6.2</span> Separation of Variables</h2>
+<section id="separation-of-variables" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">6.1</span> Separation of Variables</h2>
 <p><strong>Practice</strong></p>
 <p>Solve the differential equation <span class="math inline">\(x' = 2x + 12\)</span> with <span class="math inline">\(x(0)=2\)</span> using separation of variables.</p>
 <p>Please type your answer below.</p>
@@ -385,8 +382,8 @@ window.Quarto = {
 <p>Please type your answer below. Substitute your solution into the differential equation and verify that it solves it.</p>
 <p>ANS:</p>
 </section>
-<section id="eulers-method" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="eulers-method"><span class="header-section-number">6.3</span> Euler’s Method</h2>
+<section id="eulers-method" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="eulers-method"><span class="header-section-number">6.2</span> Euler’s Method</h2>
 <p>We want to approximate a solution to <span class="math inline">\(x'(t) = f(t,x(t))\)</span>.</p>
 <p>Recall that <span class="math display">\[
 x'(t) = \frac{x(t+h) - x(t)}{h} + \mathcal{O}(h)
@@ -863,8 +860,8 @@ x_{n+1} = x_n + h f(x_n, t_n)
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./week7.html" class="pagination-link" aria-label="MATH 291T - Week 7 Participation">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">MATH 291T - Week 7 Participation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./week7.html" class="pagination-link" aria-label="Week 7 Participation">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Week 7 Participation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
