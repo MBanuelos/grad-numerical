@@ -21,3 +21,5 @@ Each week includes examples and a link to open the lesson directly in Google Col
   - [Week 10](week10.ipynb)
   - [Week 11](week11.ipynb)
   - [Week 12](week12.ipynb)
+  - [Week 13](week13_advection_fd.ipynb)
+- [Module 5](module_five.ipynb)

@@ -490,7 +490,7 @@
     "href": "week11.html",
     "title": "11  Week 11 Participation",
     "section": "",
-    "text": "11.1 Solving the Heat Eq.\nRead and review Sections 6.1 - 6.4 from the textbook.\nand answer the following\nConsider the time dependent heat equation in one dimension\n\\[\nu_t = D \\; u_{xx}\n\\]\nin 1 spatial dimension. Note that \\(D\\) is the diffusivity (the rate of diffusion) so in terms of physical problems, if \\(D\\) is small then the diffusion occurs slowly and if \\(D\\) is large then the diffusion occurs quickly.\nWe want to build a numerical approximation to the function \\(u(t,x)\\) for a given collection of initial and boundary conditions.\nFirst we need to introduce some notation for the numerical solution. As you’ll see in a moment, there is a lot to keep track of in numerical PDEs so careful index and well-chosen notation is essential. Let \\(U_i^n\\) be the approximation of the solution to \\(u(t,x)\\) at the point \\(t=t_n\\) and \\(x=x_i\\) (since we have two variables we need to two indices). For example, \\(U_4^1\\) is the value of the approximation at time \\(t_1\\) and at the spatial point \\(x_4\\).\nNext, we need to approximate both derivatives \\(u_t\\) and \\(u_{xx}\\) in the PDE using methods that we have used before. Now, would be a good time to go back to review your notes for how we build approximations of derivatives.\n\\[\nu_t \\approx \\frac{??? - ???}{???}.\n\\]\nANS:\n\\[\nu_{xx} \\approx \\frac{??? - ??? + ???}{???}.\n\\]\nANS:\n\\[\n\\frac{??? - ???}{\\Delta t} = D \\left( \\frac{??? - ??? + ???}{\\Delta x^2} \\right).\n\\]\nBe sure that your indexing is correct: the superscript \\(n\\) is the index for time and the subscript \\(i\\) is the index for space.\nANS:\n\\[\nU_i^{n+1} = ??? + \\frac{D \\Delta t}{\\Delta x^2} \\left( ??? - ??? + ??? \\right).\n\\]\nANS:\nANS:\nANS:\nPractice\nNow we want to implement your answers of the previous exercise to approximate the solution to the following problem:\n\\[\n\\text{Solve: } u_t = 0.5u_{xx}\n\\]\nwith\n\\[\nx \\in (0,1), \\, u(0,x) = \\sin(2 \\pi x), \\, u(t,0) = 0, \\, \\text{and} \\, u(t,1) = 0.\n\\]\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport plotly.graph_objects as go\nfrom ipywidgets import interactive\n\n# Write code to give an array of times starting at t=0 and ending\n# at t=1.  Be sure that you use many points in the partition of\n# the time domain.  Be sure to either specify or calculate the\n# value of Delta t.\ndt = 0.00005\nt = np.linspace(0,1,int(np.floor(1/dt)+1))\n#print(t)\n# Write code to give an array of x values starting at x=0 and\n# ending exactly at x=1. This is best done with the np.linspace()\n# command since you can guarantee that you end exactly at x=1.\n# Be sure to either specify or calculate the value of Delta x as\n# part of your code.\ndx = 0.01\nx = np.linspace(0,1,int(np.floor(1/dx)+1))\n#print(x)\n# The next two lines build two parameters that are of interest\n# for the finite difference scheme.\nD = 0.5 # The diffusion coefficient for the heat equation given.\n# The coefficient \"a\" appears in the finite difference scheme.\na = D*dt / (dx**2)\nprint(\"dt=\",dt,\", dx=\",dx,\" and D dt/dx^2=\",a)\n\ndt= 5e-05 , dx= 0.01  and D dt/dx^2= 0.25\nNext we build the array \\(U\\) so we can store all of the approximations at all times and at all spatial points. The array will have the dimensions len(t) versus len(x). We then need to enforce the boundary conditions so for all times we fill the proper portions of the array with the proper boundary conditions. Lastly, we will build the initial condition for all spatial steps in the first time step.\nU = np.zeros( (len(t),len(x)) )\n# left boundary condition\n# right boundary condition\n# the function for the init. condition (should depend on x)\nNow we step through a loop that fills the \\(U\\) array one row at a time. Keep in mind that we want to leave the boundary conditions fixed so we will only fill indices 1 through -2 (stop and explain this). Be careful to get the indexing correct. For example, if we want \\(U_i^n\\), we use U[n,1:-1], if we want \\(U_{i+1}^n\\), we use U[n,2:], if we want \\(U_i^{n+1}\\) we use U[n+1,1:-1]\nfor n in range(len(t)-1):\n    ...\nNow, let’s plot the solution\ndef plotter(Frame):\n    plt.plot(x,U[Frame,:],'b')\n    plt.grid()\n    plt.ylim(-1,1)\n    plt.show()\ninteractive_plot = interactive(plotter, Frame=(0,len(t)-1,1))\ninteractive_plot\nfor Frame in range(0,len(t),2000): # ex: build every 20th frame\n    plotter(Frame)\nPractice\nYou may have found that you didn’t get a sensible solution out for the previous problem. The point of this exercise is to show that value of \\(a = D\\frac{\\Delta t}{\\Delta x^2}\\) controls the stability of the finite difference solution to the heat equation, and furthermore that there is a cutoff for \\(a\\) below which the finite difference scheme will be stable. Experiment with values of \\(\\Delta t\\) and \\(\\Delta x\\) and conjecture the values of\n\\[\na = D\\frac{\\Delta t}{\\Delta x^2}\n\\]\nthat give a stable result. Your conjecture should take the form:\nIf \\(a = D\\frac{\\Delta t}{\\Delta x^2} &lt; ??\\), then the finite difference solution for the 1D heat equation is stable. Otherwise it is unstable.\nANS:\nPractice\nConsider the one dimensional heat equation with diffusion coefficient \\(D=1\\):\n\\[\nu_t = u_{xx}\n\\]\nWe want to solve this equation on the domain \\(x \\in (0,1)\\) and \\(t\\in (0, 0.5)\\) subject to the initial condition \\(u(0,x) = \\sin(\\pi x )\\) and the boundary conditions \\(u(t,0)=u(t,1)=0\\).\n(c and d optional –)\nANS:",
+    "text": "11.1 Solving the Heat Eq.\nRead and review Sections 6.1 - 6.4 from the textbook.\nand answer the following\nConsider the time dependent heat equation in one dimension\n\\[\nu_t = D \\; u_{xx}\n\\]\nin 1 spatial dimension. Note that \\(D\\) is the diffusivity (the rate of diffusion) so in terms of physical problems, if \\(D\\) is small then the diffusion occurs slowly and if \\(D\\) is large then the diffusion occurs quickly.\nWe want to build a numerical approximation to the function \\(u(t,x)\\) for a given collection of initial and boundary conditions.\nFirst we need to introduce some notation for the numerical solution. As you’ll see in a moment, there is a lot to keep track of in numerical PDEs so careful index and well-chosen notation is essential. Let \\(U_i^n\\) be the approximation of the solution to \\(u(t,x)\\) at the point \\(t=t_n\\) and \\(x=x_i\\) (since we have two variables we need to two indices). For example, \\(U_4^1\\) is the value of the approximation at time \\(t_1\\) and at the spatial point \\(x_4\\).\nNext, we need to approximate both derivatives \\(u_t\\) and \\(u_{xx}\\) in the PDE using methods that we have used before. Now, would be a good time to go back to review your notes for how we build approximations of derivatives.\n\\[\nu_t \\approx \\frac{??? - ???}{???}.\n\\]\nANS:\n\\[\nu_{xx} \\approx \\frac{??? - ??? + ???}{???}.\n\\]\nANS:\n\\[\n\\frac{??? - ???}{\\Delta t} = D \\left( \\frac{??? - ??? + ???}{\\Delta x^2} \\right).\n\\]\nBe sure that your indexing is correct: the superscript \\(n\\) is the index for time and the subscript \\(i\\) is the index for space.\nANS:\n\\[\nU_i^{n+1} = ??? + \\frac{D \\Delta t}{\\Delta x^2} \\left( ??? - ??? + ??? \\right).\n\\]\nANS:\nANS:\nANS:\nPractice\nNow we want to implement your answers of the previous exercise to approximate the solution to the following problem:\n\\[\n\\text{Solve: } u_t = 0.5u_{xx}\n\\]\nwith\n\\[\nx \\in (0,1), \\, u(0,x) = \\sin(2 \\pi x), \\, u(t,0) = 0, \\, \\text{and} \\, u(t,1) = 0.\n\\]\nQ: What is the analytical solution to this equation?\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport plotly.graph_objects as go\nfrom ipywidgets import interactive\n\n# Write code to give an array of times starting at t=0 and ending\n# at t=1.  Be sure that you use many points in the partition of\n# the time domain.  Be sure to either specify or calculate the\n# value of Delta t.\ndt = 0.00005\nt = np.linspace(0,1,int(np.floor(1/dt)+1))\n#print(t)\n# Write code to give an array of x values starting at x=0 and\n# ending exactly at x=1. This is best done with the np.linspace()\n# command since you can guarantee that you end exactly at x=1.\n# Be sure to either specify or calculate the value of Delta x as\n# part of your code.\ndx = 0.01\nx = np.linspace(0,1,int(np.floor(1/dx)+1))\n#print(x)\n# The next two lines build two parameters that are of interest\n# for the finite difference scheme.\nD = 0.5 # The diffusion coefficient for the heat equation given.\n# The coefficient \"a\" appears in the finite difference scheme.\na = D*dt / (dx**2)\nprint(\"dt=\",dt,\", dx=\",dx,\" and D dt/dx^2=\",a)\n\ndt= 5e-05 , dx= 0.01  and D dt/dx^2= 0.25\nNext we build the array \\(U\\) so we can store all of the approximations at all times and at all spatial points. The array will have the dimensions len(t) versus len(x). We then need to enforce the boundary conditions so for all times we fill the proper portions of the array with the proper boundary conditions. Lastly, we will build the initial condition for all spatial steps in the first time step.\nU = np.zeros( (len(t),len(x)) )\n# left boundary condition\n# right boundary condition\n# the function for the init. condition (should depend on x)\nNow we step through a loop that fills the \\(U\\) array one row at a time. Keep in mind that we want to leave the boundary conditions fixed so we will only fill indices 1 through -2 (stop and explain this). Be careful to get the indexing correct. For example, if we want \\(U_i^n\\), we use U[n,1:-1], if we want \\(U_{i+1}^n\\), we use U[n,2:], if we want \\(U_i^{n+1}\\) we use U[n+1,1:-1]\nfor n in range(len(t)-1):\n    ...\nNow, let’s plot the solution\ndef plotter(Frame):\n    plt.plot(x,U[Frame,:],'b')\n    plt.grid()\n    plt.ylim(-1,1)\n    plt.show()\ninteractive_plot = interactive(plotter, Frame=(0,len(t)-1,1))\ninteractive_plot\nfor Frame in range(0,len(t),2000): # ex: build every 20th frame\n    plotter(Frame)\nPractice\nYou may have found that you didn’t get a sensible solution out for the previous problem. The point of this exercise is to show that value of \\(a = D\\frac{\\Delta t}{\\Delta x^2}\\) controls the stability of the finite difference solution to the heat equation, and furthermore that there is a cutoff for \\(a\\) below which the finite difference scheme will be stable. Experiment with values of \\(\\Delta t\\) and \\(\\Delta x\\) and conjecture the values of\n\\[\na = D\\frac{\\Delta t}{\\Delta x^2}\n\\]\nthat give a stable result. Your conjecture should take the form:\nIf \\(a = D\\frac{\\Delta t}{\\Delta x^2} &lt; ??\\), then the finite difference solution for the 1D heat equation is stable. Otherwise it is unstable.\nANS:\nPractice\nConsider the one dimensional heat equation with diffusion coefficient \\(D=1\\):\n\\[\nu_t = u_{xx}\n\\]\nWe want to solve this equation on the domain \\(x \\in (0,1)\\) and \\(t\\in (0, 0.5)\\) subject to the initial condition \\(u(0,x) = \\sin(\\pi x )\\) and the boundary conditions \\(u(t,0)=u(t,1)=0\\).\nANS:",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Week 11 Participation</span>"
@@ -501,7 +501,7 @@
     "href": "week11.html#solving-the-heat-eq.",
     "title": "11  Week 11 Participation",
     "section": "",
-    "text": "Give an approximation of \\(u_t\\), similar to Euler’s method\n\n\n\n\nGive an approximation of \\(u_{xx}\\) using the approximation for the second derivative from HW 03\n\n\n\n\nPut your answers from parts (a) and (b) together using the 1D heat equation\n\n\n\n\n\nRearrange your result from part (c) to solve for \\(U_i^{n+1}\\)\n\n\n\n\nRead the first 3 pages of these lecture notes and compare them with what you derived above.\n\n\n\nWhat do you think the expected error for this method is?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProve that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x)\\) is a solution to this heat equation, satisfies the initial condition, and satisfies the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (a).\n\n\n\nNow let’s change the initial condition to \\(u(0,x)=\\sin(\\pi x) + 0.1\\sin(100 \\pi x)\\). Prove that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x) + 0.1 e^{-10^4\\pi^2t}\\sin(100\\pi x)\\) is a solution to this heat equation, matches this new initial condition, and matches the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (c).",
+    "text": "Give an approximation of \\(u_t\\), similar to Euler’s method\n\n\n\n\nGive an approximation of \\(u_{xx}\\) using the approximation for the second derivative from HW 03\n\n\n\n\nPut your answers from parts (a) and (b) together using the 1D heat equation\n\n\n\n\n\nRearrange your result from part (c) to solve for \\(U_i^{n+1}\\)\n\n\n\n\nRead the first 3 pages of these lecture notes and compare them with what you derived above.\n\n\n\nWhat do you think the expected error for this method is?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProve that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x)\\) is a solution to this heat equation, satisfies the initial condition, and satisfies the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (a).\nNow let’s change the initial condition to \\(u(0,x)=\\sin(\\pi x) + 0.1\\sin(100 \\pi x)\\). Prove that the function \\(u(t,x) = e^{-\\pi^2 t} \\sin(\\pi x) + 0.1 e^{-10^4\\pi^2t}\\sin(100\\pi x)\\) is a solution to this heat equation, matches this new initial condition, and matches the boundary conditions.\nPick values of \\(\\Delta t\\) and \\(\\Delta x\\) so that you can get a stable finite difference solution to this heat equation. Plot your results on top of the analytic solution from part (c).",
     "crumbs": [
       "Module 4 - Partial Differential Equations",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Week 11 Participation</span>"
@@ -552,6 +552,126 @@
     ]
   },
   {
+    "objectID": "week13_advection_fd.html",
+    "href": "week13_advection_fd.html",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "",
+    "text": "13.1 Learning Objectives\nBy the end of this notebook, you should be able to:",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#learning-objectives",
+    "href": "week13_advection_fd.html#learning-objectives",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "",
+    "text": "Derive first-order finite difference schemes for the linear advection equation\n\\[u_t + c\\,u_x = 0.\\]\nImplement explicit finite difference schemes in Python using NumPy.\nInterpret the Courant number \\(\\lambda = c \\Delta t / \\Delta x\\) and its role in stability.\nRecognize numerical diffusion and dispersion in approximate solutions.\nConnect finite difference schemes to a discrete conservation principle.",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#the-linear-advection-equation",
+    "href": "week13_advection_fd.html#the-linear-advection-equation",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.2 1. The Linear Advection Equation",
+    "text": "13.2 1. The Linear Advection Equation\nWe consider the linear advection equation on a 1D domain \\(x \\in [0,L]\\): \\[u_t + c\\,u_x = 0,\\] where \\(c\\) is a constant wave speed.\n\nPhysically: a profile \\(u(x,t)\\) is transported (advected) to the right if \\(c&gt;0\\) or to the left if \\(c&lt;0\\), without changing shape (for smooth solutions and periodic/compatible boundary conditions).\nMathematically: the exact solution is a simple translation of the initial condition: \\[u(x,t) = u_0(x - ct).\\]\n\nWe will study how different finite difference schemes approximate this simple behavior.",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#spatial-and-temporal-grids",
+    "href": "week13_advection_fd.html#spatial-and-temporal-grids",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.3 2. Spatial and Temporal Grids",
+    "text": "13.3 2. Spatial and Temporal Grids\nWe discretize the domain \\(x \\in [0,L]\\) into \\(N\\) grid points with spacing \\(\\Delta x = L/N\\), and we advance in time using time step \\(\\Delta t\\).\n\nSpatial grid: \\(x_j = j\\,\\Delta x\\), for \\(j = 0,1,\\dots,N-1\\)\nTime levels: \\(t^n = n\\,\\Delta t\\), for \\(n = 0,1,\\dots\\)\n\nFor simplicity, we will use periodic boundary conditions, so that \\[u_0^n = u_N^n, \\quad \\text{or equivalently } u_{j+N}^n = u_j^n.\\]\nThis allows us to focus on the behavior of the numerical schemes without dealing with boundaries.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Basic grid setup\nL = 1.0             # domain length\nN = 200             # number of grid points\ndx = L / N\nx = np.linspace(0, L, N, endpoint=False)\n\nc = 1.0             # advection speed\nTfinal = 0.5        # final time\n\n# Courant number\nlambda_target = 0.8\ndt = lambda_target * dx / c\nnt = int(Tfinal / dt)\n\nprint(f\"dx = {dx:.4f}, dt = {dt:.4f}, number of time steps = {nt}\")\n\ndx = 0.0050, dt = 0.0040, number of time steps = 125",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#initial-condition-and-periodicity",
+    "href": "week13_advection_fd.html#initial-condition-and-periodicity",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.4 3. Initial Condition and Periodicity",
+    "text": "13.4 3. Initial Condition and Periodicity\nWe will use a smooth Gaussian bump as an initial condition: \\[u_0(x) = \\exp\\big(-100(x - 0.3)^2\\big).\\]\nWith periodic boundary conditions, this bump will wrap around the domain as it moves.\n\ndef initial_condition(x):\n    return np.exp(-100.0 * (x - 0.3)**2)\n\nu0 = initial_condition(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, u0)\nplt.xlabel(\"x\")\nplt.ylabel(\"u(x,0)\")\nplt.title(\"Initial Condition: Gaussian Bump\")\nplt.grid(True)\nplt.show()",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#deriving-a-finite-difference-scheme-ftbs",
+    "href": "week13_advection_fd.html#deriving-a-finite-difference-scheme-ftbs",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.5 4. Deriving a Finite Difference Scheme: FTBS",
+    "text": "13.5 4. Deriving a Finite Difference Scheme: FTBS\nWe start from the PDE \\[u_t + c\\,u_x = 0.\\]\nA simple explicit scheme is Forward-Time, Backward-Space (FTBS): \\[\n\\frac{u_j^{n+1} - u_j^n}{\\Delta t} + c \\frac{u_j^n - u_{j-1}^n}{\\Delta x} = 0.\n\\]\nSolving for \\(u_j^{n+1}\\): \\[\nu_j^{n+1} = u_j^n - \\lambda\\,(u_j^n - u_{j-1}^n),\n\\quad \\text{where } \\lambda = \\frac{c\\,\\Delta t}{\\Delta x}.\n\\]\nThis scheme is first order in both time and space, and for \\(c&gt;0\\) it is stable when \\(0 &lt; \\lambda \\leq 1\\).\nWe now implement FTBS with periodic boundaries.\n\ndef ftbs_advection(u0, c, dx, dt, nt):\n    '''\n    Forward-Time, Backward-Space scheme for u_t + c u_x = 0\n    with periodic boundary conditions.\n    '''\n    N = len(u0)\n    u = u0.copy()\n    lambda_c = c * dt / dx\n    history = [u.copy()]\n    for n in range(nt):\n        # periodic index j-1 -&gt; (j-1) % N\n        u_new = u - lambda_c * (u - np.roll(u, 1))\n        u = u_new\n        history.append(u.copy())\n    return np.array(history)\n\nhistory_ftbs = ftbs_advection(u0, c, dx, dt, nt)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, u0, label=\"t=0\")\nplt.plot(x, history_ftbs[nt//2], label=f\"t={dt*(nt//2):.3f}\")\nplt.plot(x, history_ftbs[-1], label=f\"t={dt*nt:.3f}\")\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"FTBS Scheme for Linear Advection\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n13.5.1 Discussion\n\nDoes the bump translate approximately without changing shape?\nDo you see numerical diffusion (smoothing / flattening) over time?\nHow does this compare with the exact shift \\(u(x,t) = u_0(x - ct)\\)?",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#exercise-1---implement-ftcs-and-observe-instability",
+    "href": "week13_advection_fd.html#exercise-1---implement-ftcs-and-observe-instability",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.6 5. Exercise 1 - Implement FTCS and Observe Instability",
+    "text": "13.6 5. Exercise 1 - Implement FTCS and Observe Instability\nConsider the Forward-Time, Central-Space (FTCS) scheme: \\[\n\\frac{u_j^{n+1} - u_j^n}{\\Delta t} + c\\,\\frac{u_{j+1}^n - u_{j-1}^n}{2\\,\\Delta x} = 0.\n\\]\nSolving for \\(u_j^{n+1}\\): \\[\nu_j^{n+1} = u_j^n - \\frac{\\lambda}{2}\\,(u_{j+1}^n - u_{j-1}^n).\n\\]\nIt turns out this scheme is unconditionally unstable for pure advection (no diffusion).\n\n13.6.1 Task\n\nImplement the FTCS scheme with periodic boundary conditions.\nUse the same grid and time step as for FTBS.\nObserve what happens to the numerical solution as time advances.\n\nHint: Use np.roll(u, -1) for \\(u_{j+1}\\) and np.roll(u, 1) for \\(u_{j-1}\\).\n\n# TRY IT 1: Implement FTCS for linear advection\n\ndef ftcs_advection(u0, c, dx, dt, nt):\n    '''\n    TODO: Implement the Forward-Time, Central-Space scheme\n    for u_t + c u_x = 0 with periodic BCs.\n    '''\n    N = len(u0)\n    u = u0.copy()\n    lambda_c = c * dt / dx\n    history = [u.copy()]\n    for n in range(nt):\n        # TODO: add the line below with the FTCS update:\n        # u_new = \n        u_new = u.copy()  # placeholder\n        \n        history.append(u_new.copy())\n        u = u_new\n    return np.array(history)\n\n# After you implement ftcs_advection, uncomment these lines to test:\n# history_ftcs = ftcs_advection(u0, c, dx, dt, nt)\n# plt.figure(figsize=(6, 3))\n# plt.plot(x, u0, label=\"t=0\")\n# plt.plot(x, history_ftcs[nt//2], label=f\"t={dt*(nt//2):.3f}\")\n# plt.plot(x, history_ftcs[-1], label=f\"t={dt*nt:.3f}\")\n# plt.xlabel(\"x\")\n# plt.ylabel(\"u\")\n# plt.title(\"FTCS Scheme for Linear Advection (Expected to be Unstable)\")\n# plt.legend()\n# plt.grid(True)\n# plt.show()\n\nObservation:\n\nAs \\(n\\) increases, the FTCS solution exhibits oscillations that grow in time.\nThis is consistent with a Von Neumann stability analysis, which shows that the amplification factor has magnitude greater than 1 for some modes, regardless of \\(\\Delta t\\) and \\(\\Delta x\\).\n\nThis provides a nice contrast with FTBS, which is stable for \\(0 &lt; \\lambda \\le 1\\) when \\(c&gt;0\\).",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#conservation-viewpoint",
+    "href": "week13_advection_fd.html#conservation-viewpoint",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.7 6. Conservation Viewpoint",
+    "text": "13.7 6. Conservation Viewpoint\nFor the linear advection equation, \\[u_t + c\\,u_x = 0,\\] we can rewrite it in conservation form: \\[u_t + \\partial_x F(u) = 0, \\quad F(u) = c\\,u.\\]\nIntegrating over a cell \\([x_{j-1/2}, x_{j+1/2}]\\): \\[\n\\frac{d}{dt}\\int_{x_{j-1/2}}^{x_{j+1/2}} u(x,t)\\,dx\n= F\\big(u(x_{j-1/2},t)\\big) - F\\big(u(x_{j+1/2},t)\\big).\n\\]\n\nThe change in cell average is governed by the fluxes through the cell boundaries.\nFTBS can be understood as approximating these fluxes in a one-sided way for \\(c&gt;0\\).\n\nWe will return to this idea in Week 14 when we formally introduce finite volume methods.",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#exercise-2---courant-number-and-stability",
+    "href": "week13_advection_fd.html#exercise-2---courant-number-and-stability",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.8 7. Exercise 2 - Courant Number and Stability",
+    "text": "13.8 7. Exercise 2 - Courant Number and Stability\nThe Courant number is \\[\\lambda = \\frac{c\\,\\Delta t}{\\Delta x}.\\]\nFor FTBS with \\(c&gt;0\\), stability requires \\(0 &lt; \\lambda \\leq 1\\).\n\n13.8.1 Task\n\nWrite a small function that runs FTBS for a given \\(\\lambda\\).\nTry \\(\\lambda = 0.4\\), \\(0.8\\), \\(1.0\\), and \\(1.2\\), keeping \\(\\Delta x\\) fixed and adjusting \\(\\Delta t\\).\nCompare the solutions at a fixed final time \\(T\\) and comment on:\n\nStability vs instability\nAmount of numerical diffusion (smoothing)\n\n\n\n# TRY IT 2: Explore the effect of lambda on FTBS stability\n\ndef run_ftbs_with_lambda(lambda_val):\n    dt_local = lambda_val * dx / c\n    nt_local = int(Tfinal / dt_local)\n    u0_local = initial_condition(x)\n    history_local = ftbs_advection(u0_local, c, dx, dt_local, nt_local)\n    return history_local, dt_local, nt_local\n\n# TODO:\n# 1. Call run_ftbs_with_lambda for lambda_val in [0.4, 0.8, 1.0, 1.2].\n# 2. Plot the solutions at the final time on the same figure.\n# 3. Observe which values of lambda lead to stability or instability,\n#    and which lead to more/less numerical diffusion.",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week13_advection_fd.html#summary-and-looking-ahead",
+    "href": "week13_advection_fd.html#summary-and-looking-ahead",
+    "title": "13  Week 13 – Finite Differences for Linear Advection",
+    "section": "13.9 8. Summary and Looking Ahead",
+    "text": "13.9 8. Summary and Looking Ahead\nIn this notebook we:\n\nDerived and implemented FTBS (stable) and FTCS (unstable) schemes for the linear advection equation.\nExplored the role of the Courant number \\(\\lambda\\) in stability and numerical diffusion.\nIntroduced the conservation viewpoint, writing the PDE in flux form \\(u_t + (F(u))_x = 0\\).\n\nNext: We will build directly on the conservation form and derive finite volume methods, which are designed to enforce conservation at the discrete level by approximating fluxes across cell boundaries.",
+    "crumbs": [
+      "Module 4 - Partial Differential Equations",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Week 13 – Finite Differences for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "module_five.html",
+    "href": "module_five.html",
+    "title": "Module 5: Beyond Finite Differences",
+    "section": "",
+    "text": "… to be added :]",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Numerical Methods in Applied Mathematics, with Python",
@@ -566,7 +686,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12\nWeek 13\n\nModule 5",
     "crumbs": [
       "Table of Contents"
     ]

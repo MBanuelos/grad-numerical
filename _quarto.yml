@@ -34,6 +34,8 @@ book:
         - week10.ipynb
         - week11.ipynb
         - week12.ipynb
+        - week13_advection_fd.ipynb
+    - part: module_five.ipynb
 execute:
   echo: true
 
