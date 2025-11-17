@@ -672,6 +672,127 @@
     ]
   },
   {
+    "objectID": "week14_advection_fv.html",
+    "href": "week14_advection_fv.html",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "",
+    "text": "14.1 Learning Objectives\nBy the end of this notebook, students should be able to:",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#learning-objectives",
+    "href": "week14_advection_fv.html#learning-objectives",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "",
+    "text": "Derive a finite volume scheme from the integral (conservative) form of a PDE.\nDefine and interpret numerical fluxes across cell interfaces.\nImplement first-order upwind and Lax–Friedrichs finite volume schemes for linear advection.\nCompare mass conservation and numerical diffusion for different schemes.\nRelate finite volume methods to finite difference schemes from Week 13.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#conservation-form-of-the-linear-advection-equation",
+    "href": "week14_advection_fv.html#conservation-form-of-the-linear-advection-equation",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.2 1. Conservation Form of the Linear Advection Equation",
+    "text": "14.2 1. Conservation Form of the Linear Advection Equation\nWe again consider the 1D linear advection equation: \\[u_t + c\\,u_x = 0.\\]\nThis can be written in conservation form: \\[u_t + \\partial_x F(u) = 0, \\quad F(u) = c\\,u.\\]\nWe partition the domain into cells: \\[\nC_j = [x_{j-1/2}, x_{j+1/2}], \\quad j = 0,1,\\dots,N-1,\n\\] with cell centers at \\(x_j\\) and cell width \\(\\Delta x\\).\nDefine the cell average: \\[\n\\bar u_j(t) = \\frac{1}{\\Delta x}\\int_{C_j} u(x,t)\\,dx.\n\\]\nIntegrating the conservation law over cell \\(C_j\\) gives \\[\n\\frac{d}{dt}\\bar u_j(t)\n= -\\frac{1}{\\Delta x} \\big(F(u(x_{j+1/2},t)) - F(u(x_{j-1/2},t))\\big).\n\\]\nTo discretize, we approximate the fluxes at the interfaces \\(x_{j\\pm 1/2}\\).",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#numerical-fluxes",
+    "href": "week14_advection_fv.html#numerical-fluxes",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.3 2. Numerical Fluxes",
+    "text": "14.3 2. Numerical Fluxes\nWe cannot evaluate \\(F(u(x_{j+1/2},t))\\) exactly, so we approximate it with a numerical flux: \\[\\hat F_{j+1/2} = \\hat F(\\bar u_j, \\bar u_{j+1}).\\]\nA general finite volume update is then \\[\n\\bar u_j^{n+1}\n= \\bar u_j^n - \\frac{\\Delta t}{\\Delta x}\n\\big(\\hat F_{j+1/2}^n - \\hat F_{j-1/2}^n\\big).\n\\]\nThe choice of \\(\\hat F\\) determines the scheme.\n\n14.3.1 Two Important Choices for Linear Advection\nFor \\(F(u) = c u\\), some common numerical fluxes are:\n\nUpwind flux (for \\(c&gt;0\\)): \\[\\hat F_{j+1/2} = c\\,\\bar u_j.\\] Information comes from the upwind cell.\nLax–Friedrichs flux: \\[\n\\hat F_{j+1/2} = \\tfrac{1}{2}\\big(F(\\bar u_j) + F(\\bar u_{j+1})\\big)\n- \\tfrac{\\alpha}{2}(\\bar u_{j+1} - \\bar u_j),\n\\] where \\(\\alpha\\) is a dissipation parameter, typically chosen as an upper bound on \\(|F'(u)|\\).\nFor linear advection, \\(F'(u)=c\\), so we can take \\(\\alpha = |c|\\).",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#grid-initial-condition-and-periodic-boundaries",
+    "href": "week14_advection_fv.html#grid-initial-condition-and-periodic-boundaries",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.4 3. Grid, Initial Condition, and Periodic Boundaries",
+    "text": "14.4 3. Grid, Initial Condition, and Periodic Boundaries\nWe will again use:\n\nDomain: \\(x \\in [0,1]\\)\n\\(N\\) cells with width \\(\\Delta x = 1/N\\)\nPeriodic boundary conditions\nInitial condition: Gaussian bump\n\nWe interpret the discrete values as cell averages rather than point values.\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nL = 1.0\nN = 200\ndx = L / N\nx_cell_centers = np.linspace(0, L, N, endpoint=False)\n\nc = 1.0\nTfinal = 0.5\n\nlambda_target = 0.8\ndt = lambda_target * dx / c\nnt = int(Tfinal / dt)\n\ndef initial_condition(x):\n    return np.exp(-100.0 * (x - 0.3)**2)\n\nu0 = initial_condition(x_cell_centers)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x_cell_centers, u0)\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Initial Condition (Interpreted as Cell Averages)\")\nplt.grid(True)\nplt.show()\n\nprint(f\"dx = {dx:.4f}, dt = {dt:.4f}, nt = {nt}\")\n\n\n\n\n\n\n\n\ndx = 0.0050, dt = 0.0040, nt = 125",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#upwind-finite-volume-scheme",
+    "href": "week14_advection_fv.html#upwind-finite-volume-scheme",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.5 4. Upwind Finite Volume Scheme",
+    "text": "14.5 4. Upwind Finite Volume Scheme\nFor \\(c&gt;0\\), the upwind numerical flux is \\[\\hat F_{j+1/2} = c\\,\\bar u_j.\\]\nThen the FV update becomes: \\[\n\\bar u_j^{n+1}\n= \\bar u_j^n - \\frac{\\Delta t}{\\Delta x}\n\\big(c\\,\\bar u_j^n - c\\,\\bar u_{j-1}^n\\big).\n\\]\nThis is exactly the FTBS scheme from Week 13, but now interpreted as a flux difference.\nWe implement this scheme with periodic boundaries.\n\ndef fv_upwind(u0, c, dx, dt, nt):\n    '''\n    Finite volume upwind scheme for u_t + c u_x = 0 with c &gt; 0.\n    Periodic boundary conditions.\n    '''\n    N = len(u0)\n    u = u0.copy()\n    history = [u.copy()]\n    lambda_c = c * dt / dx\n    for n in range(nt):\n        # fluxes at interfaces: F_{j+1/2} = c * u_j\n        F = ...\n        # flux difference: F_{j+1/2} - F_{j-1/2} -&gt; roll for periodicity\n        F_plus = ...\n        F_minus = ...\n        u_new = ...\n        u = u_new\n        history.append(u.copy())\n    return np.array(history)\n\n\nhistory_fv_upwind = fv_upwind(u0, c, dx, dt, nt)\n\n\nplt.figure(figsize=(6, 3))\nplt.plot(x_cell_centers, u0, label=\"t=0\")\nplt.plot(x_cell_centers, history_fv_upwind[nt//2], label=f\"t={dt*(nt//2):.3f}\")\nplt.plot(x_cell_centers, history_fv_upwind[-1], label=f\"t={dt*nt:.3f}\")\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Finite Volume Upwind Scheme for Linear Advection\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\n\n14.5.1 Mass Conservation Check\nOne of the key advantages of finite volume methods is that they are conservative by construction (up to numerical roundoff). That is, the discrete total mass \\[M^n = \\sum_j \\bar u_j^n \\Delta x\\] should remain (almost) constant in time.\n\nmass_history = dx * history_fv_upwind.sum(axis=1)\n\nplt.figure(figsize=(6, 3))\nplt.plot(np.linspace(0, dt*nt, nt+1), mass_history, marker=\".\")\nplt.xlabel(\"t\")\nplt.ylabel(\"Total mass\")\nplt.title(\"Total Mass vs Time (FV Upwind)\")\nplt.grid(True)\nplt.show()\n\nprint(\"Initial mass:\", mass_history[0])\nprint(\"Final mass:\", mass_history[-1])\n\n\n\n\n\n\n\n\nInitial mass: 0.17724372048877107\nFinal mass: 0.1772437204887711",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#laxfriedrichs-finite-volume-scheme",
+    "href": "week14_advection_fv.html#laxfriedrichs-finite-volume-scheme",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.6 5. Lax–Friedrichs Finite Volume Scheme",
+    "text": "14.6 5. Lax–Friedrichs Finite Volume Scheme\nFor linear advection, \\(F(u) = c u\\) and we choose \\(\\alpha = |c|\\).\nThe Lax–Friedrichs numerical flux is \\[\n\\hat F_{j+1/2}\n= \\tfrac{1}{2}\\big(c\\,\\bar u_j + c\\,\\bar u_{j+1}\\big)\n- \\tfrac{\\alpha}{2}(\\bar u_{j+1} - \\bar u_j)\n= \\tfrac{c}{2}(\\bar u_j + \\bar u_{j+1})\n- \\tfrac{|c|}{2}(\\bar u_{j+1} - \\bar u_j).\n\\]\nThis is more diffusive than the upwind flux but has good stability properties.\nWe now implement the Lax–Friedrichs FV scheme.\n\ndef fv_lax_friedrichs(u0, c, dx, dt, nt):\n    '''\n    Finite volume Lax–Friedrichs scheme for u_t + c u_x = 0.\n    Periodic boundary conditions.\n    '''\n    N = len(u0)\n    u = u0.copy()\n    history = [u.copy()]\n    alpha = abs(c)\n    for n in range(nt):\n        u_plus = ...\n        # numerical flux at j+1/2 uses (u_j, u_{j+1})\n        F_plus_half = ...\n        # flux at j-1/2 is roll of that\n        F_minus_half = ...\n        u_new = ...\n        u = u_new\n        history.append(u.copy())\n    return np.array(history)\n\n\nhistory_fv_lf = fv_lax_friedrichs(u0, c, dx, dt, nt)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x_cell_centers, u0, label=\"t=0\")\nplt.plot(x_cell_centers, history_fv_lf[nt//2], label=f\"t={dt*(nt//2):.3f}\")\nplt.plot(x_cell_centers, history_fv_lf[-1], label=f\"t={dt*nt:.3f}\")\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Finite Volume Lax–Friedrichs Scheme\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\nmass_history_lf = dx * history_fv_lf.sum(axis=1)\nprint(\"Initial mass (LF):\", mass_history_lf[0])\nprint(\"Final mass (LF):\", mass_history_lf[-1])",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#exercise-1-compare-upwind-and-laxfriedrichs",
+    "href": "week14_advection_fv.html#exercise-1-compare-upwind-and-laxfriedrichs",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.7 6. Exercise 1 – Compare Upwind and Lax–Friedrichs",
+    "text": "14.7 6. Exercise 1 – Compare Upwind and Lax–Friedrichs\n\n14.7.1 Task\n\nOn the same figure, plot the solutions at final time \\(T\\) for:\n\nFV upwind\nFV Lax–Friedrichs\n\nCompare:\n\nShape preservation of the Gaussian bump\nAmount of numerical diffusion (smoothing)\nAny spurious oscillations\n\n\nHint: Reuse history_fv_upwind and history_fv_lf at index -1 for final time.\n\n# Exercise 1: Compare FV Upwind vs FV Lax–Friedrichs at final time\n\n# TODO:\n# 1. Create a new figure.\n# 2. Plot u0, the final-time upwind solution, and the final-time LF solution.\n# 3. Add labels, legend, and a title describing what you see.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#exercise-2-square-wave-initial-condition",
+    "href": "week14_advection_fv.html#exercise-2-square-wave-initial-condition",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.8 7. Exercise 2 – Square Wave Initial Condition",
+    "text": "14.8 7. Exercise 2 – Square Wave Initial Condition\nSmooth data behaves nicely, but finite volume methods are particularly useful for discontinuous data (for example shocks or contact discontinuities).\n\n14.8.1 Task\n\nReplace the Gaussian initial condition with a square wave: \\[\nu_0(x) =\n\\begin{cases}\n1, & 0.2 \\le x \\le 0.4, \\\\\n0, & \\text{otherwise.}\n\\end{cases}\n\\]\nRun both FV upwind and FV Lax–Friedrichs to final time \\(T\\) with the same parameters.\nCompare how each scheme handles the discontinuity.\n\nWhich scheme smears out the discontinuity more?\nDo you see any oscillations near the jump?\n\n\n\n# Exercise 2: Square wave initial condition\n\ndef square_wave_ic(x):\n    return np.where((x &gt;= 0.2) & (x &lt;= 0.4), 1.0, 0.0)\n\n# TODO:\n# 1. Set u0_square = square_wave_ic(x_cell_centers)\n# 2. Run fv_upwind and fv_lax_friedrichs with this new initial condition.\n# 3. Plot the results at final time and compare.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#connection-to-finite-difference-methods",
+    "href": "week14_advection_fv.html#connection-to-finite-difference-methods",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.9 8. Connection to Finite Difference Methods",
+    "text": "14.9 8. Connection to Finite Difference Methods\nFor linear advection with \\(c&gt;0\\), the FV upwind scheme is algebraically identical to the FTBS finite difference scheme from Week 13, but:\n\nFD view: approximating \\(u_x\\) directly via one-sided differences.\nFV view: approximating flux differences across cell interfaces, enforcing conservation of cell averages.\n\nThe FV interpretation generalizes more naturally to complex conservation laws (non-linear fluxes, systems of equations, higher dimensions).",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week14_advection_fv.html#summary-and-looking-ahead",
+    "href": "week14_advection_fv.html#summary-and-looking-ahead",
+    "title": "14  Week 14 – Finite Volume Methods for Linear Advection",
+    "section": "14.10 9. Summary and Looking Ahead",
+    "text": "14.10 9. Summary and Looking Ahead\nIn this notebook we:\n\nDerived a finite volume scheme for linear advection from the integral conservation law.\nIntroduced numerical fluxes and implemented upwind and Lax–Friedrichs schemes.\nObserved mass conservation and numerical diffusion for both schemes.\nLinked finite volume upwind to the FTBS scheme from Week 13.\n\nNext (Week 15): We will take a different perspective and approximate solutions using Fourier/spectral methods, which represent the solution as a sum of global modes and can achieve very high accuracy for smooth solutions.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Numerical Methods in Applied Mathematics, with Python",
@@ -686,7 +807,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12\nWeek 13\n\nModule 5",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12\nWeek 13\n\nModule 5\n\nWeek 14",
     "crumbs": [
       "Table of Contents"
     ]
