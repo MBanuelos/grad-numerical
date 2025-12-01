@@ -14,7 +14,7 @@
     "href": "index.html#table-of-contents",
     "title": "Numerical Methods in Applied Mathematics, with Python",
     "section": "",
-    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12\nWeek 13\n\nModule 5\n\nWeek 14",
+    "text": "Preface\nModule 1\n\nWeek 1\nWeek 2\n\nModule 2\n\nWeek 3\nWeek 4\nWeek 5\n\nModule 3\n\nWeek 6\nWeek 7\nWeek 8\n\nModule 4\n\nWeek 9\nWeek 10\nWeek 11\nWeek 12\nWeek 13\n\nModule 5\n\nWeek 14\nWeek 15",
     "crumbs": [
       "Table of Contents"
     ]
@@ -830,6 +830,105 @@
     "crumbs": [
       "Module 5: Beyond Finite Differences",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Week 14 – Finite Volume Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html",
+    "href": "week15_advection_spectral.html",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "",
+    "text": "15.1 Learning Objectives\nCourse: Numerical Analysis\nTopic: Fourier/Spectral Methods on Periodic Domains\nBy the end of this notebook, students should be able to:",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#learning-objectives",
+    "href": "week15_advection_spectral.html#learning-objectives",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "",
+    "text": "Represent a function on a periodic domain using a discrete Fourier transform (DFT).\nUse the FFT to compute Fourier coefficients and reconstruct the function.\nImplement a spectral time-stepping method for the linear advection equation.\nCompare spectral and finite-volume/finite-difference solutions in terms of accuracy and dispersion.\nObserve aliasing and resolution effects for high-frequency initial data.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#linear-advection-on-a-periodic-domain",
+    "href": "week15_advection_spectral.html#linear-advection-on-a-periodic-domain",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.2 1. Linear Advection on a Periodic Domain",
+    "text": "15.2 1. Linear Advection on a Periodic Domain\nWe consider again \\[u_t + c\\,u_x = 0\\] on a periodic domain \\(x \\in [0,L]\\).\nThe exact solution is a translation: \\[u(x,t) = u_0(x - ct).\\]\nSpectral methods take advantage of periodicity by expanding \\(u\\) in a Fourier series.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#fourier-series-and-discrete-fourier-transform",
+    "href": "week15_advection_spectral.html#fourier-series-and-discrete-fourier-transform",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.3 2. Fourier Series and Discrete Fourier Transform",
+    "text": "15.3 2. Fourier Series and Discrete Fourier Transform\nOn a periodic domain with period \\(L\\), a sufficiently smooth function \\(u(x,t)\\) can be expanded as \\[\nu(x,t) = \\sum_{k=-\\infty}^{\\infty} \\hat u_k(t) e^{i k \\kappa x},\n\\quad \\kappa = \\frac{2\\pi}{L}.\n\\]\nIn a discrete setting, with \\(N\\) grid points \\(x_j = j\\,\\Delta x\\) and \\(\\Delta x = L/N\\), we approximate this with a finite sum over wavenumbers \\(k\\): \\[u_j \\approx \\sum_k \\hat u_k e^{i k \\kappa x_j}.\\]\nThe discrete Fourier transform (DFT) (implemented in NumPy by np.fft.fft) maps the physical values \\(u_j\\) to complex Fourier coefficients \\(\\hat u_k\\).\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nL = 1.0\nN = 256  # use a power of 2 for efficient FFT\ndx = L / N\nx = np.linspace(0, L, N, endpoint=False)\n\nc = 1.0\n\ndef initial_condition(x):\n    return np.exp(-100.0 * (x - 0.3)**2)\n\nu0 = initial_condition(x)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, u0)\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Initial Condition (Gaussian, Periodic)\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n15.3.1 2.1. Computing the DFT and Inverse DFT\nNumPy provides:\n\nnp.fft.fft(u) – computes the DFT \\(\\hat u_k\\) from physical values \\(u_j\\).\nnp.fft.ifft(uhat) – computes the inverse DFT from \\(\\hat u_k\\) back to physical space.\n\nThe DFT indices correspond to wavenumbers \\(k\\), which we can obtain using np.fft.fftfreq.\n\nuhat0 = np.fft.fft(u0)\n\nk_freq = np.fft.fftfreq(N, d=dx)  # cycles per unit length\nk = 2 * np.pi * k_freq            # angular wavenumbers\n\nplt.figure(figsize=(6, 3))\nmarkerline, stemlines, baseline = plt.stem(k, np.abs(uhat0), basefmt=\" \")\nplt.xlim(-60, 60)\nplt.xlabel(\"wavenumber k\")\nplt.ylabel(\"|u_hat(k)|\")\nplt.title(\"Magnitude of Fourier Coefficients of Initial Condition\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nMost of the energy is concentrated at low wavenumbers because the Gaussian is smooth.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#spectral-solution-of-linear-advection",
+    "href": "week15_advection_spectral.html#spectral-solution-of-linear-advection",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.4 3. Spectral Solution of Linear Advection",
+    "text": "15.4 3. Spectral Solution of Linear Advection\nExercise: Substitute the Fourier series into the PDE, and solve the resulting ODE.\nSolution:\n\n15.4.1 3.1. Spectral Time Stepping\nGiven \\(u_j^0\\):\n\nCompute \\(\\hat u_k(0) = \\mathcal{F}[u_j^0]\\) using FFT.\nFor each time step of size \\(\\Delta t\\), update \\[\\hat u_k^{n+1} = \\hat u_k^{n} \\exp(-i c k \\Delta t).\\]\nTransform back to physical space using inverse FFT to visualize \\(u_j^n\\).\n\nThis method is spectrally accurate in space (for smooth periodic solutions) and exact in time for the linear advection PDE, assuming no aliasing issues.\n\ndef spectral_advection(u0, c, dx, dt, nt):\n    '''\n    Spectral solution of u_t + c u_x = 0 on a periodic domain.\n    Uses exact evolution in Fourier space.\n    '''\n    N = ...\n    x = ...\n    u = ...\n    history = ...\n    \n    # Precompute wavenumbers\n    k_freq = np.fft.fftfreq(N, d=dx)\n    k = 2 * np.pi * k_freq\n    \n    # Initial Fourier coefficients\n    uhat = ...\n    \n    # Precompute phase factor for one time step\n    phase = ...\n    \n    for n in range(nt):\n        uhat = ...\n        u = ...\n        history.append(u.copy())\n    return np.array(history)\n\nTfinal = 0.5\nlambda_target = 0.8\ndt = lambda_target * dx / c\nnt = int(Tfinal / dt)\n\nhistory_spectral = spectral_advection(u0, c, dx, dt, nt)\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, u0, label=\"t=0\")\nplt.plot(x, history_spectral[nt//2], label=f\"t={dt*(nt//2):.3f}\")\nplt.plot(x, history_spectral[-1], label=f\"t={dt*nt:.3f}\")\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Spectral Solution of Linear Advection\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\n\n\n15.4.2 Comparison with Exact Solution\nRecall the exact solution is a translation: \\[u_{\\text{exact}}(x,t) = u_0(x - c t).\\]\nWe can construct this and compare it with the spectral solution numerically.\n\ndef exact_solution(x, t, c):\n    # shift x by ct with periodic wrap-around\n    return initial_condition((x - c * t) % L)\n\nu_exact = exact_solution(x, Tfinal, c)\nu_spec_final = history_spectral[-1]\n\nplt.figure(figsize=(6, 3))\nplt.plot(x, u_exact, label=\"Exact at T\")\nplt.plot(x, u_spec_final, '--', label=\"Spectral at T\")\nplt.xlabel(\"x\")\nplt.ylabel(\"u\")\nplt.title(\"Spectral vs Exact Solution\")\nplt.legend()\nplt.grid(True)\nplt.show()\n\nerror_l2 = np.sqrt(np.mean((u_spec_final - u_exact)**2))\nprint(f\"L2 error between spectral and exact solution: {error_l2:.2e}\")\n\nFor this smooth initial condition and reasonable resolution, the spectral method should be extremely accurate.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#try-it-1-compare-spectral-and-finite-volume-solutions",
+    "href": "week15_advection_spectral.html#try-it-1-compare-spectral-and-finite-volume-solutions",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.5 4. Try It 1 – Compare Spectral and Finite Volume Solutions",
+    "text": "15.5 4. Try It 1 – Compare Spectral and Finite Volume Solutions\nWe now compare the spectral method with the finite volume upwind method from Week 14.\n\n15.5.1 Task\n\nImplement or reuse the FV upwind scheme for the same grid and time step.\nCompute the FV upwind solution at the same final time.\nPlot:\n\nExact solution\nSpectral solution\nFV upwind solution\n\nCompare:\n\nPhase accuracy (location of the bump)\nAmplitude and shape (numerical diffusion)\n\n\n\n# TRY IT 1: Compare spectral and FV upwind solutions\n\ndef fv_upwind(u0, c, dx, dt, nt):\n    ...\n# TODO:\n# 1. Compute history_fv = fv_upwind(u0, c, dx, dt, nt).\n# 2. At final time, plot u_exact, spectral solution, and FV solution on the same figure.\n# 3. Comment on which method is more accurate and how the FV solution differs.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#try-it-2-high-frequency-initial-data-and-aliasing",
+    "href": "week15_advection_spectral.html#try-it-2-high-frequency-initial-data-and-aliasing",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.6 5. Try It 2 – High-Frequency Initial Data and Aliasing",
+    "text": "15.6 5. Try It 2 – High-Frequency Initial Data and Aliasing\nSpectral methods rely on resolving the relevant frequencies. If the initial condition contains frequencies near or beyond the Nyquist limit, we see aliasing.\n\n15.6.1 Task\n\nDefine a high-frequency initial condition, for example \\[u_0(x) = \\sin(20\\pi x).\\]\nRepeat the spectral advection experiment to final time \\(T\\).\nTry different values of \\(N\\) (for example 64, 128, 256) and compare:\n\nHow well do we resolve the wave?\nDo you see aliasing or strange patterns?\n\n\n\n# TRY IT 2: High-frequency initial condition\n\ndef high_freq_ic(x):\n    return np.sin(20.0 * np.pi * x)\n\n# TODO:\n# 1. Set u0_hf = high_freq_ic(x).\n# 2. Run spectral_advection with this initial condition.\n# 3. Plot the solution and the exact translated wave.\n# 4. Experiment with changing N and observe what happens.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#summary-fd-fv-spectral-methods-for-linear-advection",
+    "href": "week15_advection_spectral.html#summary-fd-fv-spectral-methods-for-linear-advection",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.7 6. Summary: FD / FV / Spectral Methods for Linear Advection",
+    "text": "15.7 6. Summary: FD / FV / Spectral Methods for Linear Advection\nWe have now seen three perspectives on numerically solving the linear advection equation on a periodic domain:\n\n\n\n\n\n\n\n\n\n\nMethod\nViewpoint\nSpatial accuracy (for smooth data)\nConservation\nComplexity\n\n\n\n\nFTBS (FD)\nLocal derivative\nFirst order\nApproximate\nSimple\n\n\nFV Upwind\nFlux balance\nFirst order\nConservative\nModerate\n\n\nSpectral\nGlobal expansion\nSpectral (very high)\nConservative (for linear advection)\nHigher (FFT)\n\n\n\nKey takeaways:\n\nFinite difference and finite volume methods are local and easy to generalize to complex geometries and non-linear PDEs.\nSpectral methods exploit global smoothness and periodicity to achieve very high accuracy but require more structure (for example periodic domains) and care with aliasing.\nFor smooth, periodic problems like linear advection, spectral methods can be extremely efficient and accurate.",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
+    ]
+  },
+  {
+    "objectID": "week15_advection_spectral.html#reflection-questions",
+    "href": "week15_advection_spectral.html#reflection-questions",
+    "title": "15  Week 15 – Spectral (Fourier) Methods for Linear Advection",
+    "section": "15.8 7. Reflection Questions",
+    "text": "15.8 7. Reflection Questions\n\nIn what settings would you prefer a finite volume method over a spectral method, and why?\nHow does the concept of conservation appear in each method?\nHow would you expect these methods to behave for non-smooth initial data (for example discontinuities)?\n\nResponse:",
+    "crumbs": [
+      "Module 5: Beyond Finite Differences",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Week 15 – Spectral (Fourier) Methods for Linear Advection</span>"
     ]
   }
 ]
